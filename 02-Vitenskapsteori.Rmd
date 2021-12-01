@@ -192,4 +192,3 @@ krise. Det er tydelig at folk som driver vitenskap trenger en større
 forståelse av statistikk og sannsynlighet [@bird2020]. Gjennom et større
 hensyn til basefrekvensen vil man utarbeide bedre teorier og være mer
 forsiktig med å si at noe er gjeldene for en hel populasjon [@bird2020].
-\#\# Referanser:
