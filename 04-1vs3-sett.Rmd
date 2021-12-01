@@ -133,9 +133,9 @@ mutate(sets = factor(sets, levels = c("multiple", "single"),
     autofit()
 ```
 
-```{r figur, include=TRUE, results='hide', fig.cap = "Figur 1 viser økningen i muskelvekst fra pre-test til post-tesst for alle forsøkspersoner skildt ved single- sett (1 sett) og multiple- sett (3 sett)."}
+```{r figur, echo=FALSE, include=TRUE, results='hide', fig.cap = "Figur 1 viser økningen i muskelvekst fra pre-test til post-tesst for alle forsøkspersoner skildt ved single- sett (1 sett) og multiple- sett (3 sett)."}
 knitr::opts_chunk$set(echo = TRUE)
-options(knitr.duplicate.label = "allow")
+
 
 figurmuskel
 ```
@@ -219,14 +219,14 @@ mutate(sets = factor(sets, levels = c("multiple", "single"),
     autofit()
 ```
 
-```{r styrkefigur, include=TRUE, results='hide', fig.cap = "Figur 2 viser økningen i muskelstyrke, fra pre-tests til 5 uker og 5 uker til post-test for alle forsøkspersoner skildt ved single- sett (1 sett) og multiple- sett (3 sett)."}
+```{r styrkefigur, echo=FALSE, include=TRUE, results='hide', fig.cap = "Figur 2 viser økningen i muskelstyrke, fra pre-tests til 5 uker og 5 uker til post-test for alle forsøkspersoner skildt ved single- sett (1 sett) og multiple- sett (3 sett)."}
 
 
 options(knitr.duplicate.label = "allow")
 figurstyrke
 ```
 
-```{r tabellstyrke, my_table, include=TRUE, results='asis'}
+```{r tabellstyrke, echo=FALSE, message=FALSE, warning=FALSE}
 
 
 options(knitr.duplicate.label = "allow")

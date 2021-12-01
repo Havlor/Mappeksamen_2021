@@ -41,46 +41,6 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -501,34 +461,62 @@ Det er enda ikke veldig tydelig hvilke treningsprogram som gir god effekt på be
 
 Tabell 1. Oppsummering av artiklene
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.01}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.14}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.10}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.06}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.41}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.12}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.16}}@{}}
-\toprule
-Studie & Studiespørsmål & Hypoteser & Logikk & Metode & Resultat & Interferes \\
-\midrule
-\endhead
-\citet{turpela2017} & Hvordan påvirker treningsfrekvensen muskelstyrke, muskelmasse og funksjonell kapasitet hos utrente eldre mennesker? & Hypotese: To til tre treninger i uken er bedre enn en trening.
+\providecommand{\docline}[3]{\noalign{\global\setlength{\arrayrulewidth}{#1}}\arrayrulecolor[HTML]{#2}\cline{#3}}
 
-Alternativ hypotese: Utrente vil ha god effekt uansett og da gjøre forskjellen på vanskelig å se. & Det vil bli enklere å \textbar{} gi klare råd om hvor ofte eldre bør trene styrke for å oppnå treningseffekt. & 4 grupper basert på antall treninger i uken: ingen økter, 1 økt, 2 økter og 3 økter. Intervensjonsperioden var 6 måneder med 3 måneder tilvenning i forkant. Styrketester og funksjonell kapasitet ble testet før og etter. Treningsøktene var tradisjonell tung og eksplosiv trening. 106 kvinner og menn (64-75 år) som var friske med unntak «normale» alderssjukdommer.
+\setlength{\tabcolsep}{2pt}
 
-Ble brukt en-veis-ANOVA og en-veis-ANOVA med gjentatte målinger & Ikke sammenheng \textbar{} mellom treningsfrekvens og ganghastighet eller kroppssammensetning. Alle skilte seg fra kontrollgruppen Dose-respons i forhold til 1RM og dynamisk styrke (i treningsapparat) & Sunne eldre vil ha en gunstig effekt av å trene lavfrekvens helkropps styrketrening (1-2 ganger i uken). \\
-\citet{schott2019} & Studien hadde to \textbar{} formål:
+\renewcommand*{\arraystretch}{1.5}
 
-1.Sammenligne effekten av intensiv frivektstrening med apparattrening hos godt fungerende eldre mennesker.
+\begin{longtable}[c]{|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}|p{0.75in}}
 
-2.~~~~~~~~~ Se om intensiv trening med frivekter er gjennomførbart på denne gruppen & Begge gruppene vil ha \textbar{} en fremgang i styrke, men gruppen som trener med frivekter vil få et bedre resultat sammenlignet med gruppen som trente med treningsapparat. & Vil gjøre det lettere \textbar{} å gi treingsanbefalinger for godt fungerende eldre & 32 friske kvinner \textbar{} og menn mellom 60 og 86 år ble fordelt i to grupper hvor den ene trente med frivekter, mens den andre trente med apparat.
 
-Det ble gjennomført to treninger i uken hvor øvelsene ble gjort i 3 sett og 10-12 repetisjoner (10RM). Alle økter ble avsluttet med 20 min utholdenhetstrening. Testing av styrke og utholdenhet ble gjort ved start, 10 uker, 26 uker og 6 uker etter intervensjon (uten trening). Det ble også utfylt spørreskjema etter intervensjon. Statistikk ble gjort ved uavhengig t-test, paret t-test, MANCOVA, Cohens d og Pearsons korrelasjon. & Begge gruppene økte i \textbar{} alle øvelser og gjorde det bedre på dynamiske styrketester. For triceps og ben var det større effekt av å trene med frivekter. Frivektstrening var mer motiverende. & Trening både med frivekter og maskin gir god styrkeeffekt, men frivektstrening gir ytterlige effekt på ben og triceps. Disse to muskelgruppene er viktige for å forebygge fall og i dagliglivet, frivektstrening er derfor å anbefale for eldre som er godt fungerende. \\
-\citet{vikberg2019} & Effekten av 10-ukers trening med enkle styrkeøvelser og lite utstyr ledet av instruktør på personer med presarkopeni. Hovedspørsmålene er om treningen gir effekt på funksjonell styrke og om det påvirker kroppssammensetningen & Styrketreningen vil \textbar{} gi positiv effekt på funksjonell styrke & Eldre kan på en enkel måte få god effekt av styrketrening. & 70 kvinner og menn med presarkopeni ble fordelt i kontroll (36) og intervensjonsgruppe (34). Intervensjonsgruppen trente tre gruppetreninger i uken i 10 uker. Det var ingen tydelige ekskluderingskriterier. Treningene var helkroppsøkter med enkle øvelser. Intensiteten skulle ligge på RPE mellom 6 og 7 (skala 1-10). Det ble gjort et testbatteri før og etter bestående av funksjonelle tester i tillegg til tester av kroppssammensetning. Paret T-test ble brukt for å se forskjell innad i gruppene. ANCOVA ble brukt få se forskjell mellom gruppene. & Det var økning i styrke fra post til pre hos intervensjonsgruppen, men de skilte seg ikke fra kontroll. Kroppssammensetning var bedret innad i gruppen og i forhold til kontroll. & Styrketrening med enkelt utstyr som man kan gjøre nesten hvor som helst er effektivt for å hindre tap av muskelstyrke og øke muskelmasse for eldre med presarkopeni \\
-\citet{geirsdottir2012} & Hva er styrketreningseffekten på eldre mennesker, spesielt med tanke på helse relatert til livskvalitet, men også styrke, kroppssammensetning og funksjonell kapasitet & Styrketreningen vil \textbar{} gi god effekt på muskelmassen og styrken som igjen vil øke helse relatert til livskvalitet. & Styrketrening vil gi \textbar{} høyere livskvalitet hos eldre & 265 friske kvinner og menn mellom 65 og 92 år gikk igjennom et 12 ukers treningsprogram med tre økter i uken med. Øktene var helkroppsprogram (3 sett, 6-8 rep på 75-80\% av 1RM per øvelse). Motstanden ble økt 5-10\% hver uke. Før og etter ble det testet styrke, kroppssammensetning, funksjonell styrke og tatt spørreskjema om livskvalitet. Statistikk mellom de som droppet ut og de andre ble analysert ved uavhengig t-test. Paret t-test ble brukt for å se på forskjell mellom pre og post. Wilcoxon test ble brukt for å se på pre og post spørreskjema. Persons og Spearmans r ble brukt for å se på korrelasjoner mellom spørreskjemavariabler og kroppssammensetning, styrke og funksjon. & Det var en økning i muskelmasse, styrke og funksjonell kapasitet. Det var en liten, men signifikant økning i livskvalitet & 12 uker med styrketrening vil gi god effekt på styrke, kroppssammensetning og muskelmasse. Dette vil igjen gi bedre livskvalitet. Ved styrketrening vil en også hindre fallet i muskelstyrke og muskelmasse. \\
-\citet{vincent2002} & Er det forskjell på treningseffekten av å trene høyere vekt og lavere antall repetisjoner og lavere vekt og flere repetisjoner hos eldre mennesker & Styrketrening med lavere vekt og flere repetisjoner fungerer like bra som høy vekt og få repetisjoner. & Man kan anbefale trening som oppleves lettere og som er mindre skadeutsatt. & 62 Friske kvinner og \textbar{} menn mellom 60 og 83 år trenete eller var i kontroll i 26 uker. De som trente, trente enten 50\% av 1RM *13 rep eller 80\% av 1RM 8 rep i en serie per treningsapparat (volum blir ca. det samme for begge). Basert på borgs skala (6-20), ble det gjort økninger i vekt på treningen. Før og etter perioden ble det testet kroppssammensetning, diet, styrke, utholdende styrke og trappetest. ANOVA ble brukt for å se forskjell innad og mellom gruppene over tid. For de endelige resultatet ble ANCOVA brukt for å se på forskjeller & Begge \textbar{} treningsgruppene fikk økning i muskelstyrke og muskelutholdenhet, samt i trappetesten i forhold til kontroll, men ingen forskjell mellom \textbar{} treningsgruppene. & Eldre friske mennesker kan få like godt resultat med 13 rep på 50\% av 1 RM, 8 rep på 80\% av 1RM. Dette gjør styrketrening enklere i tillegg til lavere skaderisiko. \\
-\bottomrule
+
+\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}-}
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Studie}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Studiespørsmål}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Hypoteser}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Logikk}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Metode}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Resultat}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Interferes}}}} \\
+
+\noalign{\global\setlength{\arrayrulewidth}{2pt}}\arrayrulecolor[HTML]{666666}\cline{1-7}
+
+\endfirsthead
+
+\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=2pt}-}
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Studie}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Studiespørsmål}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Hypoteser}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Logikk}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Metode}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Resultat}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Interferes}}}} \\
+
+\noalign{\global\setlength{\arrayrulewidth}{2pt}}\arrayrulecolor[HTML]{666666}\cline{1-7}\endhead
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{@turpela2017}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Hvordan\ påvirker\ treningsfrekvensen\ muskelstyrke,\ muskelmasse\ og\ funksjonell\ kapasitet\ hos\ utrente\ eldre\ mennesker?}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{To\ til\ tre\ treninger\ i\ uken\ er\ bedre\ enn\ en\ trening.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Det\ vil\ bli\ enklere\ å\ gi\ klare\ råd\ om\ hvor\ ofte\ eldre\ bør\ trene\ styrke\ for\ å\ oppnå\ treningseffekt.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{4\ grupper:\ ingen\ økter,\ 1\ økt,\ 2\ økter\ og\ 3\ økter.\ Intervensjonsperioden\ på\ 6\ måneder\ hvor\ tester\ ble\ gjort\ før\ og\ etter.\ Treningsøktene\ var\ tradisjonell\ tung\ og\ eksplosiv\ trening.\ 106\ friske\ kvinner\ og\ menn\ (64-75\ år).\ Ble\ brukt\ en-veis-ANOVA\ og\ en-veis-ANOVA\ med\ gjentatte\ målinger.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Ikke\ sammenheng\ mellom\ treningsfrekvens\ og\ ganghastighet\ eller\ kroppssammensetning.\ Alle\ skilte\ seg\ fra\ kontrollgruppen\ Dose-respons\ i\ forhold\ til\ 1RM\ og\ dynamisk\ styrke\ (i\ treningsapparat)}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Sunne\ eldre\ vil\ ha\ en\ gunstig\ effekt\ av\ å\ trene\ lavfrekvens\ helkropps\ styrketrening\ (1-2\ ganger\ i\ uken).}}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{@schott2019}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Sammenligne\ effekten\ av\ intensiv\ frivektstrening\ med\ apparattrening\ hos\ godt\ fungerende\ eldre\ mennesker.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Begge\ gruppene\ vil\ ha\ en\ fremgang\ i\ styrke,\ men\ gruppen\ som\ trener\ med\ frivekter\ vil\ få\ et\ bedre\ resultat\ sammenlignet\ med\ gruppen\ som\ trente\ med\ treningsapparat.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Vil\ gjøre\ det\ lettere\ |\ å\ gi\ treingsanbefalinger\ for\ godt\ fungerende\ eldre}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{32\ friske\ kvinner\ og\ menn\ mellom\ 60\ og\ 86\ år\ ble\ fordelt\ i\ to\ grupper\ (frivekter\ eller\ apparat).\ To\ treninger\ i\ uken\ med\ 3\ sett\ og\ 10-12\ repetisjoner\ (10RM).\ Testing\ av\ styrke\ ved\ start,\ 10\ uker,\ 26\ uker\ og\ 6\ uker\ etter\ intervensjon.\ Spørreskjema\ om\ treningen\ etter\ intervensjon.\ Statistikk\ ble\ gjort\ ved\ uavhengig\ t-test,\ paret\ t-test,\ MANCOVA,\ Cohens\ d\ og\ Pearsons\ korrelasjon.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Begge\ gruppene\ økte\ i\ alle\ øvelser\ og\ gjorde\ det\ bedre\ på\ dynamiske\ styrketester.\ For\ triceps\ og\ ben\ var\ det\ større\ effekt\ av\ å\ trene\ med\ frivekter.\ Frivektstrening\ var\ mer\ motiverende.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Trening\ med\ frivekter\ og\ maskin\ gir\ god\ styrkeeffekt,\ men\ frivektstrening\ gir\ ytterlige\ effekt\ på\ ben\ og\ triceps.\ Disse\ to\ muskelgruppene\ er\ viktige\ for\ å\ forebygge\ fall\ og\ i\ dagliglivet,\ frivektstrening\ er\ derfor\ å\ anbefale\ for\ eldre\ som\ er\ godt\ fungerende.}}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{@vikberg2019}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Effekten\ av\ 10-ukers\ trening\ med\ enkle\ styrkeøvelser\ og\ lite\ utstyr\ ledet\ av\ instruktør\ på\ personer\ med\ presarkopeni.\ Hovedspørsmålene\ er\ om\ treningen\ gir\ effekt\ på\ funksjonell\ styrke\ og\ om\ det\ påvirker\ kroppssammensetningen}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Styrketreningen\ vil\ |\ gi\ positiv\ effekt\ på\ funksjonell\ styrke}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Eldre\ kan\ på\ en\ enkel\ måte\ få\ god\ effekt\ av\ styrketrening.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{70\ kvinner\ og\ menn\ med\ presarkopeni\ ble\ fordelt\ i\ kontroll\ (36)\ og\ intervensjonsgruppe\ (34).\ Intervensjonsgruppen\ trente\ tre\ gruppetreninger\ i\ uken\ i\ 10\ uker.\ Helkroppsprogram\ med\ RPE\ mellom\ 6\ og\ 7\ (skala\ 1-10).\ Det\ ble\ gjort\ et\ tester\ før\ og\ etter.\ Paret\ T-test\ ble\ brukt\ for\ å\ se\ forskjell\ innad\ i\ gruppene.\ ANCOVA\ ble\ brukt\ få\ se\ forskjell\ mellom\ gruppene.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Det\ var\ økning\ i\ styrke\ fra\ post\ til\ pre\ hos\ intervensjonsgruppen,\ men\ de\ skilte\ seg\ ikke\ fra\ kontroll.\ Kroppssammensetning\ var\ bedret\ innad\ i\ gruppen\ og\ i\ forhold\ til\ kontroll.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Styrketrening\ med\ enkelt\ utstyr\ som\ man\ kan\ gjøre\ nesten\ hvor\ som\ helst\ er\ effektivt\ for\ å\ hindre\ tap\ av\ muskelstyrke\ og\ øke\ muskelmasse\ for\ eldre\ med\ presarkopeni}}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{@geirsdottir2012}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Hva\ er\ styrketreningseffekten\ på\ eldre\ mennesker,\ spesielt\ med\ tanke\ på\ helse\ relatert\ til\ livskvalitet,\ men\ også\ styrke,\ kroppssammensetning\ og\ funksjonell\ kapasitet}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Styrketreningen\ vil\ |\ gi\ god\ effekt\ på\ muskelmassen\ og\ styrken\ som\ igjen\ vil\ øke\ helse\ relatert\ til\ livskvalitet.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Styrketrening\ vil\ gi\ |\ høyere\ livskvalitet\ hos\ eldre}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{265\ friske\ kvinner\ og\ menn\ mellom\ 65\ og\ 92\ år\ trente\ i\ 12\ ukers\ med\ tre\ økter\ i\ uken.\ Øktene\ var\ helkroppsprogram\ (3\ sett,\ 6-8\ rep\ på\ 75-80\%\ av\ 1RM\ per\ øvelse).\ Motstanden\ ble\ økt\ 5-10\%\ hver\ uke.\ Tester\ og\ spørreskjema\ ble\ gjort\ før\ og\ etter.\ Paret\ t-test\ ble\ brukt\ for\ å\ se\ på\ forskjell\ mellom\ pre\ og\ post.\ Wilcoxon\ test\ ble\ brukt\ for\ å\ se\ på\ pre\ og\ post\ spørreskjema.\ Persons\ og\ Spearmans\ r\ ble\ brukt\ for\ å\ se\ på\ korrelasjoner.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Det\ var\ en\ økning\ i\ muskelmasse,\ styrke\ og\ funksjonell\ kapasitet.\ Det\ var\ en\ liten,\ men\ signifikant\ økning\ i\ livskvalitet.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{12\ uker\ med\ styrketrening\ vil\ gi\ god\ effekt\ på\ styrke,\ kroppssammensetning\ og\ muskelmasse.\ Dette\ vil\ igjen\ gi\ bedre\ livskvalitet.\ Ved\ styrketrening\ vil\ en\ også\ hindre\ fallet\ i\ muskelstyrke\ og\ muskelmasse.}}}} \\
+
+
+
+
+
+\multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{@vincent2002}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Er\ det\ forskjell\ på\ treningseffekten\ av\ å\ trene\ høyere\ vekt\ og\ lavere\ antall\ repetisjoner\ og\ lavere\ vekt\ og\ flere\ repetisjoner\ hos\ eldre\ mennesker.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Styrketrening\ med\ lavere\ vekt\ og\ flere\ repetisjoner\ fungerer\ like\ bra\ som\ høy\ vekt\ og\ få\ repetisjoner.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Man\ kan\ anbefale\ trening\ som\ oppleves\ lettere\ og\ som\ er\ mindre\ skadeutsatt.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{62\ friske\ kvinner\ og\ menn\ mellom\ 60\ og\ 83\ år\ fordelt\ i\ to\ grupper\ (trening\ eller\ ikke\ trening)\ i\ 26\ uker.\ De\ som\ trente,\ trente\ enten\ 50\%\ av\ 1RM\ *13\ rep\ eller\ 80\%\ av\ 1RM\ 8\ rep\ i\ en\ serie\ per\ treningsapparat\ (volum\ blir\ ca.\ det\ samme\ for\ begge).\ Ble\ gjort\ tester\ før\ og\ etter.\ ANOVA\ ble\ brukt\ for\ å\ se\ forskjell\ innad\ og\ mellom\ gruppene\ over\ tid.\ Pre\ og\ post-testene\ ble\ gjort\ i\ ANCOVA.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Begge\ |\ treningsgruppene\ fikk\ økning\ i\ muskelstyrke\ og\ muskelutholdenhet,\ samt\ i\ trappetesten\ i\ forhold\ til\ kontroll,\ men\ ingen\ forskjell\ mellom\ |\ treningsgruppene.}}}} & \multicolumn{1}{!{\color[HTML]{000000}\vrule width 0pt}>{\raggedright}p{\dimexpr 0.75in+0\tabcolsep+0\arrayrulewidth}!{\color[HTML]{000000}\vrule width 0pt}}{\fontsize{11}{11}\selectfont{\textcolor[HTML]{000000}{\global\setmainfont{Arial}{Eldre\ friske\ mennesker\ kan\ få\ like\ godt\ resultat\ med\ 13\ rep\ på\ 50\%\ av\ 1\ RM,\ 8\ rep\ på\ 80\%\ av\ 1RM.\ Dette\ gjør\ styrketrening\ enklere\ i\ tillegg\ til\ lavere\ skaderisiko.}}}} \\
+
+\noalign{\global\setlength{\arrayrulewidth}{2pt}}\arrayrulecolor[HTML]{666666}\cline{1-7}
+
+
+
 \end{longtable}
 
 \hypertarget{vs-3-sett}{%
@@ -591,15 +579,6 @@ For å se forskjell mellom 1 sett og 3 sett ble ANCOVA brukt, hvor det ble tatt 
 
 Benet som trente tre sett økte signifikant mer enn benet som trente ett sett, med henholdsvis økning på 3.37\% (±4.59\%) og 2.05\% (±3.62) (p \textless{} 0.05) (figur 1). Det var ingen forskjell mellom benene ved pre.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\NormalTok{opts\_chunk}\SpecialCharTok{$}\FunctionTok{set}\NormalTok{(}\AttributeTok{echo =} \ConstantTok{TRUE}\NormalTok{)}
-\FunctionTok{options}\NormalTok{(}\AttributeTok{knitr.duplicate.label =} \StringTok{"allow"}\NormalTok{)}
-
-\NormalTok{figurmuskel}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 \centering
 \includegraphics{_main_files/figure-latex/figur-1.pdf}
@@ -611,25 +590,11 @@ Benet som trente tre sett økte signifikant mer enn benet som trente ett sett, m
 
 Begge gruppene økte i styrke fra pre til uke 5 og uke 5 til post (figur2) (p \textless{} 0.05). Den største økningen kom for begge treningsmetodene mellom pre og uke fem (begge p \textless{} 0.01) (tabell 1). Fra uke 5 og post var det en økning på 10\% for benet som trente 3 sett og 6.8\% for benet som trente 1 sett (begge p \textless{} 0.01). Benet som trente tre sett økte mer en benet som trente ett sett ved både 5 uker og ved post-test (tabell 1).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{options}\NormalTok{(}\AttributeTok{knitr.duplicate.label =} \StringTok{"allow"}\NormalTok{)}
-\NormalTok{figurstyrke}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 \centering
 \includegraphics{_main_files/figure-latex/styrkefigur-1.pdf}
 \caption{\label{fig:styrkefigur}Figur 2 viser økningen i muskelstyrke, fra pre-tests til 5 uker og 5 uker til post-test for alle forsøkspersoner skildt ved single- sett (1 sett) og multiple- sett (3 sett).}
 \end{figure}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{options}\NormalTok{(}\AttributeTok{knitr.duplicate.label =} \StringTok{"allow"}\NormalTok{)}
-\NormalTok{tabellstyrke}
-\end{Highlighting}
-\end{Shaded}
 
 \providecommand{\docline}[3]{\noalign{\global\setlength{\arrayrulewidth}{#1}}\arrayrulecolor[HTML]{#2}\cline{#3}}
 
