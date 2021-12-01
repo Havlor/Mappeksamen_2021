@@ -1,6 +1,6 @@
 delete_merged_file: true
 rmd_files: ["index.Rmd","01-Labrapport.Rmd","02-Vitenskapsteori.Rmd",
-"03-Studiedesign.Rmd", "04-1vs3-sett.Rmd", "05-Referanser.Rmd"]
+"03-Studiedesign.Rmd", "04-1vs3-sett.Rmd"]
 language:
   ui:
     chapter_name: 'Kapittel'

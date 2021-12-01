@@ -7,9 +7,6 @@ output: pdf_document
 documentclass: book
 bibliography: book.bib
 link-citations: yes
-language:
-  label:
-    refs: "Referanser"
 ---
 
 # Realabilitet
