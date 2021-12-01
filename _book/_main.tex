@@ -109,6 +109,7 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
+\AtBeginDocument{\renewcommand{\chaptername}{Kapittel}}
 \usepackage{fontspec}
 \usepackage{multirow}
 \usepackage{multicol}
@@ -117,6 +118,16 @@
 \usepackage{longtable}
 \usepackage{array}
 \usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 \ifluatex
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -444,7 +455,6 @@ krise. Det er tydelig at folk som driver vitenskap trenger en større
 forståelse av statistikk og sannsynlighet \citep{bird2020}. Gjennom et større
 hensyn til basefrekvensen vil man utarbeide bedre teorier og være mer
 forsiktig med å si at noe er gjeldene for en hel populasjon \citep{bird2020}.
-\#\# Referanser:
 
 \hypertarget{studiedesign}{%
 \chapter{Studiedesign}\label{studiedesign}}
@@ -452,245 +462,72 @@ forsiktig med å si at noe er gjeldene for en hel populasjon \citep{bird2020}.
 \hypertarget{introduksjon-1}{%
 \section{Introduksjon}\label{introduksjon-1}}
 
-Mennesker i vesten lever lenger og lenger, og eldrebølgen er et faktum, derfor er det et stort behov for å finne ut hvordan eldre mennesker kan bevare helsen best mulig.
-I denne rapporten skal jeg se på fem studier som har sett på styrketrening som en metode for å bedre helsen til eldre mennesker \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-Alle fem studiene ønsker å finne ut hvordan man kan legge opp styrketrening som gir effektiv og god effekt på helsen (mentalt og fysisk) og dermed gjøre det lettere å gi gode treningsanbefalinger.
-En oppsummering av studiene er vist i tabell 1.
+Mennesker i vesten lever lenger og lenger, og eldrebølgen er et faktum, derfor er det et stort behov for å finne ut hvordan eldre mennesker kan bevare helsen best mulig. I denne rapporten skal jeg se på fem studier som har sett på styrketrening som en metode for å bedre helsen til eldre mennesker \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019, vincent2002}. Alle fem studiene ønsker å finne ut hvordan man kan legge opp styrketrening som gir effektiv og god effekt på helsen (mentalt og fysisk) og dermed gjøre det lettere å gi gode treningsanbefalinger. En oppsummering av studiene er vist i tabell 1.
 
-I fire av studiene ble det sett på forskjellige måter man rent praktisk bør gjennomføre styrketrening \citetext{\citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-I \citet{Schott} et al.~{[}2019{]}.
-I det ene tilfellet ble det for eksempel sett på responsen det var av å trene med styrketreningsapparater mot frivektstrening \citep[ et al 2019]{Schott}.
-Studien til \citet{Geirsdottir} skiller seg fra de andre da den hovedsakelig så på den generelle effekten av trening \citep[ et al.~2012]{Geirsdottir}.
-Den så som de andre på styrke- og muskeladaptasjoner, men inkluderte et spørreskjema om hvordan treningen påvirket livskvaliteten \citep[ et al.~2012]{Geirsdottir}.
+I fire av studiene ble det sett på forskjellige måter man rent praktisk bør gjennomføre styrketrening \citetext{\citealp[ ]{schott2019}; \citealp{turpela2017}; \citealp{vikberg2019}; \citealp{vincent2002}}. I \citet{schott2019} ble det for eksempel sett på responsen det var av å trene med styrketreningsapparater mot frivektstrening \citep{schott2019}. Studien til \citet{geirsdottir2012} skiller seg fra de andre da den hovedsakelig så på den generelle effekten av trening \citep{geirsdottir2012}. Den så som de andre på styrke- og muskeladaptasjoner, men inkluderte et spørreskjema om hvordan treningen påvirket livskvaliteten \citep{geirsdottir2012}.
 
-På bakgrunn av studiespørsmålene og svarene de vil gi oss, vil studiene gi en styrke til den allerede etablerte anbefalingen om at eldre bør trene styrke for å opprettholde eller bedre helsen \citetext{\citealp[ et al.~\href{mailto:2012;@Schott}{\nolinkurl{2012;@Schott}}, Johnen, and Holfelder 2019]{Geirsdottir}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-I tillegg vil studiene gjøre det lettere å gi gode anbefalinger da de løser noen praktiske spørsmål rundt selve gjennomføringen av styrketrening \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-Vikeberg et al.~{[}2019{]} foreslår at en enkel form for styrketrening som man kan gjøre hjemme er nok for å styrke muskulatur og bedre helsen.
-Dette vil gjøre styrketreningseffekten oppnåelig for alle, og ikke bare de som trener på treningssenter \citep[ et al.~2019]{vikberg}.
+På bakgrunn av studiespørsmålene og svarene de vil gi oss, vil studiene gi en styrke til den allerede etablerte anbefalingen om at eldre bør trene styrke for å opprettholde eller bedre helsen \citep[ \citet{vincent2002}]{geirsdottir2012, schott2019, turpela2017, vikberg2019}. I tillegg vil studiene gjøre det lettere å gi gode anbefalinger da de løser noen praktiske spørsmål rundt selve gjennomføringen av styrketrening \citetext{\citealp[ ]{geirsdottir2012}; \citealp{schott2019}; \citealp{turpela2017}; \citealp{vikberg2019}; \citealp{vincent2002}}. \citet{vikberg2019} foreslår at en enkel form for styrketrening som man kan gjøre hjemme er nok for å styrke muskulatur og bedre helsen. Dette vil gjøre styrketreningseffekten oppnåelig for alle, og ikke bare de som trener på treningssenter \citep{vikberg2019}.
 
 \hypertarget{metode-1}{%
 \section{Metode}\label{metode-1}}
 
-Fire av studiene var RTC-studier hvor det var en, to eller tre intervensjonsgrupper og en kontrollgruppe \citetext{\citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~\href{mailto:2019;@vincent}{\nolinkurl{2019;@vincent}} et al.~2002]{vikberg}}.
-Hvem som var i hvilke grupper, ble randomisert tilfeldig.
-Antallet i gruppene var nesten likt fordelt i intervensjon og kontroll med unntak av \citet{vincent} et al.~{[}2002{]}.
-«Nesten likt» vil si at det stort sett var flere i de gruppene det krevde mest av (treningsgruppene), samtidig var det gruppene med flest frafall, sånn at det ved studieslutt nesten var utlignet \citetext{\citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}}.
-I \citet{vincent} et al.~{[}2002{]} var det større forskjell på kontroll og intervensjon (16 i kontroll, 24 og 22 i intervensjon) uten at det blir opplyst noen grunn til det. Å ha en blokkrandomisering som de tre andre nevnt over, ville gitt studien et styrket design.
-Når det er forskjellige størrelser vil det bli vanskeligere å sammenligne, da mindre grupper gir bredere konfidensintervall og lavere statisk styrke \citep[ 2013, s.
-63, 146]{Hulley}.
+Fire av studiene var RTC-studier hvor det var en, to eller tre intervensjonsgrupper og en kontrollgruppe \citep{schott2019, turpela2017, vikberg2019, vincent2002}. Hvem som var i hvilke grupper, ble randomisert tilfeldig. Antallet i gruppene var nesten likt fordelt i intervensjon og kontroll med unntak av \citet{vincent2002} . «Nesten likt» vil si at det stort sett var flere i de gruppene det krevde mest av (treningsgruppene), samtidig var det gruppene med flest frafall, sånn at det ved studieslutt nesten var utlignet \citep{schott2019, turpela2017, vikberg2019}. I \citet{vincent2002} var det større forskjell på kontroll og intervensjon (16 i kontroll, 24 og 22 i intervensjon) uten at det blir opplyst noen grunn til det. Å ha en blokkrandomisering som de tre andre nevnt over, ville gitt studien et styrket design. Når det er forskjellige størrelser vil det bli vanskeligere å sammenligne, da mindre grupper gir bredere konfidensintervall og lavere statisk styrke \citep[s. 63, 146]{hulley2013}.
 
-Da dette er studier som ser på trening er «blinding» vanskelig, dermed nevnte studiene heller ikke noe om dette \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-For å unngå forskingsfusk er det likevel gunstig at testpersonell ikke vet hvem som er i hvilken gruppe, da testpersonell skal gjennomføre alle tester like godt, selv om man ofte ønsker et resultat i favør hypotesen \citep[ 2013, s.
-148-149]{Hulley}.
+Da dette er studier som ser på trening er «blinding» vanskelig, dermed nevnte studiene heller ikke noe om dette \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019, vincent2002}. For å unngå forskingsfusk er det likevel gunstig at testpersonell ikke vet hvem som er i hvilken gruppe, da testpersonell skal gjennomføre alle tester like godt, selv om man ofte ønsker et resultat i favør hypotesen \citep[s. 148-149]{hulley2013}.
 
-\citet{Geirsdottir} et al.~{[}2012{]} var en klinisk studie uten kontrollgruppe, de hadde altså en stor gruppe {[}265 kvinner og menn{]} som trente samme styrketreningsprogrammet.
-At de ikke hadde kontrollgruppe innrømmet studiegruppen selv at var en svakhet \citep[ et al.~2012]{Geirsdottir}.
-Samtidig poengterte de at eldre mennesker ikke kan forvente en økning i styrke, muskelmasse og muskelfunksjon uten å trene og sånn sett mente de at det var nok å sammenligne med testresultat ved start \citep[ et al.~2012]{Geirsdottir}.
-Det er mulig å forstå argumentasjonen til \citet{Geirsdottir} et al.~{[}2012{]} når de i tillegg har såpass mange deltagere som de har.
-Samtidig hadde en definert kontrollgruppe gjort studien sterkere som en studie som skulle finne ut av noe \citep[ 2013, s.
-87]{Hulley}.
-Studien vil gå under kategorien Case-serie som er mer egnet til å se på karakteristika og i denne sammenhengen av styrketrening på eldre \citep[ 2013, s.
-87]{Hulley}.
-Noe de også i en viss grad gjorde når resultatet av spørreskjema om livskvalitet var noe av det viktigste \citep[ et al.~2012]{Geirsdottir}.
-Denne karakteristikk-egenskapen som studien kunne nok kommet bedre frem.
+\citet{geirsdottir2012} var en klinisk studie uten kontrollgruppe, de hadde altså en stor gruppe (265 kvinner og menn) som trente samme styrketreningsprogrammet. At de ikke hadde kontrollgruppe innrømmet studiegruppen selv at var en svakhet \citep{geirsdottir2012}. Samtidig poengterte de at eldre mennesker ikke kan forvente en økning i styrke, muskelmasse og muskelfunksjon uten å trene og sånn sett mente de at det var nok å sammenligne med testresultat ved start \citep{geirsdottir2012}. Det er mulig å forstå argumentasjonen til \citet{geirsdottir2012} når de i tillegg har såpass mange deltagere som de har. Samtidig hadde en definert kontrollgruppe gjort studien sterkere som en studie som skulle finne ut av noe \citep[s. 87]{hulley2013}. Studien vil gå under kategorien Case-serie som er mer egnet til å se på karakteristika og i denne sammenhengen av styrketrening på eldre \citep[s. 87]{hulley2013}. Noe de også i en viss grad gjorde når resultatet av spørreskjema om livskvalitet var noe av det viktigste \citep{geirsdottir2012}. Denne karakteristikk-egenskapen som studien kunne nok kommet bedre frem.
 
-Populasjonen som er ønsket å treffe er eldre kvinner og menn som var relativt friske \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-Ingen av studiene har en eksplisitt definisjon av «eldre», men totalt i studiene var det et aldersspenn på 60-92 og gjennomsnittsalderen i de forskjellige studiene var rundt 70år {[}flest rett under{]} \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-Den eldre befolkningen er en svært heterogen gruppe, noe som gjør det vanskelig med ekskluderingskriterier.
-Studiene godtok da det som ble definert som milde sykdommer som ikke påvirker treningen.
-Unntaket er til en viss grad \citet{vikberg} et al.~{[}2019{]} hvor det ikke var andre inklusjonskretierier enn at de ikke måtte ha sarkopeni.
-Samtidig kan det tyde på at det var relativt god helse blant deltagerene da de alle var 70 år, ikke hadde sarkopeni og klarete å gjennomføre treningen \citep[ et al.~2019]{vikberg}.
-Totalt sett treffer studiene godt på populasjonen da alle har et høyt antall deltagere og har kvalifikasjonskriterier som gjør det mulig for «vanlig» eldre folk å være med \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
+Populasjonen som er ønsket å treffe er eldre kvinner og menn som var relativt friske \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019, vincent2002}. Ingen av studiene har en eksplisitt definisjon av «eldre», men totalt i studiene var det et aldersspenn på 60-92 og gjennomsnittsalderen i de forskjellige studiene var rundt 70år (flest rett under) \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019, vincent2002}. Den eldre befolkningen er en svært heterogen gruppe, noe som gjør det vanskelig med ekskluderingskriterier. Studiene godtok da det som ble definert som milde sykdommer som ikke påvirker treningen. Unntaket er til en viss grad \citet{vikberg2019} hvor det ikke var andre inklusjonskretierier enn at de ikke måtte ha sarkopeni. Samtidig kan det tyde på at det var relativt god helse blant deltagerene da de alle var 70 år, ikke hadde sarkopeni og klarete å gjennomføre treningen \citep{vikberg2019}. Totalt sett treffer studiene godt på populasjonen da alle har et høyt antall deltagere og har kvalifikasjonskriterier som gjør det mulig for «vanlig» eldre folk å være med \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019, vincent2002}.
 
-Rekruteringen av deltagere ble gjort ved hjelp av brev og annonser med unntak av \citet{Schott} et al.~{[}2019{]} \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-Han hentet deltagere fra en treningsgruppe som var etablert på studiestedet \citep[Johnen, and Holfelder 2019]{Schott}.
-Felles for alle studiene var at det va en frivillig deltagelse \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-\citet{Schott} et al.~{[}2019{]} og \citet{vincent} et al.~{[}2002{]} utrykte et krav om at det måtte være statistisk styrke på 80\%.
-\citet{Schott} et al.~{[}2019{]} gjorde også et estimat hvor de så at det var behov for 26 deltagere for å se en signifikant forskjell ved signifikantgrense på 5\% når de godtok en sannsynlighet på 80\% {[}de inkluderte 32 personer{]}.
-De andre studiene nevnte ikke noe om statistisk styrke, og kunne med fordel vist til en estimering av deltagere som krevdes for en gitt statistisk styrke.
-\citet{Turpela} et al.~{[}2017{]} innrømmet også at det kunne bli vanskelig å se forskjell mellom gruppene da utrente ofte får god effekt uansett, noe som kunne blitt kontrollert for om man hadde gjort en powerbergening og inkludert tilstrekkelig deltagere.
+Rekruteringen av deltagere ble gjort ved hjelp av brev og annonser med unntak av \citeauthor{schott2019} \citetext{\citeyear{schott2019}; \citealp{geirsdottir2012}; \citealp{turpela2017}; \citealp{vikberg2019}; \citealp{vincent2002}}. Han hentet deltagere fra en treningsgruppe som var etablert på studiestedet \citep{schott2019}. Felles for alle studiene var at det va en frivillig deltagelse \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019, vincent2002}. \citet{schott2019} og \citet{vincent2002} utrykte et krav om at det måtte være statistisk styrke på 80\%. \citet{schott2019} gjorde også et estimat hvor de så at det var behov for 26 deltagere for å se en signifikant forskjell ved signifikantgrense på 5\% når de godtok en sannsynlighet på 80\% (de inkluderte 32 personer). De andre studiene nevnte ikke noe om statistisk styrke, og kunne med fordel vist til en estimering av deltagere som krevdes for en gitt statistisk styrke. \citet{turpela2017} innrømmet også at det kunne bli vanskelig å se forskjell mellom gruppene da utrente ofte får god effekt uansett, noe som kunne blitt kontrollert for om man hadde gjort en powerbergening og inkludert tilstrekkelig deltagere.
 
-Alle fem studiene hadde pre-post-design hvor Scott et al.~også i tillegg hadde tester i uke 10/26 og 6 uker etter post-testen i uke 26 \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-I alle studiene ble det gjort idrettsfysiologiskse tester av styrke, men også funksjonelle tester som hadde som mål å se hvordan styrken kom til utrykk i dagligdagse gjøremål {[}gå test, gripe test osv.{]} \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-Geridottir et al.~{[}2012{]} la som nevnt også en del vekt på spørreskjema som ble gitt før og etter intervensjon.
-Scott et al.~{[}2019{]} hadde også et spørreskjema, men dette ble bare gitt etter og var en evaluering av treningen.
-Treningen som ble gjennomført av intervensjonsgruppene ble gjort på treningssenter eller treningslokale på studiestedet \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-\citet{vincent} et al.~{[}2002{]} fikk deltagerne til å sende inn treningsdagbøker for hver økt som det det ble gitt tilbakemelding på.
-I de fire andre studiene var det trenere eller med kvalifisert kurs eller utdanning som veiledet deltagerne igjennom økten \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}}.
-Kontrollgruppen ble instruert i å leve som vanlig og ikke trene \citetext{\citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-Treningsperiodene var fra 10 uker til 26 uker \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder \href{mailto:2019;@Turpela}{\nolinkurl{2019;@Turpela}} et al.~2017]{Schott}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
+Alle fem studiene hadde pre-post-design hvor Scott et al.~også i tillegg hadde tester i uke 10/26 og 6 uker etter post-testen i uke 26 \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019, vincent2002}. I alle studiene ble det gjort idrettsfysiologiskse tester av styrke, men også funksjonelle tester som hadde som mål å se hvordan styrken kom til utrykk i dagligdagse gjøremål (gå test, gripe test osv.) \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019, vincent2002}. \citet{geirsdottir2012} la som nevnt også en del vekt på spørreskjema som ble gitt før og etter intervensjon. \citet{schott2019} hadde også et spørreskjema, men dette ble bare gitt etter og var en evaluering av treningen. Treningen som ble gjennomført av intervensjonsgruppene ble gjort på treningssenter eller treningslokale på studiestedet \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019, vincent2002}. \citet{vincent2002} fikk deltagerne til å sende inn treningsdagbøker for hver økt som det det ble gitt tilbakemelding på. I de fire andre studiene var det trenere eller med kvalifisert kurs eller utdanning som veiledet deltagerne igjennom økten \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019}. Kontrollgruppen ble instruert i å leve som vanlig og ikke trene \citep{schott2019, turpela2017, vikberg2019, vincent2002}. Treningsperiodene var fra 10 uker til 26 uker \citetext{\citealp{geirsdottir2012}; \citealp{schott2019}; \citealp[\href{mailto:2019;@Turpela}{}][]{turpela2017}; \citealp{vikberg2019}; \citealp{vincent2002}}.
 
-Studiene hadde som nevnt som mål å finne ut hvordan eldre bør trene og hvilke effekter det er av styrketrening \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-For å finne ut dette ble det sett på forskjellige variabler for styrke, kroppssammensetning (spesielt fettfri masse), muskelstørrelse, men også variabler som skulle reflektere dagligdagse gjøremål \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-\citet{vincent} et al.~{[}2002{]} la for eksempel en del vekt på en trappetes hvor deltagerne skulle gå en trapp så fort som mulig.
-Dette er viktig da noe av hovedgrunnen for å trene styrke for eldre nettopp er å mestre dagligdagse gjøre mål \citep[ et al.~2002]{vincent}.
+Studiene hadde som nevnt som mål å finne ut hvordan eldre bør trene og hvilke effekter det er av styrketrening \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019, vincent2002}. For å finne ut dette ble det sett på forskjellige variabler for styrke, kroppssammensetning (spesielt fettfri masse), muskelstørrelse, men også variabler som skulle reflektere dagligdagse gjøremål \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019, vincent2002}. \citet{vincent2002} la for eksempel en del vekt på en trappetes hvor deltagerne skulle gå en trapp så fort som mulig. Dette er viktig da noe av hovedgrunnen for å trene styrke for eldre nettopp er å mestre dagligdagse gjøre mål \citep{vincent2002}.
 
-I analysen av studiene var det ønskelig å finne forskjeller i resultat mellom grupper, her ble det brukt forskjellige statistiske tester.
-I tre av studiene hvor det var en eller to grupper ble brukt paret t-test får så se forskjell innad i gruppene \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-\citet{vincent} et al.~{[}2002{]} brukte ANCOVA for å se forskjell innad i gruppe og la da også inn effekten av tid.
-Verdiene ved studiestart ble satt som en kovariat og satt opp mot post-resultatet per person for å se forskjell fra pre til post \citep[ et al.~2002]{vincent}.
-\citet{Turpela} et al.~{[}2017{]} brukte her en-veis-ANOVA for kontrollere for ulikheter ved pre-test.
-For å se på forandring i gruppene ble det brukt uavhengig t-test og ANCOVA hvor man også kunne se på effekten av tid og enveis gjentatte målinger \citetext{\citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-\citet{Schott} et al.~{[}2019{]} brukte også MANCOVA for å gjøre statistikk på variablene som ble mål flere enn 2 ganger og på spørreskjammaet han brukte.
-\citet{Geirsdottir} et al.~{[}2012{]} brukte Wilconxon's test for analyse av spørreskjemaet sitt.
-Tre av studiene brukte også post hoc tester som vil gi et mer troverdig resultat da den kontrollerer resultatet for falsk positiv \citep[s.
-50-52]{Hulley2013}.
-\citetext{\citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2002]{vincent}}.
-Alle hadde signifikantgrense ved P = 5\% med unntak av en ANCOVA-test \citet{vikberg} et al.~{[}2019{]} gjorde som gjorde en interaksjon mellom kjønn og intervensjon, hvor P = 10\% \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2002]{vincent}}.
-Denne interaksjonen til \citet{vikberg} et al.~{[}2019{]} vil med dette lettere godta at det er en forskjell mellom kjønn.
+I analysen av studiene var det ønskelig å finne forskjeller i resultat mellom grupper, her ble det brukt forskjellige statistiske tester. I tre av studiene hvor det var en eller to grupper ble brukt paret t-test får så se forskjell innad i gruppene \citep{geirsdottir2012, vikberg2019, vincent2002}. \citet{vincent2002} brukte ANCOVA for å se forskjell innad i gruppe og la da også inn effekten av tid. Verdiene ved studiestart ble satt som en kovariat og satt opp mot post-resultatet per person for å se forskjell fra pre til post \citep{vincent2002}. \citet{turpela2017} brukte her en-veis-ANOVA for kontrollere for ulikheter ved pre-test. For å se på forandring i gruppene ble det brukt uavhengig t-test og ANCOVA hvor man også kunne se på effekten av tid og enveis gjentatte målinger \citep{schott2019, turpela2017, vikberg2019, vincent2002}. \citet{schott2019} brukte også MANCOVA for å gjøre statistikk på variablene som ble mål flere enn 2 ganger og på spørreskjammaet han brukte. \citet{geirsdottir2012} brukte Wilconxon's test for analyse av spørreskjemaet sitt. Tre av studiene brukte også post hoc tester som vil gi et mer troverdig resultat da den kontrollerer resultatet for falsk positiv \citep[s. 50-52]{hulley2013}. \citep{schott2019, turpela2017, vincent2002}. Alle hadde signifikantgrense ved P = 5\% med unntak av en ANCOVA-test \citet{vikberg2019} gjorde som gjorde en interaksjon mellom kjønn og intervensjon, hvor P = 10\% \citep{geirsdottir2012, schott2019, turpela2017, vincent2002}. Denne interaksjonen til \citet{vikberg2019} vil med dette lettere godta at det er en forskjell mellom kjønn.
 
 \hypertarget{resultat}{%
 \section{Resultat}\label{resultat}}
 
-Tre av studeiene studiene, som sammenlignet intervensjon mot kontroll, ble det ikke sett forskjell på muskelmasse, men \citet{vikberg} et al.~{[}2019{]} fant forskjell i muskelmasse \citetext{\citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2002]{vincent}}.
-\citet{vikberg} et al.~{[}2019{]} fant ikke forskjell i styrke fra kontrollgruppen, men de gjorde de tre andre \citetext{\citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2002]{vincent}}.
-På funksjonell styrke gav alle studiene positiv effekt på funksjonelle tester \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~\href{mailto:2019;@vincent}{\nolinkurl{2019;@vincent}} et al.~2002]{vikberg}}.
-I de studiene som sammenlignet flere treningsprotokoller var det liten forskjell mellom det forskjellige treningsprotokollene, men alle skilte seg fra kontrollgruppen \citetext{\citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-\citet{Geirsdottir} et al.~{[}2012{]} fant en liten forbedring av livskvalitet.
-Alt i alt greide de delvis å gi et positivt svar på hypotesen \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
+Tre av studeiene studiene, som sammenlignet intervensjon mot kontroll, ble det ikke sett forskjell på muskelmasse, men \citet{vikberg2019} fant forskjell i muskelmasse \citep{schott2019, turpela2017, vincent2002}. \citet{vikberg2019} fant ikke forskjell i styrke fra kontrollgruppen, men de gjorde de tre andre \citep{schott2019, turpela2017, vincent2002}. På funksjonell styrke gav alle studiene positiv effekt på funksjonelle tester \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019, vincent2002}. I de studiene som sammenlignet flere treningsprotokoller var det liten forskjell mellom det forskjellige treningsprotokollene, men alle skilte seg fra kontrollgruppen \citep{schott2019, turpela2017, vikberg2019, vincent2002}. \citet{geirsdottir2012} fant en liten forbedring av livskvalitet. Alt i alt greide de delvis å gi et positivt svar på hypotesen \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019, vincent2002}.
 
-Alle studiene konkludere med at styrketrening fungerte \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-For å oppsummere anbefalingene, er det nok å trene styrke 1-2 gagner i uken, så lenge det er helkroppsøkt \citetext{\citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}}.
-En ytterlig effekt vil man få om man trener med frivekter, spesielt på ben og triceps, som er viktige muskelgrupper for eldre \citep[Johnen, and Holfelder 2019]{Schott}.
-Det er også nok å gjøre 13 rep på 50\% 1RM \citep[ et al.~2002]{vincent}.
-Antall serier er ikke sett på, men basert på studiene burde 1-2 være nok \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}}.
-Det kommer også fram at all trening som ble sett på gav en effekt \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-Treningen vil vedlikeholde muskelmassen din, øke styrken din, gjøre praktiske gjøremål lettere og det vil kunne øke livskvaliteten din \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
-Denne konklusjonen og anbefalingen gjelder for relativet friske eldre mennesker som ikke er vant til å trene og som har en lav muskelmasse, dog ikke kritisk lav \citetext{\citealp[ et al.~2012]{Geirsdottir}; \citealp[Johnen, and Holfelder 2019]{Schott}; \citealp[ et al.~2017]{Turpela}; \citealp[ et al.~2019]{vikberg}; \citealp[ et al.~2002]{vincent}}.
+Alle studiene konkludere med at styrketrening fungerte \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019, vincent2002}. For å oppsummere anbefalingene, er det nok å trene styrke 1-2 gagner i uken, så lenge det er helkroppsøkt \citep{turpela2017, vikberg2019}. En ytterlig effekt vil man få om man trener med frivekter, spesielt på ben og triceps, som er viktige muskelgrupper for eldre \citep{schott2019}. Det er også nok å gjøre 13 rep på 50\% 1RM \citep{vincent2002}. Antall serier er ikke sett på, men basert på studiene burde 1-2 være nok \citep{geirsdottir2012, schott2019, turpela2017}. Det kommer også fram at all trening som ble sett på gav en effekt \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019, vincent2002}. Treningen vil vedlikeholde muskelmassen din, øke styrken din, gjøre praktiske gjøremål lettere og det vil kunne øke livskvaliteten din \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019, vincent2002}. Denne konklusjonen og anbefalingen gjelder for relativet friske eldre mennesker som ikke er vant til å trene og som har en lav muskelmasse, dog ikke kritisk lav \citep{geirsdottir2012, schott2019, turpela2017, vikberg2019, vincent2002}.
 
 \hypertarget{videre-forskning}{%
 \section{Videre forskning}\label{videre-forskning}}
 
-Det er enda ikke veldig tydelig hvilke treningsprogram som gir god effekt på bedret funksjonsevne \citep[ et al.~2017]{Turpela}.
-\citet{Schott} et al.~{[}2019{]} foreslår at studeier med frivekter kan være løsningen.
-I tillegg burde man gjøre studier hvor man kontrollerer proteininntaket hos eldre da dette kan være så lavt at det påvirker styrkefremgangen \citep[ et al.~2017]{Turpela}.
+Det er enda ikke veldig tydelig hvilke treningsprogram som gir god effekt på bedret funksjonsevne \citep{turpela2017}. \citet{schott2019} foreslår at studeier med frivekter kan være løsningen. I tillegg burde man gjøre studier hvor man kontrollerer proteininntaket hos eldre da dette kan være så lavt at det påvirker styrkefremgangen \citep{turpela2017}.
 
-Tabell 1.
-Oppsummering av artiklene
+Tabell 1. Oppsummering av artiklene
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.08}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.15}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.15}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.15}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.17}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.15}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.15}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.01}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.14}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.10}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.06}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.41}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.12}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.16}}@{}}
 \toprule
 Studie & Studiespørsmål & Hypoteser & Logikk & Metode & Resultat & Interferes \\
 \midrule
 \endhead
-\citep[ et al.~2017]{Turpela} \textbar{} & Hvordan påvirker \textbar{}
-treningsfrekvensen muskelstyrke, muskelmasse og funksjonell kapasitet hos
-utrente eldre mennesker? & Hypotese: To til \textbar{}
-tre treninger i uken er bedre enn en trening.
+\citet{turpela2017} & Hvordan påvirker \textbar{} treningsfrekvensen muskelstyrke, muskelmasse og funksjonell kapasitet hos utrente eldre mennesker? & Hypotese: To til \textbar{} tre treninger i uken er bedre enn en trening.
 
-Alternativ
-hypotese: Utrente vil ha god effekt uansett og da gjøre forskjellen på
-vanskelig å se. & Det vil bli enklere å \textbar{}
-gi klare råd om hvor ofte eldre bør trene styrke for å oppnå treningseffekt. & 4 grupper basert på \textbar{}
-antall treninger i uken: ingen økter, 1 økt, 2 økter og 3 økter.
-Intervensjonsperioden var 6 måneder med 3 måneder tilvenning i forkant. Styrketester
-og funksjonell kapasitet ble testet før og etter. Treningsøktene var
-tradisjonell tung og eksplosiv trening. 106 kvinner og menn {[}64-75 år{]} som
-var friske med unntak «normale» alderssjukdommer.
+Alternativ hypotese: Utrente vil ha god effekt uansett og da gjøre forskjellen på vanskelig å se. & Det vil bli enklere å \textbar{} gi klare råd om hvor ofte eldre bør trene styrke for å oppnå treningseffekt. & 4 grupper basert på \textbar{} antall treninger i uken: ingen økter, 1 økt, 2 økter og 3 økter. Intervensjonsperioden var 6 måneder med 3 måneder tilvenning i forkant. Styrketester og funksjonell kapasitet ble testet før og etter. Treningsøktene var tradisjonell tung og eksplosiv trening. 106 kvinner og menn {[}64-75 år{]} som var friske med unntak «normale» alderssjukdommer.
 
-Ble brukt
-en-veis-ANOVA og en-veis-ANOVA med gjentatte målinger & Ikke sammenheng \textbar{}
-mellom treningsfrekvens og ganghastighet eller kroppssammensetning. Alle
-skilte seg fra kontrollgruppen Dose-respons i forhold til 1RM og dynamisk
-styrke {[}i treningsapparat{]} & Sunne eldre vil ha en
-gunstig effekt av å trene lavfrekvens helkropps styrketrening {[}1-2 ganger i
-uken{]}. \\
-\citep[Johnen, and Holfelder 2019]{Schott} \textbar{} & Studien hadde to \textbar{}
-formål:
+Ble brukt en-veis-ANOVA og en-veis-ANOVA med gjentatte målinger & Ikke sammenheng \textbar{} mellom treningsfrekvens og ganghastighet eller kroppssammensetning. Alle skilte seg fra kontrollgruppen Dose-respons i forhold til 1RM og dynamisk styrke {[}i treningsapparat{]} & Sunne eldre vil ha en gunstig effekt av å trene lavfrekvens helkropps styrketrening {[}1-2 ganger i uken{]}. \\
+\citet{schott2019} & Studien hadde to \textbar{} formål:
 
-1.Sammenligne
-effekten av intensiv frivektstrening med apparattrening hos godt fungerende
-eldre mennesker.
+1.Sammenligne effekten av intensiv frivektstrening med apparattrening hos godt fungerende eldre mennesker.
 
-2.~~~~~~~~~
-Se om
-intensiv trening med frivekter er gjennomførbart på denne gruppen & Begge gruppene vil ha \textbar{}
-en fremgang i styrke, men gruppen som trener med frivekter vil få et bedre
-resultat sammenlignet med gruppen som trente med treningsapparat. & Vil gjøre det lettere \textbar{}
-å gi treingsanbefalinger for godt fungerende eldre & 32 friske kvinner \textbar{}
-og menn mellom 60 og 86 år ble fordelt i to grupper hvor den ene trente med
-frivekter, mens den andre trente med apparat.
+2.~~~~~~~~~ Se om intensiv trening med frivekter er gjennomførbart på denne gruppen & Begge gruppene vil ha \textbar{} en fremgang i styrke, men gruppen som trener med frivekter vil få et bedre resultat sammenlignet med gruppen som trente med treningsapparat. & Vil gjøre det lettere \textbar{} å gi treingsanbefalinger for godt fungerende eldre & 32 friske kvinner \textbar{} og menn mellom 60 og 86 år ble fordelt i to grupper hvor den ene trente med frivekter, mens den andre trente med apparat.
 
-Det ble gjennomført
-to treninger i uken hvor øvelsene ble gjort i 3 sett og 10-12 repetisjoner
-{[}10RM{]}. Alle økter ble avsluttet med 20 min utholdenhetstrening. Testing av
-styrke og utholdenhet ble gjort ved start, 10 uker, 26 uker og 6 uker etter
-intervensjon {[}uten trening{]}. Det ble også utfylt spørreskjema etter
-intervensjon. Statistikk ble gjort ved uavhengig t-test, paret t-test,
-MANCOVA, Cohens d og Pearsons korrelasjon. & Begge gruppene økte i \textbar{}
-alle øvelser og gjorde det bedre på dynamiske styrketester. For triceps og
-ben var det større effekt av å trene med frivekter. Frivektstrening
-var mer motiverende. & Trening både med
-frivekter og maskin gir god styrkeeffekt, men frivektstrening gir ytterlige
-effekt på ben og triceps. Disse to muskelgruppene er viktige for å forebygge
-fall og i dagliglivet, frivektstrening er derfor å anbefale for eldre som er
-godt fungerende. \\
-\citep[ et al.~2019]{vikberg} \textbar{} & Effekten av 10-ukers \textbar{}
-trening med enkle styrkeøvelser og lite utstyr ledet av instruktør på
-personer med presarkopeni. Hovedspørsmålene er om treningen gir effekt på
-funksjonell styrke og om det påvirker kroppssammensetningen & Styrketreningen vil \textbar{}
-gi positiv effekt på funksjonell styrke & Eldre kan på en enkel \textbar{}
-måte få god effekt av styrketrening. & 70 kvinner og menn \textbar{}
-med presarkopeni ble fordelt i kontroll {[}36{]} og intervensjonsgruppe {[}34{]}.
-Intervensjonsgruppen trente tre gruppetreninger i uken i 10 uker. Det var
-ingen tydelige ekskluderingskriterier. Treningene var helkroppsøkter med
-enkle øvelser. Intensiteten skulle ligge på RPE mellom 6 og 7 {[}skala 1-10{]}.
-Det ble gjort et testbatteri før og etter bestående av funksjonelle tester i
-tillegg til tester av kroppssammensetning. Paret T-test ble brukt for å se
-forskjell innad i gruppene. ANCOVA ble brukt få se
-forskjell mellom gruppene. & Det var økning i \textbar{}
-styrke fra post til pre hos intervensjonsgruppen, men de skilte seg ikke fra
-kontroll. Kroppssammensetning var bedret innad i gruppen og i forhold til
-kontroll. & Styrketrening med
-enkelt utstyr som man kan gjøre nesten hvor som helst er effektivt for å
-hindre tap av muskelstyrke og øke muskelmasse for eldre med presarkopeni \\
-\citep[ et al.~2012]{Geirsdottir} \textbar{} & Hva er \textbar{}
-styrketreningseffekten på eldre mennesker, spesielt med tanke på helse
-relatert til livskvalitet, men også styrke, kroppssammensetning og
-funksjonell kapasitet & Styrketreningen vil \textbar{}
-gi god effekt på muskelmassen og styrken som igjen vil øke helse relatert til
-livskvalitet. & Styrketrening vil gi \textbar{}
-høyere livskvalitet hos eldre & 265 friske kvinner og \textbar{}
-menn mellom 65 og 92 år gikk igjennom et 12 ukers treningsprogram med tre
-økter i uken med. Øktene var helkroppsprogram {[}3 sett, 6-8 rep på 75-80\% av
-1RM per øvelse{]}. Motstanden ble økt 5-10\% hver uke. Før og etter ble det
-testet styrke, kroppssammensetning, funksjonell styrke og tatt spørreskjema
-om livskvalitet. Statistikk mellom de som droppet ut og de andre ble
-analysert ved uavhengig t-test. Paret t-test ble brukt for å se på forskjell
-mellom pre og post. Wilcoxon test ble brukt for å se på pre og post
-spørreskjema. Persons og Spearmans r ble brukt for å se på korrelasjoner
-mellom spørreskjemavariabler og kroppssammensetning, styrke og funksjon. & Det var en økning i \textbar{}
-muskelmasse, styrke og funksjonell kapasitet. Det var
-en liten, men signifikant økning i livskvalitet & 12 uker med
-styrketrening vil gi god effekt på styrke, kroppssammensetning og
-muskelmasse. Dette vil igjen gi bedre livskvalitet. Ved styrketrening vil en
-også hindre fallet i muskelstyrke og muskelmasse. \\
-\citep[ et al.~2002]{vincent} \textbar{} & Er det forskjell på \textbar{}
-treningseffekten av å trene høyere vekt og lavere antall repetisjoner og
-lavere vekt og flere repetisjoner hos eldre mennesker & Styrketrening med \textbar{}
-lavere vekt og flere repetisjoner fungerer like bra som høy vekt og få
-repetisjoner. & Man kan anbefale \textbar{}
-trening som oppleves lettere og som er mindre skadeutsatt. & 62 Friske kvinner og \textbar{}
-menn mellom 60 og 83 år trenete eller var i kontroll i 26 uker. De som
-trente, trente enten 50\% av 1RM *13 rep eller 80\% av 1RM 8 rep i en serie per \textbar{}
-treningsapparat {[}volum blir ca. det samme for begge{]}. Basert på borgs skala
-{[}6-20{]}, ble det gjort økninger i vekt på treningen. Før og etter perioden ble
-det testet kroppssammensetning, diet, styrke, utholdende styrke og
-trappetest. ANOVA ble brukt for å se forskjell innad og mellom gruppene over
-tid. For de endelige resultatet ble ANCOVA brukt for å se på forskjeller & Begge \textbar{}
-treningsgruppene fikk økning i muskelstyrke og muskelutholdenhet, samt i
-trappetesten i forhold til kontroll, men ingen forskjell mellom \textbar{}
-treningsgruppene. & Eldre friske
-mennesker kan få like godt resultat med 13 rep på 50\% av 1 RM, 8 rep på 80\%
-av 1RM. Dette gjør styrketrening enklere i tillegg
-til lavere skaderisiko. \\
+Det ble gjennomført to treninger i uken hvor øvelsene ble gjort i 3 sett og 10-12 repetisjoner {[}10RM{]}. Alle økter ble avsluttet med 20 min utholdenhetstrening. Testing av styrke og utholdenhet ble gjort ved start, 10 uker, 26 uker og 6 uker etter intervensjon {[}uten trening{]}. Det ble også utfylt spørreskjema etter intervensjon. Statistikk ble gjort ved uavhengig t-test, paret t-test, MANCOVA, Cohens d og Pearsons korrelasjon. & Begge gruppene økte i \textbar{} alle øvelser og gjorde det bedre på dynamiske styrketester. For triceps og ben var det større effekt av å trene med frivekter. Frivektstrening var mer motiverende. & Trening både med frivekter og maskin gir god styrkeeffekt, men frivektstrening gir ytterlige effekt på ben og triceps. Disse to muskelgruppene er viktige for å forebygge fall og i dagliglivet, frivektstrening er derfor å anbefale for eldre som er godt fungerende. \\
+\citet{vikberg2019} & Effekten av 10-ukers \textbar{} trening med enkle styrkeøvelser og lite utstyr ledet av instruktør på personer med presarkopeni. Hovedspørsmålene er om treningen gir effekt på funksjonell styrke og om det påvirker kroppssammensetningen & Styrketreningen vil \textbar{} gi positiv effekt på funksjonell styrke & Eldre kan på en enkel \textbar{} måte få god effekt av styrketrening. & 70 kvinner og menn \textbar{} med presarkopeni ble fordelt i kontroll {[}36{]} og intervensjonsgruppe {[}34{]}. Intervensjonsgruppen trente tre gruppetreninger i uken i 10 uker. Det var ingen tydelige ekskluderingskriterier. Treningene var helkroppsøkter med enkle øvelser. Intensiteten skulle ligge på RPE mellom 6 og 7 {[}skala 1-10{]}. Det ble gjort et testbatteri før og etter bestående av funksjonelle tester i tillegg til tester av kroppssammensetning. Paret T-test ble brukt for å se forskjell innad i gruppene. ANCOVA ble brukt få se forskjell mellom gruppene. & Det var økning i \textbar{} styrke fra post til pre hos intervensjonsgruppen, men de skilte seg ikke fra kontroll. Kroppssammensetning var bedret innad i gruppen og i forhold til kontroll. & Styrketrening med enkelt utstyr som man kan gjøre nesten hvor som helst er effektivt for å hindre tap av muskelstyrke og øke muskelmasse for eldre med presarkopeni \\
+\citet{geirsdottir2012} & Hva er \textbar{} styrketreningseffekten på eldre mennesker, spesielt med tanke på helse relatert til livskvalitet, men også styrke, kroppssammensetning og funksjonell kapasitet & Styrketreningen vil \textbar{} gi god effekt på muskelmassen og styrken som igjen vil øke helse relatert til livskvalitet. & Styrketrening vil gi \textbar{} høyere livskvalitet hos eldre & 265 friske kvinner og \textbar{} menn mellom 65 og 92 år gikk igjennom et 12 ukers treningsprogram med tre økter i uken med. Øktene var helkroppsprogram {[}3 sett, 6-8 rep på 75-80\% av 1RM per øvelse{]}. Motstanden ble økt 5-10\% hver uke. Før og etter ble det testet styrke, kroppssammensetning, funksjonell styrke og tatt spørreskjema om livskvalitet. Statistikk mellom de som droppet ut og de andre ble analysert ved uavhengig t-test. Paret t-test ble brukt for å se på forskjell mellom pre og post. Wilcoxon test ble brukt for å se på pre og post spørreskjema. Persons og Spearmans r ble brukt for å se på korrelasjoner mellom spørreskjemavariabler og kroppssammensetning, styrke og funksjon. & Det var en økning i \textbar{} muskelmasse, styrke og funksjonell kapasitet. Det var en liten, men signifikant økning i livskvalitet & 12 uker med styrketrening vil gi god effekt på styrke, kroppssammensetning og muskelmasse. Dette vil igjen gi bedre livskvalitet. Ved styrketrening vil en også hindre fallet i muskelstyrke og muskelmasse. \\
+\citet{vincent2002} & Er det forskjell på \textbar{} treningseffekten av å trene høyere vekt og lavere antall repetisjoner og lavere vekt og flere repetisjoner hos eldre mennesker & Styrketrening med \textbar{} lavere vekt og flere repetisjoner fungerer like bra som høy vekt og få repetisjoner. & Man kan anbefale \textbar{} trening som oppleves lettere og som er mindre skadeutsatt. & 62 Friske kvinner og \textbar{} menn mellom 60 og 83 år trenete eller var i kontroll i 26 uker. De som trente, trente enten 50\% av 1RM *13 rep eller 80\% av 1RM 8 rep i en serie per \textbar{} treningsapparat {[}volum blir ca. det samme for begge{]}. Basert på borgs skala {[}6-20{]}, ble det gjort økninger i vekt på treningen. Før og etter perioden ble det testet kroppssammensetning, diet, styrke, utholdende styrke og trappetest. ANOVA ble brukt for å se forskjell innad og mellom gruppene over tid. For de endelige resultatet ble ANCOVA brukt for å se på forskjeller & Begge \textbar{} treningsgruppene fikk økning i muskelstyrke og muskelutholdenhet, samt i trappetesten i forhold til kontroll, men ingen forskjell mellom \textbar{} treningsgruppene. & Eldre friske mennesker kan få like godt resultat med 13 rep på 50\% av 1 RM, 8 rep på 80\% av 1RM. Dette gjør styrketrening enklere i tillegg til lavere skaderisiko. \\
 \bottomrule
 \end{longtable}
 
@@ -861,523 +698,6 @@ Resultatet i studien stemte med hypotesen. Både tre sett og ett sett gav god ef
 
 \hypertarget{referanser}{%
 \chapter{Referanser}\label{referanser}}
-
-\citet{article}\{bassett2000,
-title = \{Limiting factors for maximum oxygen uptake and determinants of endurance performance\},
-author = \{\{Bassett\}, \{D. R.\} and \{Howley\}, \{E. T.\}\},
-year = \{2000\},
-month = \{01\},
-date = \{2000-01\},
-journal = \{Medicine and Science in Sports and Exercise\},
-pages = \{70--84\},
-volume = \{32\},
-number = \{1\},
-doi = \{10.1097/00005768-200001000-00012\},
-note = \{PMID: 10647532\},
-langid = \{eng\}
-\}
-
-\citet{article}\{hill1923,
-title = \{Muscular Exercise, Lactic Acid, and the Supply and Utilization of Oxygen\},
-author = \{\{Hill\}, \{A. V.\} and \{Lupton\}, \{H.\}\},
-year = \{1923\},
-month = \{01\},
-date = \{1923-01-01\},
-journal = \{QJM\},
-pages = \{135--171\},
-volume = \{os-16\},
-number = \{62\},
-doi = \{10.1093/qjmed/os-16.62.135\},
-url = \{\url{https://academic.oup.com/qjmed/article-lookup/doi/10.1093/qjmed/os-16.62.135}\},
-langid = \{en\}
-\}
-
-\citet{article}\{tønnessen2017,
-title = \{Utholdenhetstester ved Olympiatoppen\},
-author = \{\{Tønnessen\}, \{Espen\} and \{Hem\}, \{Erlend\} and \{Svendsen\}, \{Ida\} and \{Larsen\}, \{Eirik V.\} and \{Skaugen\}, \{Martin\} and \{Solbakken\}, \{Elisabeth\}\},
-year = \{2017\},
-date = \{2017\},
-url = \{\url{https://www.olympiatoppen.no/fagomraader/trening/testing/testing_av_utholdenhet/media53703.media}\}
-\}
-
-\citet{article}\{halperin2015,
-title = \{Threats to internal validity in exercise science: a review of overlooked confounding variables\},
-author = \{\{Halperin\}, \{Israel\} and \{Pyne\}, \{David B.\} and \{Martin\}, \{David T.\}\},
-year = \{2015\},
-month = \{10\},
-date = \{2015-10\},
-journal = \{International Journal of Sports Physiology and Performance\},
-pages = \{823--829\},
-volume = \{10\},
-number = \{7\},
-doi = \{10.1123/ijspp.2014-0566\},
-note = \{PMID: 25756869\},
-langid = \{eng\}
-\}
-
-\citet{article}\{borg1982,
-title = \{Psychophysical bases of perceived exertion\},
-author = \{\{Borg\}, \{G. A.\}\},
-year = \{1982\},
-date = \{1982\},
-journal = \{Medicine and Science in Sports and Exercise\},
-pages = \{377--381\},
-volume = \{14\},
-number = \{5\},
-note = \{PMID: 7154893\},
-langid = \{eng\}
-\}
-
-\citet{article}\{hopkins2000,
-title = \{Measures of reliability in sports medicine and science\},
-author = \{\{Hopkins\}, \{W. G.\}\},
-year = \{2000\},
-month = \{07\},
-date = \{2000-07\},
-journal = \{Sports Medicine (Auckland, N.Z.)\},
-pages = \{1--15\},
-volume = \{30\},
-number = \{1\},
-doi = \{10.2165/00007256-200030010-00001\},
-note = \{PMID: 10907753\},
-langid = \{eng\}
-\}
-
-\citet{article}\{robertson2010,
-title = \{Reproducibility of performance changes to simulated live high/train low altitude\},
-author = \{\{Robertson\}, \{Eileen Y.\} and \{Saunders\}, \{Philo U.\} and \{Pyne\}, \{David B.\} and \{Aughey\}, \{Robert J.\} and \{Anson\}, \{Judith M.\} and \{Gore\}, \{Christopher J.\}\},
-year = \{2010\},
-month = \{02\},
-date = \{2010-02\},
-journal = \{Medicine and Science in Sports and Exercise\},
-pages = \{394--401\},
-volume = \{42\},
-number = \{2\},
-doi = \{10.1249/MSS.0b013e3181b34b57\},
-note = \{PMID: 19927018\},
-langid = \{eng\}
-\}
-
-\citet{article}\{saunders2009,
-title = \{Improved running economy and increased hemoglobin mass in elite runners after extended moderate altitude exposure\},
-author = \{\{Saunders\}, \{P. U.\} and \{Telford\}, \{R. D.\} and \{Pyne\}, \{D. B.\} and \{Hahn\}, \{A. G.\} and \{Gore\}, \{C. J.\}\},
-year = \{2009\},
-month = \{01\},
-date = \{2009-01\},
-journal = \{Journal of Science and Medicine in Sport\},
-pages = \{67--72\},
-volume = \{12\},
-number = \{1\},
-doi = \{10.1016/j.jsams.2007.08.014\},
-note = \{PMID: 18069063\},
-langid = \{eng\}
-\}
-
-\citet{article}\{clark2007,
-title = \{The effect of acute simulated moderate altitude on power, performance and pacing strategies in well-trained cyclists\},
-author = \{\{Clark\}, \{Sally A.\} and \{Bourdon\}, \{P. C.\} and \{Schmidt\}, \{W.\} and \{Singh\}, \{B.\} and \{Cable\}, \{G.\} and \{Onus\}, \{K. J.\} and \{Woolford\}, \{S. M.\} and \{Stanef\}, \{T.\} and \{Gore\}, \{C. J.\} and \{Aughey\}, \{R. J.\}\},
-year = \{2007\},
-month = \{12\},
-date = \{2007-12\},
-journal = \{European Journal of Applied Physiology\},
-pages = \{45--55\},
-volume = \{102\},
-number = \{1\},
-doi = \{10.1007/s00421-007-0554-0\},
-note = \{PMID: 17882451\},
-langid = \{eng\}
-\}
-
-\citet{book}\{okasha2016,
-title = \{Philosophy of science: a very short introduction\},
-author = \{\{Okasha\}, \{Samir\}\},
-year = \{2016\},
-date = \{2016\},
-publisher = \{University Press\},
-series = \{Very short introductions\},
-volume = \{67\},
-edition = \{Second edition.\},
-address = \{Oxford\},
-langid = \{eng\}
-\}
-
-\citet{book}\{popper2002,
-title = \{Conjectures and refutations: the growth of scientific knowledge\},
-author = \{\{Popper\}, \{Karl R.\}\},
-year = \{2002\},
-date = \{2002\},
-publisher = \{Routledge\},
-series = \{Routledge classics\},
-address = \{London ; New York\}
-\}
-
-\citet{book}\{hempel1966,
-title = \{Philosophy Of Natural Science\},
-author = \{\{Hempel\}, \{Carl G.\}\},
-year = \{1966\},
-date = \{1966\},
-publisher = \{Prentice Hall\},
-langid = \{English\}
-\}
-
-\citet{book}\{peirce1992,
-title = \{The essential Peirce: selected philosophical writings\},
-author = \{\{Peirce\}, \{Charles S.\} and \{Houser\}, \{Nathan\} and \{Kloesel\}, \{Christian J. W.\}\},
-year = \{1992\},
-date = \{1992\},
-publisher = \{Indiana University Press\},
-address = \{Bloomington\}
-\}
-
-\citet{misc}\{persson2019,
-title = \{Abduksjon: Metoden for å finne den beste forklaringen\},
-author = \{\{Persson\}, \{Charlotte Price\}\},
-year = \{2019\},
-month = \{04\},
-date = \{2019-04-03\},
-url = \{\url{https://forskning.no/a/1317339}\},
-note = \{Section: kultur\},
-langid = \{nb-no\}
-\}
-
-\citet{article}\{begley2012,
-title = \{Raise standards for preclinical cancer research\},
-author = \{\{Begley\}, \{C. Glenn\} and \{Ellis\}, \{Lee M.\}\},
-year = \{2012\},
-month = \{03\},
-date = \{2012-03\},
-journal = \{Nature\},
-pages = \{531--533\},
-volume = \{483\},
-number = \{7391\},
-doi = \{10.1038/483531a\},
-url = \{\url{https://www.nature.com/articles/483531a}\},
-note = \{Bandiera\{\_\}abtest: a
-Cg\{\_\}type: Nature Research Journals
-Number: 7391
-Primary\{\_\}atype: Comments \& Opinion
-Publisher: Nature Publishing Group
-Subject\{\_\}term: Cancer;Drug development
-Subject\{\_\}term\{\_\}id: cancer;drug-development\},
-langid = \{en\}
-\}
-
-\citet{article}\{ioannidis2005,
-title = \{Why Most Published Research Findings Are False\},
-author = \{\{Ioannidis\}, \{John P. A.\}\},
-year = \{2005\},
-month = \{08\},
-date = \{2005-08-30\},
-journal = \{PLOS Medicine\},
-pages = \{e124\},
-volume = \{2\},
-number = \{8\},
-doi = \{10.1371/journal.pmed.0020124\},
-url = \{\url{https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124}\},
-note = \{Publisher: Public Library of Science\},
-langid = \{en\}
-\}
-
-\citet{article}\{opensciencecollaboration2015,
-title = \{Estimating the reproducibility of psychological science\},
-author = \{\{Open Science Collaboration\}, \{\}\},
-year = \{2015\},
-month = \{08\},
-date = \{2015-08-28\},
-journal = \{Science\},
-pages = \{aac4716\},
-volume = \{349\},
-number = \{6251\},
-doi = \{10.1126/science.aac4716\},
-url = \{\url{https://www.science.org/doi/10.1126/science.aac4716}\},
-note = \{Publisher: American Association for the Advancement of Science\}
-\}
-
-\citet{article}\{funk2016,
-title = \{The politics of climate\},
-author = \{\{Funk\}, \{Cary\} and \{Kennedy\}, \{Brian\}\},
-year = \{2016\},
-month = \{10\},
-date = \{2016-10-04\},
-note = \{Pew Research Center\},
-langid = \{en\}
-\}
-
-\citet{article}\{baker2016,
-title = \{1,500 scientists lift the lid on reproducibility\},
-author = \{\{Baker\}, \{Monya\}\},
-year = \{2016\},
-month = \{05\},
-date = \{2016-05-01\},
-journal = \{Nature\},
-pages = \{452--454\},
-volume = \{533\},
-number = \{7604\},
-doi = \{10.1038/533452a\},
-url = \{\url{https://www.nature.com/articles/533452a}\},
-note = \{Bandiera\{\_\}abtest: a
-Cg\{\_\}type: Nature Research Journals
-Number: 7604
-Primary\{\_\}atype: News
-Publisher: Nature Publishing Group
-Subject\{\_\}term: Peer review;Publishing;Research management
-Subject\{\_\}term\{\_\}id: peer-review;publishing;research-management\},
-langid = \{en\}
-\}
-
-\citet{article}\{bird2020,
-title = \{Understanding the Replication Crisis as a Base Rate Fallacy\},
-author = \{\{Bird\}, \{Alexander\}\},
-year = \{2020\},
-month = \{12\},
-date = \{2020-12-17\},
-journal = \{The British Journal for the Philosophy of Science\},
-pages = \{000--000\},
-doi = \{10.1093/bjps/axy051\},
-url = \{\url{https://www.journals.uchicago.edu/doi/full/10.1093/bjps/axy051}\},
-note = \{Publisher: The University of Chicago Press\}
-\}
-
-\citet{misc}\{statistisksentralbyrå2019,
-title = \{Styrketrening stadig mer populært\},
-author = \{\{Statistisk sentralbyrå\}, \{\}\},
-year = \{2019\},
-month = \{10\},
-date = \{2019-10-03\},
-url = \{\url{https://www.ssb.no/kultur-og-fritid/artikler-og-publikasjoner/styrketrening-stadig-mer-populaert}\},
-langid = \{no\}
-\}
-
-\citet{article}\{galvão2005,
-title = \{Resistance Exercise Dosage in Older Adults: Single- Versus Multiset Effects on Physical Performance and Body Composition\},
-author = \{\{Galvão\}, \{Daniel A.\} and \{Taaffe\}, \{Dennis R.\}\},
-year = \{2005\},
-date = \{2005\},
-journal = \{Journal of the American Geriatrics Society\},
-pages = \{2090--2097\},
-volume = \{53\},
-number = \{12\},
-doi = \{10.1111/j.1532-5415.2005.00494.x\},
-url = \{\url{http://onlinelibrary.wiley.com/doi/abs/10.1111/j.1532-5415.2005.00494.x}\},
-note = \{\{\_\}eprint: \url{https://agsjournals.onlinelibrary.wiley.com/doi/pdf/10.1111/j.1532-5415.2005.00494.x}\},
-langid = \{en\}
-\}
-
-\citet{article}\{hass2000,
-title = \{Single versus multiple sets in long-term recreational weightlifters\},
-author = \{\{Hass\}, \{Chris J.\} and \{Garzarella\}, \{Linda\} and \{De Hoyos\}, \{Diego\} and \{Pollock\}, \{Michael L.\}\},
-year = \{2000\},
-month = \{01\},
-date = \{2000-01\},
-journal = \{Medicine \& Science in Sports \& Exercise\},
-pages = \{235\},
-volume = \{32\},
-number = \{1\},
-url = \{\url{https://journals.lww.com/acsm-msse/Fulltext/2000/01000/Single_versus_multiple_sets_in_long_term.35.aspx}\},
-langid = \{canadian\}
-\}
-
-\citet{article}\{krieger2009,
-title = \{Single Versus Multiple Sets of Resistance Exercise: A Meta-Regression\},
-author = \{\{Krieger\}, \{James W.\}\},
-year = \{2009\},
-month = \{09\},
-date = \{2009-09\},
-journal = \{The Journal of Strength \& Conditioning Research\},
-pages = \{1890\{\textendash\}1901\},
-volume = \{23\},
-number = \{6\},
-doi = \{10.1519/JSC.0b013e3181b370be\},
-url = \{\url{https://journals.lww.com/nsca-jscr/Fulltext/2009/09000/Single_Versus_Multiple_Sets_of_Resistance.37.aspx}\},
-langid = \{canadian\}
-\}
-
-\citet{article}\{radaelli2014,
-title = \{Effects of single vs.~multiple-set short-term strength training in elderly women\},
-author = \{\{Radaelli\}, \{Regis\} and \{Wilhelm\}, \{Eurico N.\} and \{Botton\}, \{Cíntia E.\} and \{Rech\}, \{Anderson\} and \{Bottaro\}, \{Martim\} and \{Brown\}, \{Lee E.\} and \{Pinto\}, \{Ronei S.\}\},
-year = \{2014\},
-month = \{10\},
-date = \{2014-10-31\},
-journal = \{AGE\},
-pages = \{9720\},
-volume = \{36\},
-number = \{6\},
-doi = \{10.1007/s11357-014-9720-6\},
-url = \{\url{https://doi.org/10.1007/s11357-014-9720-6}\},
-langid = \{en\}
-\}
-
-\citet{article}\{schoenfeld2019,
-title = \{Resistance Training Volume Enhances Muscle Hypertrophy but Not Strength in Trained Men\},
-author = \{\{Schoenfeld\}, \{Brad J.\} and \{Contreras\}, \{Bret\} and \{Krieger\}, \{James\} and \{Grgic\}, \{Jozo\} and \{Delcastillo\}, \{Kenneth\} and \{Belliard\}, \{Ramon\} and \{Alto\}, \{Andrew\}\},
-year = \{2019\},
-month = \{01\},
-date = \{2019-01\},
-journal = \{Medicine \& Science in Sports \& Exercise\},
-pages = \{94\{\textendash\}103\},
-volume = \{51\},
-number = \{1\},
-doi = \{10.1249/MSS.0000000000001764\},
-url = \{\url{https://journals.lww.com/acsm-msse/Fulltext/2019/01000/Resistance_Training_Volume_Enhances_Muscle.13.aspx}\},
-langid = \{canadian\}
-\}
-
-\citet{article}\{schoenfeld2016,
-title = \{Effects of Resistance Training Frequency on Measures of Muscle Hypertrophy: A Systematic Review and Meta-Analysis\},
-author = \{\{Schoenfeld\}, \{Brad J.\} and \{Ogborn\}, \{Dan\} and \{Krieger\}, \{James W.\}\},
-year = \{2016\},
-month = \{11\},
-date = \{2016-11-01\},
-journal = \{Sports Medicine\},
-pages = \{1689--1697\},
-volume = \{46\},
-number = \{11\},
-doi = \{10.1007/s40279-016-0543-8\},
-url = \{\url{https://doi.org/10.1007/s40279-016-0543-8}\},
-langid = \{en\}
-\}
-
-\citet{article}\{rønnestad2007,
-title = \{Dissimilar effects of one- and three-set strength training on strength and muscle mass gains in upper and lower body in untrained subjects\},
-author = \{\{Rønnestad\}, \{Bent R.\} and \{Egeland\}, \{Wilhelm\} and \{Kvamme\}, \{Nils H.\} and \{Refsnes\}, \{Per E.\} and \{Kadi\}, \{Fawzi\} and \{Raastad\}, \{Truls\}\},
-year = \{2007\},
-month = \{02\},
-date = \{2007-02\},
-journal = \{Journal of Strength and Conditioning Research\},
-pages = \{157--163\},
-volume = \{21\},
-number = \{1\},
-doi = \{10.1519/00124278-200702000-00028\},
-note = \{PMID: 17313291\},
-langid = \{eng\}
-\}
-
-\citet{article}\{paulsen2003,
-title = \{The influence of volume of exercise on early adaptations to strength training\},
-author = \{\{Paulsen\}, \{Gøran\} and \{Myklestad\}, \{Dag\} and \{Raastad\}, \{Truls\}\},
-year = \{2003\},
-month = \{02\},
-date = \{2003-02\},
-journal = \{Journal of Strength and Conditioning Research\},
-pages = \{115--120\},
-volume = \{17\},
-number = \{1\},
-doi = \{10.1519/1533-4287(2003)017\textless0115:tiovoe\textgreater2.0.co;2\},
-note = \{PMID: 12580666\},
-langid = \{eng\}
-\}
-
-\citet{article}\{kraemer1999,
-title = \{Effects of heavy-resistance training on hormonal response patterns in younger vs.~older men\},
-author = \{\{Kraemer\}, \{William J.\} and \{Häkkinen\}, \{Keijo\} and \{Newton\}, \{Robert U.\} and \{Nindl\}, \{Bradley C.\} and \{Volek\}, \{Jeff S.\} and \{McCormick\}, \{Matthew\} and \{Gotshalk\}, \{Lincoln A.\} and \{Gordon\}, \{Scott E.\} and \{Fleck\}, \{Steven J.\} and \{Campbell\}, \{Wayne W.\} and \{Putukian\}, \{Margot\} and \{Evans\}, \{William J.\}\},
-year = \{1999\},
-month = \{09\},
-date = \{1999-09-01\},
-journal = \{Journal of Applied Physiology\},
-pages = \{982--992\},
-volume = \{87\},
-number = \{3\},
-doi = \{10.1152/jappl.1999.87.3.982\},
-url = \{\url{https://journals.physiology.org/doi/full/10.1152/jappl.1999.87.3.982}\},
-note = \{Publisher: American Physiological Society\}
-\}
-
-\citet{article}\{moore2015,
-title = \{Protein Ingestion to Stimulate Myofibrillar Protein Synthesis Requires Greater Relative Protein Intakes in Healthy Older Versus Younger Men\},
-author = \{\{Moore\}, \{Daniel R.\} and \{Churchward-Venne\}, \{Tyler A.\} and \{Witard\}, \{Oliver\} and \{Breen\}, \{Leigh\} and \{Burd\}, \{Nicholas A.\} and \{Tipton\}, \{Kevin D.\} and \{Phillips\}, \{Stuart M.\}\},
-year = \{2015\},
-month = \{01\},
-date = \{2015-01-01\},
-journal = \{The Journals of Gerontology: Series A\},
-pages = \{57--62\},
-volume = \{70\},
-number = \{1\},
-doi = \{10.1093/gerona/glu103\},
-url = \{\url{https://doi.org/10.1093/gerona/glu103}\}
-\}
-
-\citet{article}\{geirsdottir2012,
-title = \{Physical function predicts improvement in quality of life in elderly icelanders after 12 weeks of resistance exercise\},
-author = \{\{Geirsdottir\}, \{Olof Gudny\} and \{Arnarson\}, \{A.\} and \{Briem\}, \{K.\} and \{Ramel\}, \{A.\} and \{Tomasson\}, \{K.\} and \{Jonsson\}, \{P. V.\} and \{Thorsdottir\}, \{I.\}\},
-year = \{2012\},
-month = \{01\},
-date = \{2012-01-01\},
-journal = \{The journal of nutrition, health \& aging\},
-pages = \{62--66\},
-volume = \{16\},
-number = \{1\},
-doi = \{10.1007/s12603-011-0076-7\},
-url = \{\url{https://doi.org/10.1007/s12603-011-0076-7}\},
-langid = \{en\}
-\}
-
-\citet{article}\{schott2019,
-title = \{Effects of free weights and machine training on muscular strength in high-functioning older adults\},
-author = \{\{Schott\}, \{Nadja\} and \{Johnen\}, \{Bettina\} and \{Holfelder\}, \{Benjamin\}\},
-year = \{2019\},
-month = \{07\},
-date = \{2019-07-15\},
-journal = \{Experimental Gerontology\},
-pages = \{15--24\},
-volume = \{122\},
-doi = \{10.1016/j.exger.2019.03.012\},
-url = \{\url{https://www.sciencedirect.com/science/article/pii/S0531556518307952}\},
-langid = \{en\}
-\}
-
-\citet{article}\{turpela2017,
-title = \{Effects of different strength training frequencies on maximum strength, body composition and functional capacity in healthy older individuals\},
-author = \{\{Turpela\}, \{Mari\} and \{Häkkinen\}, \{Keijo\} and \{Haff\}, \{Guy Gregory\} and \{Walker\}, \{Simon\}\},
-year = \{2017\},
-month = \{11\},
-date = \{2017-11-01\},
-journal = \{Experimental Gerontology\},
-pages = \{13--21\},
-volume = \{98\},
-doi = \{10.1016/j.exger.2017.08.013\},
-url = \{\url{https://www.sciencedirect.com/science/article/pii/S0531556517303315}\},
-langid = \{en\}
-\}
-
-\citet{article}\{vikberg2019,
-title = \{Effects of Resistance Training on Functional Strength and Muscle Mass in 70-Year-Old Individuals With Pre-sarcopenia: A Randomized Controlled Trial\},
-author = \{\{Vikberg\}, \{Sanna\} and \{Sörlén\}, \{Niklas\} and \{Brandén\}, \{Lisa\} and \{Johansson\}, \{Jonas\} and \{Nordström\}, \{Anna\} and \{Hult\}, \{Andreas\} and \{Nordström\}, \{Peter\}\},
-year = \{2019\},
-month = \{01\},
-date = \{2019-01-01\},
-journal = \{Journal of the American Medical Directors Association\},
-pages = \{28--34\},
-volume = \{20\},
-number = \{1\},
-doi = \{10.1016/j.jamda.2018.09.011\},
-url = \{\url{https://www.sciencedirect.com/science/article/pii/S1525861018305024}\},
-langid = \{en\}
-\}
-
-\citet{article}\{vincent2002,
-title = \{Resistance Exercise and Physical Performance in Adults Aged 60 to 83\},
-author = \{\{Vincent\}, \{Kevin R.\} and \{Braith\}, \{Randy W.\} and \{Feldman\}, \{Ross A.\} and \{Magyari\}, \{Pete M.\} and \{Cutler\}, \{Rachel B.\} and \{Persin\}, \{Stephanie A.\} and \{Lennon\}, \{Shannon L.\} and \{Md\}, \{Abdel H. Gabr\} and \{Lowenthal\}, \{David T.\}\},
-year = \{2002\},
-date = \{2002\},
-journal = \{Journal of the American Geriatrics Society\},
-pages = \{1100--1107\},
-volume = \{50\},
-number = \{6\},
-doi = \{10.1046/j.1532-5415.2002.50267.x\},
-url = \{\url{http://onlinelibrary.wiley.com/doi/abs/10.1046/j.1532-5415.2002.50267.x}\},
-note = \{\{\_\}eprint: \url{https://agsjournals.onlinelibrary.wiley.com/doi/pdf/10.1046/j.1532-5415.2002.50267.x}\},
-langid = \{en\}
-\}
-
-\citet{book}\{hulley2013,
-title = \{Designing clinical research\},
-editor = \{\{Hulley\}, \{Stephen B.\}\},
-year = \{2013\},
-date = \{2013\},
-publisher = \{Wolters Kluwer/Lippincott Williams \& Wilkins\},
-edition = \{4th ed\},
-address = \{Philadelphia\}
-\}
 
   \bibliography{book.bib}
 
