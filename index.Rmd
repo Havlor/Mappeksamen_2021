@@ -1,6 +1,6 @@
 ---
 title: "Mappeeksamen"
-author: "Håvard C. Lorentzen"
+author: "Håvard C. Lorentzen (kandidatnr. 107"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: pdf_document
