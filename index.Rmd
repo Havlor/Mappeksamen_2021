@@ -27,7 +27,7 @@ VO2max ble målt ved hjelp av en metabolsk analysator med miksekammer (vyntus CP
 
 For hvert medgåtte minutt av testen ble hastigheten på møllen økt med 1km/t, helt til utmattelse, hvor testen ble avsluttet. Deltakernes hjertefrekvens ble også registrert under hele testen. Når testen ble avsluttet ble deltakerne bedt om å rapportere opplevd anstrengelse ved hjelp av Borg-skala [@borg1982]. Maksimal hjertefrekvens under testen ble også registrert. Ett minutt etter avsluttet test ble hjertefrekvens registrert, og det ble målt og analysert blodlaktat (Biosen C-line, EKF Diagnostics, Barleben, Germany).
 
-```{r Tabell, echo=FALSE, message=FALSE, warning=FALSE}
+```{r Tabell, echo=FALSE, message=FALSE, warning=FALSE, tab.cap = "Tabellen viser relevant informasjon om deltagerne"}
 # Laster inn pakker og datasett
 library(readxl)
 library(tidyverse) 
@@ -41,7 +41,7 @@ vo2data <- read_excel("data/vo2g1.xlsx")
 
 
 vo2data %>%
-  select(fp, time, sex, age, height, weight) %>% 
+  dplyr::select(fp, time, sex, age, height, weight) %>% 
   # Velger fp, time, sex, age, height and weight
   
   filter(time == "pre") %>% # filter for å bare ha resulat fra pre
@@ -56,10 +56,10 @@ vo2data %>%
             s = sd(value)) %>% # regner ut gjennomnsitt og sdandardavvik og legger til som kolonne
   mutate(ms = if_else(variable == "n", as.character(m), paste0(signif(m, 3),  " (", signif(s, 3), ")"))) %>% # formaterer det på gunstig måte og bruker signif til å runde av desiamler.
    ungroup() %>% # må til for å fjerne kolonner
-  select(-m, -s) %>% # Velger de jeg skal fjerne
+  dplyr::select(-m, -s) %>% # Velger de jeg skal fjerne
    pivot_wider(names_from = sex, 
               values_from = ms) %>% # Henter navn fra sex og verdier fra values og danner en bredere tabell
-   mutate(variable = factor(variable, levels = c("n", "age", "weight", "height"), labels = c("N", "Alder (år)", "Vekt (kg)", "Høyde (cm)"))) %>% # Endrer navn på variabler 
+   mutate(variable = factor(variable, levels = c("n", "age", "weight", "height"), labels = c("Antall", "Alder (år)", "Vekt (kg)", "Høyde (cm)"))) %>% # Endrer navn på variabler 
   arrange(variable) %>% 
    flextable()  %>%
    set_header_labels(variable = "",

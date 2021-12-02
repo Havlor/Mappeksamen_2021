@@ -2,16 +2,19 @@
 
 ## Formål
 
-RNA-overflodsanalyse er gjort ved hjelp av syntese av komplementært DNA fra enkelttrådet RNA. Vi ønsker å amplifisere opp bestemte proteiner ved hjelp av bestemte primere og qPCR. Vi ønsker å få frem en cQ-verdi for å kunne evaluere gen-opphopningen, og sammenlikne mål-genene med referanse gener.
-
+RNA-overflodsanalyse er gjort ved hjelp av syntese av komplementært DNA fra enkelttrådet RNA. Vi ønsker å amplifisere opp bestemte proteiner ved hjelp av bestemte primere og qPCR. Vi ønsker å få frem en Cq-verdi for å kunne evaluere gen-opphopningen, og sammenlikne mål-genene med referanse gener.
 
 ## Metode
 
-Vi hentet cDNA fra 3 forsøkspersoner. Dette er cDNA hentet fra testene som ble gjennomført i uke 0 og uke 2. Alle prøver er fra venstre ben. Det ble laget en 5 fortynningsserier fra disse prøvene. Dette ble fortynnet ved hjelp av DEPC-behandlet vann, i følgende serie 1:10, 1:50, 1:250, 1:1250, 1:6250, 1:31250, 1:156250. Vortex ble brukt mellom hver fortynningsfase.
+Vi hentet cDNA fra 3 forsøkspersoner. Dette er cDNA hentet fra testene som ble gjennomført i uke 0 og uke 2. Alle prøver er fra venstre ben. Det ble laget en fem folds fortynningsserie fra disse prøvene. Dette ble fortynnet ved hjelp av DEPC-behandlet vann, i følgende serie 1:10, 1:50, 1:250, 1:1250, 1:6250, 1:31250, 1:156250. Vortex ble brukt mellom hver fortynningsfase.
 
-Det ble derreter laget sju forskjellige master mixer ved hjelp av 3 referansegener (REEP5, CHMP2A, B2M) og 4 målgener (MyHC I, 2A, 2X, rRNA 475). Mastermix bestod av 5 µl sybr green, 1 µl valgt gen, 2 µl DEPC-behandlet vann , 2 µl fortynnet cDNA. Deretter ble det fylt 71 brønner i en qPCR-reaksjonsplate ed henholdsvis 2 µl prøve, og 8 µl med mastermix. Reaksjonsplaten med brønner ble dekt med plastfilm, og sentrifugerte 1 minutt på 1200 omrdreininger (rpm), før PCR protokoll ble gjennomført. 
+Det ble derreter laget sju forskjellige mastermixer ved hjelp av 3 referansegener (REEP5, CHMP2A, B2M) og 4 målgener (MyHC I, 2A, 2X, rRNA 475). Mastermix bestod av 5 µl sybr green, 1 µl valgt gen/referansegen, 2 µl DEPC-behandlet vann , 2 µl fortynnet cDNA. Deretter ble det fylt 71 brønner i en qPCR-reaksjonsplate med henholdsvis 2 µl prøve, og 8 µl med mastermix. Reaksjonsplaten med brønner ble dekt med plastfilm, og ble sentrifugert i 1 minutt på 1200 omrdreininger, før PCR protokoll ble gjennomført.
 
 En PCR protokoll ble på forhånd forberedet i QuantStudio5. PCR protokollen bestod av 50 grader i 2 minutter, og 95 grader i 2 minutter, før den kjørte 40 sykluser bestående av 1 sekund på 95 grader celsius, og 30 sekunder på 60 grader celsius.
+
+## Resultater
+
+Modellen viser sammenhengen mellom antall sykluser og fluorescence (figur 1). Flere PCR-sykluser gir flere kopier, og dermed også en økt konsentrasjon i prøven. På denne måten kan vi bruke fluorescence til å si noe om hvor mange sykluser som må til for å oppnå en bestemt terskelverdi (Cq-verdi) (figur 1). Med primerne vi benyttet i forsøket var det ønskelig med et sted mellom 10 og 40 sykluser for å sikre at vi oppnådde terskelverdien. Det ble derfor kjørt 40 sykluser. Ved flere sykluser øker trolig sannsynligheten for falske positive. Tabell 1 viser resultatet av både referansegener og målgener.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 if("qpcR" %in% rownames(installed.packages()) == FALSE) install.packages("qpcR")
@@ -31,7 +34,6 @@ library(parallel)
 library(qpcrpal)
 library(tidyverse)
 ```
-
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 group1 <- read_quant5("./data/IDR4000-Group1-precision.xls", skip = 47) %>%
@@ -57,28 +59,6 @@ data.frame(predict(models[[1]]), cycle = 1:40) %>%
   annotate("text", x = 17, y = 1.9, label = "Quantification cycle (Cq)",
            hjust = 0) +
   theme_bw()
-```
-
-## Resultater
-
-Modellen viser sammenhengen mellom antall sykluser og fluorescence. Flere PCR-sykluser gir flere kopier, og dermed også en økt konsentrasjon i prøven. På denne måten kan vi bruke fluorescence til å si noe om hvor mange sykluser som må til for å oppnå en bestemt terskelverdi(Cq-verdi). Med primerne vi benyttet i forsøket var det ønskelig med et sted mellom 10 og 40 sykluser for å sikre at vi oppnådde terskelverdien. Det ble derfor kjørt 40 sykluser.Ved flere sykluser øker trolig sannsynligheten for falske positive.
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-#hvordan mengden av kopiert RNA utvikler seg med antall PCR-sykluser/Cq verdier??
-cyc.diff <- 3.327
-dat <- data.frame(concentration = c(1, 1/10, 1/100, 1/1000, 1/10000, 1/100000), 
-           cq = c(15, 
-                  15 + cyc.diff,
-                  15 + cyc.diff*2, 
-                  15 + cyc.diff*3, 
-                  15 + cyc.diff*4, 
-                  15 + cyc.diff*5)) 
-slope <- coef(lm(cq ~ log10(concentration), data = dat))[2]
-dat %>%
-  ggplot(aes(cq, log10(concentration)))  + 
-  geom_point() + geom_smooth(method = "lm") + 
-  theme_bw() + 
-  annotate("text", x = 15, y = -3, hjust = 0, label = "Effektivitetsfaktor ~ 2\n gitt slope ~ 3.3")
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, warning = FALSE, fig.cap = "Efficiency calculations made from serial dilution of cDNA"}
@@ -137,16 +117,6 @@ efficiency_est_data <- bind_rows(eff_g1, eff_g2, eff_g3) %>%
   filter(cq > 10 & cq < 39) 
   
 saveRDS(efficiency_est_data, "./data/efficiency-estimate-data.RDS")
-  
-### Create a figure with all data
- efficiency_est_data %>% 
-  ggplot(aes(cq, log10(concentration), fill = target, group = target)) + 
-  geom_point(shape = 21, size =  2.5) +
-  geom_smooth(method = "lm", se = FALSE, aes(color = target)) +
-   labs(x = "Quantification cycle (Cq)", 
-        color = "Referansegen", 
-        fill = "Referansegen") +
-   theme_bw()
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
@@ -159,7 +129,7 @@ efficiency_estimates <- data.frame(target = c("B2M", "REEP5"),
                           10^-(1/reep5_slope)))
 ```
 
-```{r cqtabell, echo=FALSE, message=FALSE, warning=FALSE, tab.cap= "Tabellen viser cq-verider"}
+```{r cqtabell, echo=FALSE, message=FALSE, warning=FALSE, tab.cap= "Tabellen viser cq-verider per gen"}
 ## Estimerte cq verdier? 
 library(flextable)
 fc_g1 <- results_group1 %>%
@@ -177,4 +147,6 @@ fc_g1 <- results_group1 %>%
 
 ## Diskusjon
 
-Cq-verdien sier noe om hvor mange PCR-sykluser som trengs for å detektere ulike målgen[@kuang2018]. En høyere Cq-verdi indikerer altså at mengden RNA må dobles flere ganger for å detektere en terskelverdi av target. En lavere Cq-verdi indikerer at terskelverdien oppnås ved færre PCR-sykluser, altså at konsentrasjonen av target er høyere. En lavere Cq-verdi ved uke 2, sammenlignet med uke 0(baseline) som i forsøket, indikerer høyere konsentrasjon ved uke 2 enn ved uke 0. Dermed en effekt av intervensjonen, avhengig av funksjonen til målgenet vi underøkser. 
+Cq-verdien sier noe om hvor mange PCR-sykluser som trengs for å detektere ulike gen [@kuang2018]. En høyere Cq-verdi indikerer altså at mengden RNA må dobles flere ganger for å detektere en terskelverdi av et gen. En lavere Cq-verdi indikerer at terskelverdien oppnås ved færre PCR-sykluser, altså at konsentrasjonen av målgen er høyere [\@kuang2018]. En lavere Cq-verdi ved uke 2, sammenlignet med uke 0, som i forsøket, indikerer høyere konsentrasjon ved uke 2 enn ved uke 0. Dermed en effekt av intervensjonen, avhengig av funksjonen til målgenet vi underøkser.
+
+I forsøket vårt har vi valg tre referansegen, dette gjør det lettere å se at reultatet stemmer. Referansegene er er gen som ikke skal være påvirkbare av den gitte intervensjoenen og skal være være en sikkerhet på at Cq-verdiene på målgenene stemmer.
