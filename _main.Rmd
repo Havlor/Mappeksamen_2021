@@ -479,18 +479,6 @@ library(dplyr)
 
 data("dxadata")
 
-muskel <- dxadata %>%
-  select(participant:include, lean.left_leg, lean.right_leg) %>%
-  filter(include == "incl") %>%
-  pivot_longer(names_to = "leg", 
-               values_to = "lean.mass", 
-               cols = lean.left_leg:lean.right_leg) %>%
-  mutate(leg = if_else(leg == "lean.left_leg", "L", "R"), 
-         sets = if_else(multiple == leg, "multiple", "single")) %>%
-  select(participant, time, sex, sets, lean.mass) %>%
-  group_by(participant) %>%
-  mutate(n = n(), group = factor(sets, levels = c("single", "multiple")), time = factor(time, levels = c("pre", "post"))) %>%
-  print()
 
 
 muskelfigur <- dxadata %>%
@@ -501,10 +489,9 @@ muskelfigur <- dxadata %>%
                cols = lean.left_leg:lean.right_leg) %>%
   mutate(leg = if_else(leg == "lean.left_leg", "L", "R"), 
          sets = if_else(multiple == leg, "multiple", "single")) %>%
-  select(participant, time, sex, sets,lean.mass) %>%
+  select(participant, time, sex, sets, lean.mass) %>%
   group_by(participant) %>%
-  mutate(n = n(), group = factor(sets, levels = c("multiple", "single")), time = factor(time, levels = c("pre", "post"))) %>%
-  print()
+  mutate(n = n(), group = factor(sets, levels = c("multiple", "single")), time = factor(time, levels = c("pre", "post"))) 
 
 
 muskelfigur$time <- factor(muskelfigur$time, levels = c("pre", "post"),labels = c("Pre-test", "Post-test"))
@@ -518,28 +505,6 @@ figurmuskel <- muskelfigur %>%
        y = " Muskelmasse (gram)",
         color = "Treningsmetode")
 
-
-muskel1 <- muskel %>%
-  pivot_wider(names_from = time,
-              values_from = lean.mass)%>%
-  mutate(diff = post - pre) %>%
-  group_by(sets)%>%
-  summarise(m = mean(diff),
-            sd = sd(diff)) %>%
-   mutate(ms = paste0(signif(m, 3), "(", signif(sd, 3), ")")) %>%
-  select(sets, ms) %>%
-  print()
-
-muskelprosent <- muskel %>%
-  pivot_wider(names_from = time,
-              values_from = lean.mass)%>%
-  mutate(diff = (post - pre)/pre * 100) %>%
-  group_by(sets)%>%
-  summarise(m = mean(diff),
-            sd = sd(diff)) %>%
-  mutate(ms = paste0(signif(m, 3), "(", signif(sd, 3), ")")) %>%
-  select(sets, ms) %>%
-  print()
 ```
 
 ```{r figur, echo=FALSE, include=TRUE, results='hide', fig.cap = "Figur 1 viser økningen i muskelvekst fra pre-test til post-tesst for alle forsøkspersoner skildt ved single- sett (1 sett) og multiple- sett (3 sett)."}
