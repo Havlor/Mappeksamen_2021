@@ -1,0 +1,672 @@
+---
+title: "Mappeeksamen"
+author: "Håvard C. Lorentzen"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: pdf_document
+documentclass: book
+bibliography: book.bib
+link-citations: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+# Realabilitet
+
+## Introduksjon
+
+Maksimalt oksygenopptak VO2max ble først beskrevet av Hill og Lupton i 1923, og kan defineres som kroppens evne til å ta opp og forbruke oksygen per tidsenhet [@bassett2000; @hill1923]. Innen toppidrett måles ofte det maksimale oksygenopptaket for å måle utøverens kapasitet opp mot arbeidskravet i den spesifikke idretten, og VO2max kan i så måte også sees på som et mål på den aerobe effekten til utøveren [@bassett2000]. I Olympiatoppens testprotokoller benytter de flere definerte hjelpekriterier for å sikre at man faktisk har funnet deltakerens maksimale oksygenopptak [@tønnessen2017]. Følgende kriterier er beskrevet; platå i O2 er oppnådd, økning i ventilasjon med utflating av O2 verdi, RER-verdi over 1.10 (1.05 om laktatprofiltest er gjennomført i forkant) og blodlaktat over 8 [@tønnessen2017].
+
+## Metode
+
+I forkant av testen ble testpersonen veid uten sko og 300g ble trukket av for vekten av klær. Denne vekten ble brukt i beregningen av maksimalt oksygenopptak (ml kg^-1^ min^-1^) . For å sikre intern validitet ble deltakerne bedt om å avstå fra anstrengende fysisk aktivitet dagen før test, standardisere måltidet i forkant av test samt avstå fra inntak av koffein under de siste 12 timene før testen [@halperin2015]. Både test 1 og 2 ble gjennomført på samme tid på døgnet under standardiserte forhold. Test 2 ble gjennomført 6 dager etter gjennomført test 1. Det ble ikke kontrollert for fysisk aktivitet mellom testdagene.
+
+11 deltagere (tabell 1) gjennomførte en 10 minutter lang oppvarmingsprotokoll på tredemøllen (Woodway 4Front, Wisconson, USA), beskrevet for deltakerne i forkant av testen. Denne oppvarmingsprotokollen bestod av fem minutter på 11-13 i Borg 6-20 RPE skala [@borg1982], etterfulgt av 2x1min på starthastighet og stigning med 30 sekund pausene mellom dragene. Siste tre min var også 11-13 i borg på valgfri stigning. Etter oppvarming var det to min pause før testen begynte. Starthastighet var satt til 8km/t, med stigning på 10.5% og 5.5% for henholdsvis menn og kvinner.
+
+V<sub>O2max</sub> ble målt ved hjelp av en metabolsk analysator med miksekammer (vyntus CPX, mixing­chamber (Vyntus CPX, Jaeger-CareFusion, UK)). Forut for alle tester ble analysatoren gass og volumkalibrert. Analysatoren ble stilt inn til å gjøre målinger hvert 30sek, og VO2max ble kalkulert gjennom å bruke snittet av de to høyeste påfølgende målingene av O2. Underveis i testen mottok alle deltakerne en høylytt verbal oppmuntring fra testleder som var standarisert [@halperin2015]. Alle deltakerne gjennomførte også begge testene med samme testleder og med samme personer til stede i rommet for å redusere konfundering [@halperin2015].
+
+For hvert medgåtte minutt av testen ble hastigheten på møllen økt med 1km/t, helt til utmattelse, hvor testen ble avsluttet. Deltakernes hjertefrekvens ble også registrert under hele testen. Når testen ble avsluttet ble deltakerne bedt om å rapportere opplevd anstrengelse ved hjelp av Borg-skala [@borg1982]. Maksimal hjertefrekvens under testen ble også registrert. Ett minutt etter avsluttet test ble hjertefrekvens registrert, og det ble målt og analysert blodlaktat (Biosen C-line, EKF Diagnostics, Barleben, Germany).
+
+```{r Tabell, echo=FALSE, message=FALSE, warning=FALSE}
+# Laster inn pakker og datasett
+library(readxl)
+library(tidyverse) 
+library(knitr)
+library(flextable)
+library(ggtext)
+library(ggplot2)
+
+
+vo2data <- read_excel("data/vo2g1.xlsx")
+
+
+vo2data %>%
+  select(fp, time, sex, age, height, weight) %>% 
+  # Velger fp, time, sex, age, height and weight
+  
+  filter(time == "pre") %>% # filter for å bare ha resulat fra pre
+  
+  group_by(sex) %>% # lager grupper for kjønn
+  mutate(n = n()) %>% # legger til variabel for å få antall deltagere per kjønn
+   pivot_longer(names_to = "variable", 
+               values_to = "value", 
+               cols = age:n) %>% # summerer alle varibler og legger til "varible" og "Value" som kolonne og variablene som rader
+   group_by(sex, variable) %>% # definerer gruppene på nytt 
+  summarise(m = mean(value), 
+            s = sd(value)) %>% # regner ut gjennomnsitt og sdandardavvik og legger til som kolonne
+  mutate(ms = if_else(variable == "n", as.character(m), paste0(signif(m, 3),  " (", signif(s, 3), ")"))) %>% # formaterer det på gunstig måte og bruker signif til å runde av desiamler.
+   ungroup() %>% # må til for å fjerne kolonner
+  select(-m, -s) %>% # Velger de jeg skal fjerne
+   pivot_wider(names_from = sex, 
+              values_from = ms) %>% # Henter navn fra sex og verdier fra values og danner en bredere tabell
+   mutate(variable = factor(variable, levels = c("n", "age", "weight", "height"), labels = c("N", "Alder (år)", "Vekt (kg)", "Høyde (cm)"))) %>% # Endrer navn på variabler 
+  arrange(variable) %>% 
+   flextable()  %>%
+   set_header_labels(variable = "",
+                    F = "Kvinner", M = "Menn") %>%
+  add_footer_row(values = "Verdier er gitt som gjennomsnitt og (Standardavvik)", colwidths = 3) %>%
+   autofit()
+```
+
+## Resultater
+
+```{r Realabilitet, echo=FALSE, message=FALSE, warning=FALSE}
+
+
+reliabilitet <- read_excel("data/realabilitet uttrekning.xlsx") %>%
+  mutate(diff = `VO2_max_ml/min post` - `VO2_max_ml/min pre`) %>% # Change/difference score
+  summarise(s = sd(diff),
+            m = mean(c(`VO2_max_ml/min post`, `VO2_max_ml/min pre`)), # mean
+            te = s / sqrt(2), # the typical error. 
+            cv = 100 * (te / m),
+             L = qt(0.975, 4) * s)%>% # Calculate as a percentage of the mean
+
+
+```
+
+I figur 1 kan man se forskjellen mellom test 1 og 2 fordelt på kjønn. Det typiske målefeilet (typical error, [@hopkins2000]) fra test 1 til test 2 er utregnet til å være `r round(reliabilitet$cv, 2)`%.
+
+```{r Figur, echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Figuren viser forskjell i Vo2max (ml/min) mellom test 1 og 2"}
+
+
+read_excel("data/vo2g1.xlsx") %>%
+  select(fp, time, vo2data = `VO2_max_ml/min`, sex)  %>%
+  mutate(time = factor(time, levels = c("pre", "post"), 
+                           labels = c("Test 1", "Test 2"))) %>%
+  mutate(sex = factor(sex, levels =c("F", "M"),
+                      labels = c("Kvinner", "Menn"))) %>%
+  ggplot(aes(time, vo2data, color = sex, group = fp)) + 
+  geom_line() +
+  geom_point(size = 3) +
+  labs(x = "Test tidspunkt",
+       y = "VO<sub>2max</sub> (ml/min<sup>-1</sup>) ", 
+       color = "Kjønn") +
+  theme_bw() +
+  theme(axis.text.x = element_text(color = "black", size = 12, face = "bold"), 
+        axis.title.y = element_markdown())
+```
+
+## Diskusjon
+
+<!-- Starta diskussion med de viktigaste resultaten, vilka var 4% TE -->
+
+4.04%
+
+Resultatet i vår realibilitetstudie er funnet av en typefeil på 4.04. Typefeilen kan også tyde på at enkelte av disse resultatene kan være utsatt for støy av ulik sort [@hopkins2000]. Ettersom testing av maksimalt oksygenopptak er en test som gjennomføres til utmattelse, vil man kunne forvente en viss variasjon i testresultatene ettersom opplevd anstrengelse kan påvirkes av flere ulike variabler [@halperin2015]. For å redusere støy vil flere faktorer være nyttig å ta hensyn til under slik testing. Som nevnt i metoden vil standardisering av matinntak, koffeininntak, utstyr og tidspunkt for gjennomføring av test være med på å kunne sikre intern validitet i resultatene. Eksempler er deltakernes kjennskap til testen, verbal oppmuntring og personer tilstede under testen er andre faktorer som potensielt kan bidra til støy [@halperin2015]. Felles for alle faktorer er at graden av påvirkning på resultatene muligens reduseres ved hjelp av en standardisert testprotokoll. Deltakerne - og testlederne, sin kjennskap til testen er en annen faktor som trolig påvirker resultatene i vårt prosjekt. I dette tilfellet fantes det enkelte deltakere som hadde gjennomført en liknende test flere ganger, og en kan da forvente en mindre grad av variasjon mellom resultatene på test 1 og test 2, sammenlignet med de deltakerne som gjennomførte testen for første gang på testdag 1. Dette fordi kjennskapen og kunnskapen de tilegnet seg på pre-test, trolig spiller inn på testresultatene.
+
+Grunnen til at vi snakker om typefeil er at når vi ønsker å måle påvirkningen av trening på en gruppe individer er det viktig å kunne si noe om hva som er endring og hva som er støy (målefeil). Desto mindre støy en test innebærer jo bedre er målingen. Målet som brukes er typefeil. Hva som danner denne variasjonen som representeres ved typical error er multifaktorelt, men hoveddelen er som oftest biologisk [@hopkins2000].
+
+For å måle typefeil har vi brukt within subject deviation metoden. Denne metoden påvirkes ikke av at gjennomsnittet endrer seg fra test til test [@hopkins2000]. Data for målinger i VO2max fra fem sertifiserte Australske laboratorier fastslo ett gjennomsnitt på 2.2% for standardfeil [@halperin2015]. Data fra det Australske institutt for sport har også fastslått at en standardfeil på omtrent 2% er riktig for både maksimal og submaksimal O2 [@clark2007; @robertson2010; @saunders2009]. Dette indikerer at med godt kalibrert utstyr og med utøvere som er godt vant med testingen vil en typefeil på 2% for det biologiske, og analytiske være riktig [@halperin2015]. Vår typefeil på 4.04% kan derfor tenkes å være et bilde hvordan det kan se ut med få deltakere, med ulikt utgangspunkt, men også uten skikkelig standardisering av treningshverdagen i forkant av testene. Det kan også tenkes at med et varierende nivå hos deltagerne kan enkelte oppleve en treningseffekt av test 1. Samtidig som andre kanskje ble slitne av å få en test inn i treningshverdagen.
+
+<!--chapter:end:index.Rmd-->
+
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Labrapport - cDNA synthesis using Superscript IV and general qPCR
+
+## Formål
+
+RNA-overflodsanalyse er gjort ved hjelp av syntese av komplementært DNA fra enkelttrådet RNA. Vi ønsker å amplifisere opp bestemte proteiner ved hjelp av bestemte primere og qPCR. Vi ønsker å få frem en cQ-verdi for å kunne evaluere gen-opphopningen, og sammenlikne mål-genene med referanse gener.
+
+Estimere reaksjonseffektivitet Dobler mengden målgen per syklus
+
+## Metode
+
+3 forsøkspersoner fra pre-test og test uke 2 (venstre ben) Laget fortynningsserie av cDNA 1:1, 5 ganger. Dette resulterer i fortynning ved hjelp DEPC-behandlet vann 1:10, 1:50, 1:250, 1:1250, 1:6250, 1:31250, 1:156250. Vortex ble brukt mellom hver fortynningsfase.
+
+Laget sju forskjellige master mixer ved hjelp av 3 referansegener (REEP5, CHMP2A, B2M) og 4 målgener (MyHC I, 2A, 2X, rRNA 475). Mastermix bestod av: 5 µl sybr green, 1 µl valgt gen, 2 µl DEPC-behandlet vann , 2 µl fortynnet cDNA. Fylte hver brønn med 2 µl prøve, og 8 µl med mastermix. Dekke brett med plastfilm, og sentrifugere 1min på 1200rpm, før PCR protokoll.
+
+Forberedt en PCR protokoll i Quant studio 5 50 grader i 2 min, og 95 grader i 2 min + 40 sykluser med 1 sek på 95 grader, og 30sek på 60 grader
+
+```{r}
+if("qpcR" %in% rownames(installed.packages()) == FALSE) install.packages("qpcR")
+if("readxl" %in% rownames(installed.packages()) == FALSE) install.packages("readxl")
+if("parallel" %in% rownames(installed.packages()) == FALSE) install.packages("parallel")
+# Check if qpcrpal is installed, otherwise install
+if("qpcrpal" %in% rownames(installed.packages()) == FALSE) {
+  
+  library(remotes)
+  remotes::install_github("dhammarstrom/qpcrpal", build_vignettes = TRUE)
+  
+}
+# Load packages
+library(qpcR)
+library(readxl)
+library(parallel)
+library(qpcrpal)
+library(tidyverse)
+```
+
+## Exploring the data
+
+-   Reading and analyzing qPCR-data is done in a stepwise manner using `qpcrpal`.
+-   The `read_quant5` function organizes the data from the instrument (QuantStudio 5)
+-   `model_qpcr` creates models of the fluorecense from each reaction
+-   `analyze_models` use the information in each model to calculate summaries for each reaction.
+
+```{r}
+group1 <- read_quant5("./data/IDR4000-Group1-precision.xls", skip = 47) %>%
+  mutate(ID = paste0(Well, "_", ID))
+models <- model_qpcr(group1)
+results_group1 <- analyze_models(models)
+```
+
+```{r, echo = FALSE, fig.caption = "Figur 1: Figuren viser sammenhengen mellom antall PCR-sykluser og fluorescence "}
+data.frame(predict(models[[1]]), cycle = 1:40) %>%
+  ggplot(aes(cycle, Prediction)) +
+  geom_line() +
+  geom_point(data = group1 %>% filter(ID == "A1_Jacob"),
+             aes(Cycle, Rn), shape = 21, fill = "red") +
+  labs(title = "Observed and modelled fluorescence per cycle",
+       subtitle = "Model: black line; Observed: red points",
+       x = "PCR cycle",
+       y = "Fluorescence") +
+  geom_vline(xintercept = results_group1 %>%
+               filter(ID == "A1_Jacob_NA_NA_MyHC2A") %>%
+               pull(cpD2),
+             lty = 2) +
+  annotate("text", x = 17, y = 1.9, label = "Quantification cycle (Cq)",
+           hjust = 0) +
+  theme_bw()
+
+```
+
+## Resultater
+
+Modellen viser sammenhengen mellom antall sykluser og fluorescence. Flere PCR-sykluser gir flere kopier, og dermed også en økt konsentrasjon i prøven. På denne måten kan vi bruke fluorescence til å si noe om hvor mange sykluser som må til for å oppnå en bestemt terskelverdi(Cq-verdi). Med primerne vi benyttet i forsøket var det ønskelig med et sted mellom 10 og 40 sykluser for å sikre at vi oppnådde terskelverdien. Det ble derfor kjørt 40 sykluser.
+
+```{r}
+#hvordan mengden av kopiert RNA utvikler seg med antall PCR-sykluser/Cq verdier??
+cyc.diff <- 3.327
+dat <- data.frame(concentration = c(1, 1/10, 1/100, 1/1000, 1/10000, 1/100000), 
+           cq = c(15, 
+                  15 + cyc.diff,
+                  15 + cyc.diff*2, 
+                  15 + cyc.diff*3, 
+                  15 + cyc.diff*4, 
+                  15 + cyc.diff*5)) 
+slope <- coef(lm(cq ~ log10(concentration), data = dat))[2]
+dat %>%
+  ggplot(aes(cq, log10(concentration)))  + 
+  geom_point() + geom_smooth(method = "lm") + 
+  theme_bw() + 
+  annotate("text", x = 15, y = -3, hjust = 0, label = "Efficiency factor ~ 2\n when slope ~ 3.3")
+
+```
+
+```{r, echo = FALSE, warning = FALSE, fig.cap = "Efficiency calculations made from serial dilution of cDNA"}
+
+#konsekvente tall fra referansegen som vist i modellen?
+
+group1 <- read_quant5("./data/group1-efficiency.xls", skip = 47) %>%
+  mutate(ID = paste0(Well, "_", ID))
+models1 <- model_qpcr(group1)
+results_group1 <- analyze_models(models1)
+eff_g1 <- results_group1 %>%
+  separate(ID, into = c("well", "sample", "subsample", "time", "target")) %>%
+  dplyr::select(well:target, cq = cpD2) %>%
+  filter(!(sample %in% c("FP1", "FP2", "FP3")), 
+         target %in% c("reep5", "b2m")) %>%
+  mutate(sample = gsub("s1", "", sample), 
+         sample = gsub("s2", "", sample), 
+         concentration = if_else(sample == "pool1", 10, 
+                                 if_else(sample == "pool2", 50, 
+                                         if_else(sample == "pool3", 250, 
+                                                 if_else(sample == "pool4", 1250, 
+                                                         if_else(sample == "pool5", 6250, 
+                                                                 if_else(sample == "pool6", 31250, 156250)))))), 
+         concentration = 1/concentration) %>%
+   dplyr::select(target, concentration, cq) 
+#### Group 2
+group2 <- read_quant5("./data/group2-efficiency.xls", skip = 47) %>%
+  mutate(ID = paste0(Well, "_", ID))
+models2 <- model_qpcr(group2)
+results_group2 <- analyze_models(models2)
+eff_g2 <- results_group2 %>%
+  separate(ID, into = c("well", "sample", "time", "na", "target")) %>%
+  dplyr::select(well:target, cq = cpD2) %>%
+  filter(!(sample %in% c("FP1", "FP2", "FP3")), 
+         target == "REEP5") %>%
+  mutate(concentration = if_else(sample == "P1", 10, 
+                                 if_else(sample == "P2", 50, 
+                                         if_else(sample == "P3", 250, 
+                                                 if_else(sample == "P4", 1250, 
+                                                         if_else(sample == "P5", 6250, 
+                                                                 if_else(sample == "P6", 31250, 156250)))))), 
+         concentration = 1/concentration) %>%
+   dplyr::select(target, concentration, cq) 
+### Group 3
+group3 <- read_quant5("./data/group3-efficiency.xls", skip = 47) %>%
+  mutate(ID = paste0(Well, "_", ID))
+models3 <- model_qpcr(group3)
+results_group3 <- analyze_models(models3)
+eff_g3 <- results_group3 %>%
+  separate(ID, into = c("well", "sample", "conc", "na", "target")) %>%
+  dplyr::select(well:target, cq = cpD2) %>%
+  filter(!(sample %in% c("fp1", "fp2", "fp3")), 
+         target == "B2M") %>%
+  mutate(concentration = 1/as.numeric(conc)) %>%
+  dplyr::select(target, concentration, cq) 
+efficiency_est_data <- bind_rows(eff_g1, eff_g2, eff_g3) %>%
+  mutate(target = toupper(target)) %>%
+  filter(cq > 10 & cq < 39) 
+  
+saveRDS(efficiency_est_data, "./data/efficiency-estimate-data.RDS")
+  
+### Create a figure with all data
+ efficiency_est_data %>% 
+  ggplot(aes(cq, log10(concentration), fill = target, group = target)) + 
+  geom_point(shape = 21, size =  2.5) +
+  geom_smooth(method = "lm", se = FALSE, aes(color = target)) +
+   labs(x = "Quantification cycle (Cq)", 
+        color = "Target", 
+        fill = "Target") +
+   theme_bw()
+
+```
+
+```{r }
+ # Create models and extract the second coefficient from each model (the slope)
+b2m_slope <- coef(lm(cq ~ log10(concentration), data = filter(efficiency_est_data, target == "B2M")))[2]
+reep5_slope <- coef(lm(cq ~ log10(concentration), data = filter(efficiency_est_data, target == "REEP5")))[2]
+# Calculate and store the data in a data frame
+efficiency_estimates <- data.frame(target = c("B2M", "REEP5"), 
+           Efficiency = c(10^-(1/b2m_slope), 
+                          10^-(1/reep5_slope)))
+```
+
+```{r cqtabell, tab.cap= "Tabellen viser cq-verider"}
+## Estimerte cq verdier? 
+library(flextable)
+fc_g1 <- results_group1 %>%
+  separate(ID, into = c("well", "sample", "subsample", "time", "target")) %>%
+  dplyr::select(well:target, cq = cpD2) %>%
+  filter(sample %in% c("FP1", "FP2", "FP3")) %>%
+  dplyr::select(sample, time, target, cq) %>%
+  mutate(target = toupper(target), 
+         target = gsub("RRNA475", "RRNA47S", target)) %>%
+  group_by(sample)%>%
+  pivot_wider(names_from = target, values_from = cq) %>%
+  arrange(time) %>%
+   flextable() %>%
+  print()
+
+
+
+```
+
+## Diskusjon
+
+Cq-verdien sier noe om hvor mange PCR-sykluser som trengs for å detektere ulike targets[@juji] .En høyere Cq-verdi indikerer altså at mengden RNA må dobles flere ganger for å detektere en terskelverdi av target. En lavere Cq-verdi indikerer at terskelverdien oppnås ved færre PCR-sykluser, altså at konsentrasjonen av target er høyere. En lavere Cq-verdi ved uke 2, sammenlignet med uke 0(baseline) som i forsøket, indikerer høyere konsentrasjon ved uke 2 enn ved uke 0. (Dermed en effekt av intervensjonen, avhengig av funksjonen til target - gen).
+
+<!--chapter:end:01-Labrapport.Rmd-->
+
+# Vitenskapsteori
+
+## 1. Falsifikasjonisme
+
+*Hva er Poppers falsifiserbarhetskriterium og hvilket spørsmål skal dette kriterium gi svar på? Hvorfor mener andre vitenskapsfilosofer (f.eks. Okasha) at vi ikke trenger å svare på dette spørsmålet? Hvem synes dere har rett?*
+
+Når man skal diskutere falsifikasjon, er det flere spørsmål som er aktuelle, hva er vitenskap? er alt som blir publisert vitenskap, og hvor går i så fall skillet mellom vitenskap og «ikke-vitenskap»? Sistnevnte er kjent som demarkasjonsproblemet.
+
+Spørsmålene som jeg stiller over, er spørsmål som har vært diskutert av vitenskapsfilosofer lenge og spesielt de siste hundre årene [@okasha2016] . Karl Raimond Popper har hatt og har stor innflytelse i disse spørsmålene etter at han kom med sin teori om falsifikasjonskriteriet [@okasha2016] . Denne teorien sier at en vitenskapelig teori må kunne være mulig å falsifisere (motbevise) [@popper2002]. Dermed kommer Popper med en løsning på Demarkasjonsproblemet, vitenskap er teorier som teoretisk sett skal være mulig å motbevise [@popper2002]. En teori som ikke kan motbevises er da ikke-vitenskap, eller som Popper ville sagt, pseudovitenskap [@popper2002]. Popper løfter fram Astrologi som et eksempel på pseudovitenskap, da det ikke er mulig å falsifisere [@popper2002]. Astrologer baserer seg på empiriske observasjoner og danner horoskoper med vage teorier sånn at de kan bortforklare et hvert angrep mot læren [@popper2002]. Dette blir på mange måter det motsatte av det Popper ønsker [@popper2002]. En forsker skal heller sette seg teorier for å så ha som mål å falsifisere de, på denne måten vil man sikre god vitenskap [@popper2002]. Når man prøver å falsifisere en teori vil det være gjennom deduksjon, teorien har et premiss som empirisk blir testet og man får svaret sant eller usant. Utfallet blir da enten at teorien blir falsifisert og da lagt fram som motbevist eller at teorien blir stående. Ifølge Popper kan ikke teorier bevises, og da er argumentasjon basert på induksjon heller aldri et alternativ [@okasha2016]. Samtidig mener Popper at teorier som har blitt testet på riktige måter og som ikke har blitt falsifisert, kan bli «corroborated», altså nesten bevist [@popper2002]. Poppers tanker om disse teoriene som flere ganer ikke er blitt falsifisert ligner da veldig på en induktiv bekreftelse av en teori, altså når en teori som mest sannsynlig er sann, men ifølge Popper er det ikke det samme [@okasha2016; @popper2002].
+
+Problemet med Poppers teori om vitenskap kommer tydelig fram når han ikke kan bekrefte vitenskapelige teorier. Samir Okasha får dette fram i sin bok om vitenskapsfilosofi [@okasha2016]. Okasha løfter fram et eksempel om personer med Downs Syndrom: Genforskere har funnet ut at alle som har Down Syndrom har tre kopier av kromosomnummer 21 istedenfor to [@okasha2016, s. 18]. Genforskere har da basert på et stort utvalg med personer som har Down Syndrom gjort en konklusjon som gjelder alle med Down Syndrom [@okasha2016]. Dette er da en induktivt bekreftet teori som er godt dokumentert og som gjør at man kan bygge videre kunnskap basert på teorien. Popper kunne ikke gjort dette da det ikke er mulig å gjøre så sterke påstander [@okasha2016]. På bakgrunn av dette skulle man ikke trenger å svare på demarkasjonsproblemet og heller skille mellom styrket og mindre styrket teorier. Okasha mener at en forskeres rolle ikke bare handler om å finne ut om en teori er usann, men også å finne hvilke teorier som er sanne eller mest sannsynlig sanne, og da trenger man induksjon [@okasha2016, s. 19--20]
+
+## 2. HD-metoden og abduksjon/Bayesisme
+
+*Hva er strukturen på et bekreftende vitenskapelig argument ifølge den hypotetisk deduktive metode? Forklar ut fra Hempels artikkel, men bruk egne eksempel. Sammenlign også Hempels HD-metode med hvordan vitenskapelig bekreftelse fungerer ifølge enten abduksjon eller Bayesianisme*.
+
+I oppgave 1 så jeg på hva en vitenskapelig teori er, nå skal jeg se på hvordan teorier kan testes. Carl Gustav Hempel mente at det ikke fantes noen god metode teorier kunne testes og var uenig med Popper [@hempel1966]. Hempel mente at man trengte induktiv argumentasjon i vitenskapene [@hempel1966]. Derfor løftet Hempel fram en metode kaldt hypotetisk deduktiv metode (HD-metoden), som et bedre alternativ [@hempel1966]. Denne metoden sier ikke noe om hvordan teorier kommer fram, men den har klare retningslinjer på hvordan man skal teste en teori og gi den styrke [@hempel1966].
+
+For å forklare HD-metoden bruker jeg følgende eksempel som teori: Høyintensitets intervalltrening på løp øker det maksimale oksygenopptaket (VO~2maks~). Ifølge HD-metoden skal man etter at en har utarbeidet en teori tenke ut empiriske konsekvenser til teorien [@hempel1966]. I vårt tilfelle er det da å finne hvilke empiriske konsekvenser det er av å få et høyrere VO~2maks~. Man skulle tro at empiriske konsekvenser av høyere VO~2maks~ er et høyere blodvolum og bedre prestasjon på 5min løpstest. Neste steg er å teste om de empiriske konsekvensene er sanne, dette skjer gjennom deduktiv testing [@hempel1966]. Dette betyr at økt blodvolum og bedre prestasjon på 5min løpstest blir satt som premiss for at teorien. Om blodvolumet da har økt og prestasjonen på 5min løpstest har blitt bedre, gir det en styrke til teorien om at høyintensiv intervalltrening gir høyere VO~2maks~. I vanlig deduktiv argumentasjon vil et rett premiss bety at teorien er sann, men i HD-metoden vil teorien bare bli en grad av induktivt bekreftet [@hempel1966]. HD-metoden vil aldri si at en teori er bekreftet, da det ikke er mulig å vite om alle argument som kan forklarer teorien [@hempel1966]. Man kan også tenke seg at det er observasjoner eller resultat som kommer i fremtiden og som motsier det en har trodd før [@hempel1966]. I vårt eksempel kan en se for seg at høyintensitets intervalltrening under noen forhold ikke gir høyere blodvolum eller bedre prestasjon på 5min løpstest. HD-metoden er alltid åpen for at det er andre forklaringer og sier derfor bare noe om en teoris styrke eller svakhet ut fra det man har testet empirisk [@hempel1966].
+
+Problemet med HD-metoden er at den empiriske testingen som er bundet til teorien. Det vil si at man ikke kan endre teorien, selv om resultatet av en test ender opp med å passe bedre til en annen teori. Charles Sanders Peirce sin teori kan være løsningen på dette problemet, ved å innføre abduksjon i tillegg til induksjon og deduksjon [@peirce1992]. Abduksjon handler om at man setter flere teorier, for å deretter forklarer teoriene og teste de deduktivt (som i HD-metoden) [@peirce1992]. Resultatet fra testene vil da fortelle oss hvilken teori som er sann, basert på hvilken teori som kan forklarer svarene på testene best [@peirce1992]. En teori som forklarer mest mulig vil være å foretrekke da man i abduksjon ønsker å ha en teori som er bedre enn andre tilgjengelig teorier [@peirce1992]. Abduksjon blir derav også kaldt «slutning til den beste forklaringen» fordi en teori skal gi den beste mulige forklaringen på et fenomen [@peirce1992].
+
+På mange måter ligner HD-metoden og abduksjon på hverandre og begge vil gå under kvalifisert gjetning [@persson2019] . Det som i hovedsak skiller abduksjon fra HD-metoden er fleksibiliteten og den praktiske tilnærmingen da det er flere teorier å velge mellom [@peirce1992].
+
+## 3. Replikasjonskrisen
+
+*Hva mener Alexander Bird er forklaringen til at mange resultat i noen vitenskaper ikke repliseres? Oppsummere Birds argument for dette. Sammenlign også Birds forklaring med noen av de andre forklaringene som Bird diskuterer i seksjon 4. Har Bird rett i at hans forklaring er bedre?*
+
+De siste 20 årene har det blitt identifisert en replikasjonskrise i vitenskapen [@begley2012; @ioannidis2005; @opensciencecollaboration2015]. Dette handler om at mange studier som blir gjort på nytt ikke klarer å få det samme resultatet som første gangen det ble gjort. Det gir oss et stort problem, for hvordan kan man da stole på vitenskapen? Undersøkelser viser at tillitten til vitenskapen har falt i England og USA [@funk2016]. Dette er også noe flertallet av forskere anerkjenner som en krise basert på en spørreundersøkelse gjort på 1500 forskere [@baker2016]. Alexander Bird mener å ha en forklaring til denne replikasjonskrisen [@bird2020].
+
+Bird mener at feilen ligger i en neglisjering av basefrekvens [@bird2020]. Vitenskapen konkluderer rett og slett alt for fort uten å ta hensyn til basefrekvens [@bird2020]. Sånn som vitenskapen er i dag er det typisk gjort en randomisert kontrollert undersøkelse (RTC) og resultatet er enten signifikant eller usignifikant basert på P-verdien [@bird2020]. Denne signifikantgrensen som ofte blir satt til 0,05 (5%) har da blitt en slags pekepinn på om noe er sant eller usant basert på om resultatet er over eller under grensen [@bird2020]. P-verdien sier noe om sannsynligheten for at resultatet er falskt positivt (type-I-feil) [@bird2020]. Om P-verdien er 0,05 er det en 5% sjanse for at resultatet er falskt positiv [@bird2020]. Problemet med dette er at P-verdien man får etter et forskningsprosjekt bare sier noe om utvalget som er sett på i den gitte situasjonen [@bird2020]. Ved å bruke basefrekvens vil man se på resultatet basert på populasjonen og hvor sannsynlig det egentlig er for at resultatet er sant [@bird2020]. Et eksempel på dette, som @bird2020 tar fram, er sannsynligheten for at en tilfeldig har en sjelden sykdom om vedkommende tester positivt på en test. Sykdommen hadde en forekomst på 1 til 1000 og testen hadde en pålitelighet på 95% [@bird2020]. Det er lett å tenke at samsynligheten er 95%, men i realiteten er den 2% [@bird2020]. Dette kommer av at man må regne inn forekomsten i regnestykke gjennom Bayes teorem [@bird2020]. På samme som at det er lett å trekke konklusjonen om at personen i eksempelet var syk, kan vi dra konklusjoner om at vitenskapelige hypoteser er sanne [@bird2020]. Dette gjør at mange studier faktisk ikke gir et rett svar, og da ikke er repliserbare [@bird2020].
+
+Andre forklaringer som Bird trekker fram er den statistiske styrken, som i mange tilfeller ikke er høy nok [@bird2020]. Styrken blir i stor grad styrt av forskningens størrelse (antall deltagere) og gir en sannsynlighet for å ikke få et falskt negativt resultat (type-II-feil) [@bird2020]. Men Bird mener at dette ikke er en god forklaring fordi en høy statistisk styrke egentlig fortsatt gir relativt høy sannsynlighet for å få en type-II-feil [@bird2020]. Bird viser til en utregning hvor det er høyere statistisk styrke enn i «vanlig» vitenskap, men at det fortsatt er 31% sjanse for å få type-II-feil [@bird2020, s. 12-14]. Det vil være bra for vitenskapen å få opp den statistiske styrken, men kan ikke forklarer krisen som vitenskapen står i [@bird2020].
+
+Juks og dårlig praksis i vitenskapen vil kunne forklare noe av replikasjonskrisen, men det er vanskelig å sette en konklusjon basert på det man har sett av studier så langt [@bird2020]. Det er derfor ikke gode nok holdepunkt til å mene at det er dårlig moral rundt vitenskapen som er hele forklaringen på krisen [@bird2020].
+
+Basert på det @bird2020 skriver, er det tydelig at det er hans egen forklaring som gir mest styrke til teorien om at vitenskapen er i en krise. Det er tydelig at folk som driver vitenskap trenger en større forståelse av statistikk og sannsynlighet [@bird2020]. Gjennom et større hensyn til basefrekvensen vil man utarbeide bedre teorier og være mer forsiktig med å si at noe er gjeldene for en hel populasjon [@bird2020].
+
+<!--chapter:end:02-Vitenskapsteori.Rmd-->
+
+# Studiedesign
+
+## Introduksjon
+
+Mennesker i vesten lever lenger og lenger, og eldrebølgen er et faktum, derfor er det et stort behov for å finne ut hvordan eldre mennesker kan bevare helsen best mulig. I denne rapporten skal jeg se på fem studier som har sett på styrketrening som en metode for å bedre helsen til eldre mennesker [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019; @vincent2002]. Alle fem studiene ønsker å finne ut hvordan man kan legge opp styrketrening som gir effektiv og god effekt på helsen (mentalt og fysisk) og dermed gjøre det lettere å gi gode treningsanbefalinger. En oppsummering av studiene er vist i tabell 1.
+
+I fire av studiene ble det sett på forskjellige måter man rent praktisk bør gjennomføre styrketrening [@schott2019 ; @turpela2017; @vikberg2019; @vincent2002]. I @schott2019 ble det for eksempel sett på responsen det var av å trene med styrketreningsapparater mot frivektstrening [@schott2019]. Studien til @geirsdottir2012 skiller seg fra de andre da den hovedsakelig så på den generelle effekten av trening [@geirsdottir2012]. Den så som de andre på styrke- og muskeladaptasjoner, men inkluderte et spørreskjema om hvordan treningen påvirket livskvaliteten [@geirsdottir2012].
+
+På bakgrunn av studiespørsmålene og svarene de vil gi oss, vil studiene gi en styrke til den allerede etablerte anbefalingen om at eldre bør trene styrke for å opprettholde eller bedre helsen [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019 @vincent2002]. I tillegg vil studiene gjøre det lettere å gi gode anbefalinger da de løser noen praktiske spørsmål rundt selve gjennomføringen av styrketrening [@geirsdottir2012 ; @schott2019; @turpela2017; @vikberg2019; @vincent2002]. @vikberg2019 foreslår at en enkel form for styrketrening som man kan gjøre hjemme er nok for å styrke muskulatur og bedre helsen. Dette vil gjøre styrketreningseffekten oppnåelig for alle, og ikke bare de som trener på treningssenter [@vikberg2019].
+
+## Metode
+
+Fire av studiene var RTC-studier hvor det var en, to eller tre intervensjonsgrupper og en kontrollgruppe [@schott2019; @turpela2017; @vikberg2019; @vincent2002]. Hvem som var i hvilke grupper, ble randomisert tilfeldig. Antallet i gruppene var nesten likt fordelt i intervensjon og kontroll med unntak av @vincent2002 . «Nesten likt» vil si at det stort sett var flere i de gruppene det krevde mest av (treningsgruppene), samtidig var det gruppene med flest frafall, sånn at det ved studieslutt nesten var utlignet [@schott2019; @turpela2017; @vikberg2019]. I @vincent2002 var det større forskjell på kontroll og intervensjon (16 i kontroll, 24 og 22 i intervensjon) uten at det blir opplyst noen grunn til det. Å ha en blokkrandomisering som de tre andre nevnt over, ville gitt studien et styrket design. Når det er forskjellige størrelser vil det bli vanskeligere å sammenligne, da mindre grupper gir bredere konfidensintervall og lavere statisk styrke [@hulley2013, s. 63, 146].
+
+Da dette er studier som ser på trening er «blinding» vanskelig, dermed nevnte studiene heller ikke noe om dette [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019; @vincent2002]. For å unngå forskingsfusk er det likevel gunstig at testpersonell ikke vet hvem som er i hvilken gruppe, da testpersonell skal gjennomføre alle tester like godt, selv om man ofte ønsker et resultat i favør hypotesen [@hulley2013, s. 148-149].
+
+@geirsdottir2012 var en klinisk studie uten kontrollgruppe, de hadde altså en stor gruppe (265 kvinner og menn) som trente samme styrketreningsprogrammet. At de ikke hadde kontrollgruppe innrømmet studiegruppen selv at var en svakhet [@geirsdottir2012]. Samtidig poengterte de at eldre mennesker ikke kan forvente en økning i styrke, muskelmasse og muskelfunksjon uten å trene og sånn sett mente de at det var nok å sammenligne med testresultat ved start [@geirsdottir2012]. Det er mulig å forstå argumentasjonen til @geirsdottir2012 når de i tillegg har såpass mange deltagere som de har. Samtidig hadde en definert kontrollgruppe gjort studien sterkere som en studie som skulle finne ut av noe [@hulley2013, s. 87]. Studien vil gå under kategorien Case-serie som er mer egnet til å se på karakteristika og i denne sammenhengen av styrketrening på eldre [@hulley2013, s. 87]. Noe de også i en viss grad gjorde når resultatet av spørreskjema om livskvalitet var noe av det viktigste [@geirsdottir2012]. Denne karakteristikk-egenskapen som studien kunne nok kommet bedre frem.
+
+Populasjonen som er ønsket å treffe er eldre kvinner og menn som var relativt friske [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019; @vincent2002]. Ingen av studiene har en eksplisitt definisjon av «eldre», men totalt i studiene var det et aldersspenn på 60-92 og gjennomsnittsalderen i de forskjellige studiene var rundt 70år (flest rett under) [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019; @vincent2002]. Den eldre befolkningen er en svært heterogen gruppe, noe som gjør det vanskelig med ekskluderingskriterier. Studiene godtok da det som ble definert som milde sykdommer som ikke påvirker treningen. Unntaket er til en viss grad @vikberg2019 hvor det ikke var andre inklusjonskretierier enn at de ikke måtte ha sarkopeni. Samtidig kan det tyde på at det var relativt god helse blant deltagerene da de alle var 70 år, ikke hadde sarkopeni og klarete å gjennomføre treningen [@vikberg2019]. Totalt sett treffer studiene godt på populasjonen da alle har et høyt antall deltagere og har kvalifikasjonskriterier som gjør det mulig for «vanlig» eldre folk å være med [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019; @vincent2002].
+
+Rekruteringen av deltagere ble gjort ved hjelp av brev og annonser med unntak av @schott2019 [@geirsdottir2012; @turpela2017; @vikberg2019; @vincent2002]. Han hentet deltagere fra en treningsgruppe som var etablert på studiestedet [@schott2019]. Felles for alle studiene var at det va en frivillig deltagelse [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019; @vincent2002]. @schott2019 og @vincent2002 utrykte et krav om at det måtte være statistisk styrke på 80%. @schott2019 gjorde også et estimat hvor de så at det var behov for 26 deltagere for å se en signifikant forskjell ved signifikantgrense på 5% når de godtok en sannsynlighet på 80% (de inkluderte 32 personer). De andre studiene nevnte ikke noe om statistisk styrke, og kunne med fordel vist til en estimering av deltagere som krevdes for en gitt statistisk styrke. @turpela2017 innrømmet også at det kunne bli vanskelig å se forskjell mellom gruppene da utrente ofte får god effekt uansett, noe som kunne blitt kontrollert for om man hadde gjort en powerbergening og inkludert tilstrekkelig deltagere.
+
+Alle fem studiene hadde pre-post-design hvor Scott et al. også i tillegg hadde tester i uke 10/26 og 6 uker etter post-testen i uke 26 [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019; @vincent2002]. I alle studiene ble det gjort idrettsfysiologiskse tester av styrke, men også funksjonelle tester som hadde som mål å se hvordan styrken kom til utrykk i dagligdagse gjøremål (gå test, gripe test osv.) [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019; @vincent2002]. @geirsdottir2012 la som nevnt også en del vekt på spørreskjema som ble gitt før og etter intervensjon. @schott2019 hadde også et spørreskjema, men dette ble bare gitt etter og var en evaluering av treningen. Treningen som ble gjennomført av intervensjonsgruppene ble gjort på treningssenter eller treningslokale på studiestedet [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019; @vincent2002]. @vincent2002 fikk deltagerne til å sende inn treningsdagbøker for hver økt som det det ble gitt tilbakemelding på. I de fire andre studiene var det trenere eller med kvalifisert kurs eller utdanning som veiledet deltagerne igjennom økten [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019]. Kontrollgruppen ble instruert i å leve som vanlig og ikke trene [@schott2019; @turpela2017; @vikberg2019; @vincent2002]. Treningsperiodene var fra 10 uker til 26 uker [@geirsdottir2012; @schott2019;[ ](mailto:2019;@Turpela){.email}@turpela2017; @vikberg2019; @vincent2002].
+
+Studiene hadde som nevnt som mål å finne ut hvordan eldre bør trene og hvilke effekter det er av styrketrening [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019; @vincent2002]. For å finne ut dette ble det sett på forskjellige variabler for styrke, kroppssammensetning (spesielt fettfri masse), muskelstørrelse, men også variabler som skulle reflektere dagligdagse gjøremål [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019; @vincent2002]. @vincent2002 la for eksempel en del vekt på en trappetes hvor deltagerne skulle gå en trapp så fort som mulig. Dette er viktig da noe av hovedgrunnen for å trene styrke for eldre nettopp er å mestre dagligdagse gjøre mål [@vincent2002].
+
+I analysen av studiene var det ønskelig å finne forskjeller i resultat mellom grupper, her ble det brukt forskjellige statistiske tester. I tre av studiene hvor det var en eller to grupper ble brukt paret t-test får så se forskjell innad i gruppene [@geirsdottir2012; @vikberg2019; @vincent2002]. @vincent2002 brukte ANCOVA for å se forskjell innad i gruppe og la da også inn effekten av tid. Verdiene ved studiestart ble satt som en kovariat og satt opp mot post-resultatet per person for å se forskjell fra pre til post [@vincent2002]. @turpela2017 brukte her en-veis-ANOVA for kontrollere for ulikheter ved pre-test. For å se på forandring i gruppene ble det brukt uavhengig t-test og ANCOVA hvor man også kunne se på effekten av tid og enveis gjentatte målinger [@schott2019; @turpela2017; @vikberg2019; @vincent2002]. @schott2019 brukte også MANCOVA for å gjøre statistikk på variablene som ble mål flere enn 2 ganger og på spørreskjammaet han brukte. @geirsdottir2012 brukte Wilconxon's test for analyse av spørreskjemaet sitt. Tre av studiene brukte også post hoc tester som vil gi et mer troverdig resultat da den kontrollerer resultatet for falsk positiv [@hulley2013, s. 50-52]. [@schott2019; @turpela2017; @vincent2002]. Alle hadde signifikantgrense ved P = 5% med unntak av en ANCOVA-test @vikberg2019 gjorde som gjorde en interaksjon mellom kjønn og intervensjon, hvor P = 10% [@geirsdottir2012; @schott2019; @turpela2017; @vincent2002]. Denne interaksjonen til @vikberg2019 vil med dette lettere godta at det er en forskjell mellom kjønn.
+
+## Resultat
+
+Tre av studeiene studiene, som sammenlignet intervensjon mot kontroll, ble det ikke sett forskjell på muskelmasse, men @vikberg2019 fant forskjell i muskelmasse [@schott2019; @turpela2017; @vincent2002]. @vikberg2019 fant ikke forskjell i styrke fra kontrollgruppen, men de gjorde de tre andre [@schott2019; @turpela2017; @vincent2002]. På funksjonell styrke gav alle studiene positiv effekt på funksjonelle tester [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019; @vincent2002]. I de studiene som sammenlignet flere treningsprotokoller var det liten forskjell mellom det forskjellige treningsprotokollene, men alle skilte seg fra kontrollgruppen [@schott2019; @turpela2017; @vikberg2019; @vincent2002]. @geirsdottir2012 fant en liten forbedring av livskvalitet. Alt i alt greide de delvis å gi et positivt svar på hypotesen [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019; @vincent2002].
+
+Alle studiene konkludere med at styrketrening fungerte [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019; @vincent2002]. For å oppsummere anbefalingene, er det nok å trene styrke 1-2 gagner i uken, så lenge det er helkroppsøkt [@turpela2017; @vikberg2019]. En ytterlig effekt vil man få om man trener med frivekter, spesielt på ben og triceps, som er viktige muskelgrupper for eldre [@schott2019]. Det er også nok å gjøre 13 rep på 50% 1RM [@vincent2002]. Antall serier er ikke sett på, men basert på studiene burde 1-2 være nok [@geirsdottir2012; @schott2019; @turpela2017]. Det kommer også fram at all trening som ble sett på gav en effekt [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019; @vincent2002]. Treningen vil vedlikeholde muskelmassen din, øke styrken din, gjøre praktiske gjøremål lettere og det vil kunne øke livskvaliteten din [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019; @vincent2002]. Denne konklusjonen og anbefalingen gjelder for relativet friske eldre mennesker som ikke er vant til å trene og som har en lav muskelmasse, dog ikke kritisk lav [@geirsdottir2012; @schott2019; @turpela2017; @vikberg2019; @vincent2002].
+
+## Videre forskning
+
+Det er enda ikke veldig tydelig hvilke treningsprogram som gir god effekt på bedret funksjonsevne [@turpela2017]. @schott2019 foreslår at studeier med frivekter kan være løsningen. I tillegg burde man gjøre studier hvor man kontrollerer proteininntaket hos eldre da dette kan være så lavt at det påvirker styrkefremgangen [@turpela2017].
+
+Tabell 1. Oppsummering av artiklene
+
+```{r tesksttabell, echo=FALSE, message=FALSE, warning=FALSE}
+library(readxl)
+library(flextable)
+library(kableExtra)
+tabelltekst <- read_excel("data/teksttabell.xlsx")
+
+tabelltekst%>%
+flextable()
+```
+
+<!--chapter:end:03-Studiedesign.Rmd-->
+
+# 1 vs 3 sett
+
+## Introduksjon
+
+Det finnes utallige måter å trene styrketrening på, men hvilken måte som er den mest effektive er enda uklart. Tradisjonelt gjøres styrketrening i X antall ganger (repetisjoner) i X antall serier (sett). Men hvor mye har det å si at man gjør ett eller flere sett? Flere studier har sett på effekten av å gjøre ett sett og tre sett [@galvão2005; @hass2000; @krieger2009; @radaelli2014; @schoenfeld2019]. Resultatet i studiene er sprikende. Noen studier finner ikke forskjell mellom grupper som trener ett og tre sett [@hass2000; @radaelli2014], mens andre studier ser at begge gruppene øker, men tre sett gir en ytterlige effekt på styrke [@krieger2009; @galvão2005]. Det er også sett at man kan oppnå like styrkeeffekter, men at økningen av muskelmasse trenger større volum enn ett sett for å gi effekt [@schoenfeld2019].
+
+Basert på statistikk fra @statistisksentralbyrå2019 er styrketrening blitt svært populert, men bare ett fåtall trener mer enn en gang i uken. Studier viser derimot at den ideele effekten av styrketrening kommer først når man trener to til tre ganger i uken [@schoenfeld2016]. På bagrunn av dette vil det være gunstig å finne ut av spørsmålet om ett sett er nok, da en treningsøkt tar mye kortere tid. Noe av det som gjør at det er vanskelig å dra en tydelig konklusjon av studiene på området er at det vil være individuelle variasjoner mellom to treningsgrupper. I vår studie ser vi derfor på perosner som trener ett sett på ene benet og tre sett på det andre benet. På denne måten vil en sikre at framgangen ikke blir forskjellig på bakgrunn av gruppeforskjeller, men på bakgrunn av selve treningen.
+
+I studien ønsker vi å se effekten av både fem uker og 12 uker. Hypotesen er at begge gruppene vil ha en god framgang i både styrke og muskelstørrelse, men at gruppen som trener tre sett vil få en bedre styrkefremgang ved både fem og 12 uker.
+
+## Metode
+
+### Etikk
+
+Alle deltagere i studien ble informert om potensielle risikoer ved trening og testing samt eventuelle ubehagelige og anstrengende situasjoner. Dette gav de et informert samtykke på. Alle prosedyrer er i tråd med Helsinkideklarasjonen.
+
+### Deltagere
+
+Det ble rekruttert 41 kvinner og menn til en treningsperiode på 12 uker. Kriterier for å være med var at de måtte være mellom 18-40 år og ikke røyke. De var ikke vant til å trene (ble eksludert om de hadde mer enn en økt i uken det siste året). I analysene av styrkefremgang ble bare 29 deltagere inkludert, de resterende møtte ikke møtte opp på test ved fem uker. 34 deltagere ble analysert for muskelmasseøkning (her var det bare test ved pre og post), resterende gjennomførte ikke studien (fem stk pga. smerter, en stk. pga skade som ikke hadde med studien å gjøre og en pga. ikke fulgte protokoll).
+
+### Trening
+
+Trenging som ble gjennomført var et helkroppstreningsprogram hvor treningen av ble gjort forskjellig på høyre og venstre fot. De ene bene trente ett sett, mens det andre trente tre sett. Hvilket ben som trente hva, ble randomisert. Antall repetisjoner 0-2 uker var 10 repetisjoner maksimum (RM), uke 2-5 var det 8RM, uke 5-12 var det 7RM. Det ble gjort treninger i uken, med unntak av ukene hvor det ble gjort test. Alle økter ble gjort på ved kvalifiserte trenere (91% av øktene, resterende økter ble gjort uten trener for at det skulle bli gjennomførbart). Øvelsene på bena ble gjort i denne rekkefølgen: unilateral benpress, knefleksjon og knefleksjon med enten ett sett eller tre sett. Det ene settet ble gjort mellom andre og tredje sett i tre sett serien. Etter bedøvelsene ble to sett av øvelser på overkroppen gjort I to sett: bilateral benkpress, nedtrekk og enten skulderpress eller sittende roing (gjort annenhver økt).  Pauser mellom sett var 90-180 sekund og pause mellom økten var på minimum 24 timer.
+
+### Testing
+
+#### Styrketester
+
+Styrketestne ble gjort ved pre, etter fem uker og ved post (12 uker). Tre av testene ble gjort som unilateral kneekstensjon i dynamometer (Cybex 6000, Cybex International, Medway USA). I forkant av testingen ble en standardisert oppvarming gjennomført på ergometersykkel i 5 minutter. Dynamometeret ble justert av testleder sånn at individuelle innstillinger ble gjort. Før hver test ble det gjort standardiserte oppvarmingsrepetisjoner i dynamometeret. Isokinetisk (isok) og isometrisk (isom) styrke ble målt ved maksimalt dreiemoment målt i newtonmeter, og ble notert for hver test (isok120, isok240 og isok60 grader per sekund bevegelseshastighet og isom0 (kneet i 60 graders vinkel)). Det ble gitt to forsøk ved isok60 og isom60 og tre forsøk ved isok240 og isok120 og høyeste ble registrert.
+
+De to andre testene var 1RM-tester i unilateral kneekstensjon og benpress. Som oppvarming ble det gjort 10, 6 og 3 repetisjoner ved henholdsvis 50, 75 og 85% av forventet 1RM. Deretter ble 1RM funnet ved at vekten ble økt gradvis til de de ikke klarte å fullføre full bevegelse i øvelsen. Den høyeste gjennomførte repetisjonen ble satt som 1RM.
+
+Resultatet ble regnet om til en kombinert score som er et gjennomsnitt av alle styrketestene.
+
+#### Testing av Muskelmasse
+
+Ved pre og post-test ble det brukt «dual-energy X-ray absorptiometry» (DXA). Deltagerne fikk beskjed om å faste de to timene før test og å unngå fysisk aktivitet 48 timer før.  
+
+### Statestikk
+
+For å se forskjell mellom 1 sett og 3 sett ble ANCOVA brukt, hvor det ble tatt hensyn til at dataene er korrelerte. Dette er da man gjør to forskjellige protokoller på samme person. Det ble også sett på forskjeller innad i kjønn. For muskelmasse ble det sett på forskjell på fra pre til post. Endring i muskelmasse ble analysert ved pre til 5 uker, 5 uker til post, og pre til post. En P-verdi under 0,05 blir sett på som signifikant endring. Alle tall er gitt som gjennomsnitt med standardavvik. Tabeller, figurer og analyser ble gjort i RStudio (versjon 1.4.1717; R Founadtion for Statistics Computing, Vienna AT).
+
+## Resultat
+
+### Muskelmasse
+
+Benet som trente tre sett økte signifikant mer enn benet som trente ett sett, med henholdsvis økning på 3.37% (±4.59%) og 2.05% (±3.62) (p \< 0.05) (figur 1). Det var ingen forskjell mellom benene ved pre.
+
+```{r tabell, include=FALSE, results='hide',}
+
+
+options(knitr.duplicate.label = "allow")
+library(exscidata)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(flextable)
+library(ggplot2)
+
+
+
+data("dxadata")
+
+muskel <- dxadata %>%
+  select(participant:include, lean.left_leg, lean.right_leg) %>%
+  filter(include == "incl") %>%
+  pivot_longer(names_to = "leg", 
+               values_to = "lean.mass", 
+               cols = lean.left_leg:lean.right_leg) %>%
+  mutate(leg = if_else(leg == "lean.left_leg", "L", "R"), 
+         sets = if_else(multiple == leg, "multiple", "single")) %>%
+  select(participant, time, sex, sets,lean.mass) %>%
+  group_by(participant) %>%
+  mutate(n = n(), group = factor(sets, levels = c("single", "multiple")), time = factor(time, levels = c("pre", "post"))) %>%
+  print()
+
+
+muskelfigur <- dxadata %>%
+  select(participant:include, lean.left_leg, lean.right_leg) %>%
+  filter(include == "incl") %>%
+  pivot_longer(names_to = "leg", 
+               values_to = "lean.mass", 
+               cols = lean.left_leg:lean.right_leg) %>%
+  mutate(leg = if_else(leg == "lean.left_leg", "L", "R"), 
+         sets = if_else(multiple == leg, "multiple", "single")) %>%
+  select(participant, time, sex, sets,lean.mass) %>%
+  group_by(participant) %>%
+  mutate(n = n(), group = factor(sets, levels = c("single", "multiple")), time = factor(time, levels = c("pre", "post"))) %>%
+  print()
+
+muskelfigur$time <- factor(muskelfigur$time, levels = c("pre", "post"),labels = c("Pre-test", "Post-test"))
+
+figurmuskel <- muskelfigur %>%
+ ggplot(aes(time, lean.mass, group = paste(participant, group), color = group)) + geom_line() + theme_minimal() + 
+   labs(x = "Tidspunkt",
+       y = " Muskelmasse (gram)",
+        color = "Gruppe")
+
+
+muskel1 <- muskel %>%
+  pivot_wider(names_from = time,
+              values_from = lean.mass)%>%
+  mutate(diff = post - pre) %>%
+  group_by(sets)%>%
+  summarise(m = mean(diff),
+            sd = sd(diff)) %>%
+   mutate(ms = paste0(signif(m, 3), "(", signif(sd, 3), ")")) %>%
+  select(sets, ms) %>%
+  print()
+
+muskelprosent <- muskel %>%
+  pivot_wider(names_from = time,
+              values_from = lean.mass)%>%
+  mutate(diff = (post - pre)/pre * 100) %>%
+  group_by(sets)%>%
+  summarise(m = mean(diff),
+            sd = sd(diff)) %>%
+  mutate(ms = paste0(signif(m, 3), "(", signif(sd, 3), ")")) %>%
+  select(sets, ms) %>%
+  print()
+
+tabellmuskel<- muskelprosent %>%
+mutate(sets = factor(sets, levels = c("multiple", "single"), 
+                        labels = c("3 sett", "1 sett"))) %>%
+  select(sets, ms) %>%
+  arrange(sets) %>%
+   flextable()  %>%
+  set_header_labels(sets = " ",
+                    ms = "Prosentvis endring")%>%
+    # Add footnote
+    add_footer_row(values = "Verdiene er gitt som gjennsomsnitt og standardavvik (SD)", colwidths = 2) %>%
+    # Make the columns widths match the content
+    autofit()
+```
+
+```{r figur, echo=FALSE, include=TRUE, results='hide', fig.cap = "Figur 1 viser økningen i muskelvekst fra pre-test til post-tesst for alle forsøkspersoner skildt ved single- sett (1 sett) og multiple- sett (3 sett)."}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+figurmuskel
+```
+
+### Muskelstyrke
+
+Begge gruppene økte i styrke fra pre til uke 5 og uke 5 til post (figur2) (p \< 0.05). Den største økningen kom for begge treningsmetodene mellom pre og uke fem (begge p \< 0.01) (tabell 1). Fra uke 5 og post var det en økning på 10% for benet som trente 3 sett og 6.8% for benet som trente 1 sett (begge p \< 0.01). Benet som trente tre sett økte mer en benet som trente ett sett ved både 5 uker og ved post-test (tabell 1).
+
+```{r setup, include=FALSE, results='hide'}
+
+
+options(knitr.duplicate.label = "allow")
+
+data("strengthvolume")
+
+
+styrke <- strengthvolume %>%
+  group_by(exercise) %>%
+  mutate(scaled.load = load / max(load, na.rm = TRUE)) %>%
+  group_by(participant, time, sex, sets) %>%
+  summarise(combined.load = mean(scaled.load, na.rm = TRUE)) %>%
+  ungroup() %>%
+  print()
+
+styrke1 <- styrke %>%
+filter(!is.na(combined.load), time == factor(time, levels = c("pre", "week5", "post"))) %>%
+  mutate(time = factor(time, levels = c("pre", "week5", "post")),
+         group = factor(sets, levels = c("single", "multiple"))) %>% 
+ group_by(participant) %>%
+  mutate(n = n()) %>%
+  filter(n == "6") %>% #bare de med målinger ved alle tester er tatt med.
+   print()
+
+styrkefigur <- styrke %>%
+filter(!is.na(combined.load), time == factor(time, levels = c("pre", "week5", "post"))) %>%
+  mutate(time = factor(time, levels = c("pre", "week5", "post")),
+         group = factor(sets, levels = c("single", "multiple"))) %>% 
+ group_by(participant) %>%
+  mutate(n = n()) %>%
+  filter(n == "6") %>% #bare de med målinger ved alle tester er tatt med.
+   print()
+
+styrkefigur$time <- factor(styrkefigur$time, levels = c("pre", "week5", "post"),labels = c("Pre-test", "5 uker-test", "Post-test"))
+
+
+                                                                                   
+figurstyrke<- styrkefigur %>%
+  ggplot(aes(time, combined.load, group = paste(participant, group), color = group)) + geom_line() + theme_minimal() + 
+  labs(x = "tidspunkt",
+       y = "Styrkefremgang (gjenomsnitt av alle øvelser)",
+        color = "Gruppe")
+
+
+diff <- styrke1 %>%
+  select(participant, sets, group, time, combined.load) %>%
+  pivot_wider(names_from = time,
+              values_from = combined.load) %>%
+  mutate(diff1 = (week5 - pre)/pre * 100, diff2 = (post - pre)/pre * 100)  %>%
+  group_by(sets) %>%
+  summarise(sd1 = sd(diff1),
+            m1 = mean(diff1),
+            sd2 = sd(diff2),
+            m2 = mean(diff2))%>%
+   mutate(week5 = paste0(signif(m1, 3), "(", signif(sd1, 3), ")"),post = paste0(signif(m2, 3), "(", signif(sd2, 3), ")")) %>%
+  select(sets,week5, post) %>%
+  print()
+
+
+tabellstyrke<- diff %>%
+mutate(sets = factor(sets, levels = c("multiple", "single"), 
+                        labels = c("3 sett", "1 sett"))) %>%
+  select(sets, week5, post) %>%
+  arrange(sets) %>%
+   flextable()  %>%
+  set_header_labels(sets = " ",
+                    week5 = "Uke 5", 
+                     post = " Post")%>%
+    # Add footnote
+    add_footer_row(values = "Verdiene er gitt som gjennsomsnitt og standardavvik (SD). p < 0.01 ved pre til uke fem og uke fem til post for begge grupper, p < 0.01 ved begge tidspunt for at tre sett økte mer enn fem sett", colwidths = 3) %>%
+    # Make the columns widths match the content
+    autofit()
+```
+
+```{r styrkefigur, echo=FALSE, include=TRUE, results='hide', fig.cap = "Figur 2 viser økningen i muskelstyrke, fra pre-tests til 5 uker og 5 uker til post-test for alle forsøkspersoner skildt ved single- sett (1 sett) og multiple- sett (3 sett)."}
+
+
+options(knitr.duplicate.label = "allow")
+figurstyrke
+```
+
+```{r tabellstyrke, echo=FALSE, message=FALSE, warning=FALSE}
+
+
+options(knitr.duplicate.label = "allow")
+tabellstyrke
+```
+
+## Diskusjon
+
+Hovedfunnene i denne studien er at tre sett gir en større økning i både styrke og muskelmasse enn å trene ett sett etter 12 uker med styrketrening. Den største økningen i styrke kom etter de fem første ukene. Funnene våre stemmer overens med flere av studiene som har ser på grupper (1 sett mot 3 sett) opp mot hverandre [@krieger2009; @galvão2005; @schoenfeld2016].
+
+Etter fem uker med trening var ikke forskjellen like stor som ved 12 uker. Dette kan stemme med @radaelli2014, selv om han ikke så forskjell mellom ett og tre sett. I den studien så de på effekten av seks uker hos utrente hvor forfatterne konkluderte med at ett sett gir like god effekt som tre sett hos utrente i startfasen av styrketrening [@radaelli2014]. Selv om studien vår viser at tre sett er fordelaktig også i en startfase, kan man likevel se en overlegen effekt av tre sett fra uke fem til 12. Dette tyder på at volum blir viktigere og viktigere jo lengre treningsperioden varer. I vår studie hadde vi også forsøkspersoner som til en viss grad var vant med trening, noe som vil gi dem et annet utgangspunkt enn helt utrente som @radaelli2014 så på. I motsetning til dette så @hass2000 i sin studie at ett sett var like bra som tre sett også hos trente personer, på både kort og lang sikt. Det som likevel skiller denne studien fra vår i tillegg til at vi ikke hadde to grupper, er at de så på styrketester i både overkropp og underkropp [@hass2000]. Når man ser på resultatet i studien er det signifikant forskjell i favør tre sett i leggfleksjon og generelt ikke overbevisende resultat for ett sett på underkroppsøvelser [@hass2000]. Det kan dermed virke som at tre sett er å foretrekke på underkroppen mens ett sett kan være nok på overkroppen. Denne konklusjonen stemmer godt overens med andre studier [@rønnestad2007; @paulsen2003]. Likevel kunne det vært interessant om man også ser denne effekten om man har samme studiedesign som i denne studien, hvor man hadde trent forskjellig på venstre og høye arm.
+
+I forhold til økning i muskelmasse var det en liten, men gyldig økning i vår studie. Lignende funn så @schoenfeld2019, som konkluderer med at det er en dose-respons-effekt på økning i muskelmasse. Det samme klarete ikke @galvão2005 å finne når han så på ett vs. tre sett hos eldre mennesker. Det kan potensielt forklares med at eldre trenger mer protein for å oppnå økning i muskelmasse samtidig som at de ikke er like flinke til få i seg proteiner som unge [@kraemer1999; @moore2015]. Vår studie skiller seg generelt fra andre da muskelmasseøkningen teoretisk sett er lik når begge intervensjonene skjer på samme person samtidig.
+
+### Treningsanbefaling
+
+På bakgrunn av denne studien og andre studeier nevnt over, kan man som utrent få god effekt av å trene ett sett på hele kroppen i starten av en treningsperiode. Etter ca. en måned bør man øke antall sett på underkroppsøvelsene, men kan forsette med ett sett på overkroppen. Det er også viktig at alle repetisjoner utføres som RM for å få mest mulig effektiv trening.
+
+### Konklusjon
+
+Resultatet i studien stemte med hypotesen. Både tre sett og ett sett gav god effekt på beinstyrken hos trente personer, men tre sett gav ytterlige styrkeeffekt enn ett sett, spesielt etter fem uker. Tre sett er også å foretrekke for å oppnå økning muskelmasse.
+
+<!--chapter:end:04-1vs3-sett.Rmd-->
+
