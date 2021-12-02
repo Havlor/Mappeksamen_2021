@@ -59,14 +59,14 @@ data("dxadata")
 
 
 muskelfigur <- dxadata %>%
-  select(participant:include, lean.left_leg, lean.right_leg) %>%
+   dplyr::select(participant:include, lean.left_leg, lean.right_leg) %>%
   filter(include == "incl") %>%
   pivot_longer(names_to = "leg", 
                values_to = "lean.mass", 
                cols = lean.left_leg:lean.right_leg) %>%
   mutate(leg = if_else(leg == "lean.left_leg", "L", "R"), 
          sets = if_else(multiple == leg, "multiple", "single")) %>%
-  select(participant, time, sex, sets, lean.mass) %>%
+   dplyr::select(participant, time, sex, sets, lean.mass) %>%
   group_by(participant) %>%
   mutate(n = n(), group = factor(sets, levels = c("multiple", "single")), time = factor(time, levels = c("pre", "post"))) 
 
@@ -84,6 +84,90 @@ figurmuskel <- muskelfigur %>%
 
 ```
 
+### Muskelstyrke
+
+Begge treningsmetodene gav økning i styrke fra pre til uke 5 og uke 5 til post (figur2) (p \< 0.05). Den største økningen kom for begge treningsmetodene mellom pre og uke fem (begge p \< 0.01) (tabell 1). Fra uke 5 og post var det en økning på 10% for benet som trente 3 sett og 6.8% for benet som trente 1 sett. Benet som trente tre sett økte mer en benet som trente ett sett ved både 5 uker og ved post-test (begge p \< 0.01) (tabell 1).
+
+```{r setup, include=FALSE, results='hide'}
+
+data("strengthvolume")
+
+
+styrke <- strengthvolume %>%
+  group_by(exercise) %>%
+  mutate(scaled.load = load / max(load, na.rm = TRUE)) %>%
+  group_by(participant, time, sex, sets) %>%
+  summarise(combined.load = mean(scaled.load, na.rm = TRUE)) %>%
+  ungroup()
+
+styrke1 <- styrke %>%
+filter(!is.na(combined.load), time == factor(time, levels = c("pre", "week5", "post"))) %>%
+  mutate(time = factor(time, levels = c("pre", "week5", "post")),
+         group = factor(sets, levels = c("single", "multiple"))) %>% 
+ group_by(participant) %>%
+  mutate(n = n()) %>%
+  filter(n == "6") #bare de med målinger ved alle tester er tatt med.
+
+
+
+diff <- styrke1 %>%
+  dplyr::select(participant, sets, group, time, combined.load) %>%
+  pivot_wider(names_from = time,
+              values_from = combined.load) %>%
+  mutate(diff1 = (week5 - pre)/pre * 100, diff2 = (post - pre)/pre * 100)  %>%
+  group_by(sets) %>%
+  summarise(sd1 = sd(diff1),
+            m1 = mean(diff1),
+            sd2 = sd(diff2),
+            m2 = mean(diff2))%>%
+   mutate(week5 = paste0(signif(m1, 3), "(", signif(sd1, 3), ")"),post = paste0(signif(m2, 3), "(", signif(sd2, 3), ")")) %>%
+   dplyr::select(sets,week5, post) 
+
+
+tabellstyrke<- diff %>%
+mutate(sets = factor(sets, levels = c("multiple", "single"), 
+                        labels = c("3 sett", "1 sett"))) %>%
+   dplyr::select(sets, week5, post) %>%
+  arrange(sets) %>%
+   flextable()  %>%
+  set_header_labels(sets = " ",
+                    week5 = "Uke 5", 
+                     post = " Post")%>%
+    # Add footnote
+    add_footer_row(values = "Verdiene er gitt som gjennsomsnitt og standardavvik (SD). p < 0.01 ved pre til uke fem og uke fem til post for begge ben, p < 0.01 ved begge tidspunt for at tre sett økte mer enn fem sett", colwidths = 3) %>%
+    # Make the columns widths match the content
+    autofit()
+
+figurendring <- styrke1 %>%
+   dplyr::select(participant, sets, time, combined.load) %>%
+  pivot_wider(names_from = time,
+              values_from = combined.load) %>%
+  mutate(uke_5 = (week5 - pre)/pre * 100, uke_12 = (post - pre)/pre * 100)  %>%
+  group_by(sets) %>%
+  dplyr::select(participant, sets, uke_5, uke_12, pre) %>%
+  mutate(uke_1 = pre-pre) %>%
+  pivot_longer(names_to = "tid", values_to = "prosentvis_endring", cols = c(uke_1, uke_5, uke_12)) %>%
+  mutate(tid = factor(tid, levels = c("uke_1", "uke_5", "uke_12"), 
+                        labels = c("Uke 1", "Uke 5", "Uke 12"))) %>%
+   mutate(sets = factor(sets, levels = c("multiple", "single"), labels = c("3 sett", "1 sett"))) %>%
+  
+  ggplot(aes(tid, prosentvis_endring, group = paste(participant, sets), color = sets)) + geom_line() + theme_minimal() +
+labs(x = "Tidspunkt",
+       y = "Prosentvis økning i styrke",
+        color = "Treningsmetode")
+ 
+```
+
+```{r styrkefigur, echo=FALSE, include=TRUE, results='hide', fig.cap = "Figur 2 viser prosentvis økning i muskelstyrke, fra pre-tests til 5 uker og 5 uker til post-test for alle forsøkspersoner skildt ved single- sett (1 sett) og multiple- sett (3 sett)."}
+
+figurendring
+```
+
+```{r tabellstyrke, echo=FALSE, message=FALSE, warning=FALSE, tab.cap = "Tabellen viser prosentvis økning fra pre til uke 5 og uke 5 til uke 12(post)"}
+
+
+tabellstyrke
+```
 ```{r figur, echo=FALSE, include=TRUE, results='hide', fig.cap = "Figur 1 viser økningen i muskelvekst fra pre-test til post-tesst for alle forsøkspersoner skildt ved single- sett (1 sett) og multiple- sett (3 sett)."}
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -160,14 +244,14 @@ summary(m1_5post) #rett?
 
 #muskelamsse
 muskelp <- dxadata %>%
-  select(participant:include, lean.left_leg, lean.right_leg) %>%
+  dplyr::select(participant:include, lean.left_leg, lean.right_leg) %>%
   filter(include == "incl") %>%
   pivot_longer(names_to = "leg", 
                values_to = "lean.mass", 
                cols = lean.left_leg:lean.right_leg) %>%
   mutate(leg = if_else(leg == "lean.left_leg", "L", "R"), 
          sets = if_else(multiple == leg, "multiple", "single")) %>%
-  select(participant, time, sex, sets,lean.mass) %>%
+   dplyr::select(participant, time, sex, sets,lean.mass) %>%
   group_by(participant) %>%
   mutate(n = n(), group = factor(sets, levels = c("single", "multiple")), time = factor(time, levels = c("pre", "post"))) %>%
   pivot_wider(names_from = time, 
@@ -184,92 +268,6 @@ summary(m.linear_muskel)
 summary(m.2_muskel)
 summary(m1_muskel) #rett?
 
-```
-
-
-### Muskelstyrke
-
-Begge treningsmetodene gav økning i styrke fra pre til uke 5 og uke 5 til post (figur2) (p \< 0.05). Den største økningen kom for begge treningsmetodene mellom pre og uke fem (begge p \< 0.01) (tabell 1). Fra uke 5 og post var det en økning på 10% for benet som trente 3 sett og 6.8% for benet som trente 1 sett. Benet som trente tre sett økte mer en benet som trente ett sett ved både 5 uker og ved post-test (begge p \< 0.01) (tabell 1).
-
-```{r setup, include=FALSE, results='hide'}
-
-data("strengthvolume")
-
-
-styrke <- strengthvolume %>%
-  group_by(exercise) %>%
-  mutate(scaled.load = load / max(load, na.rm = TRUE)) %>%
-  group_by(participant, time, sex, sets) %>%
-  summarise(combined.load = mean(scaled.load, na.rm = TRUE)) %>%
-  ungroup()
-
-styrke1 <- styrke %>%
-filter(!is.na(combined.load), time == factor(time, levels = c("pre", "week5", "post"))) %>%
-  mutate(time = factor(time, levels = c("pre", "week5", "post")),
-         group = factor(sets, levels = c("single", "multiple"))) %>% 
- group_by(participant) %>%
-  mutate(n = n()) %>%
-  filter(n == "6") #bare de med målinger ved alle tester er tatt med.
-
-
-
-diff <- styrke1 %>%
-  dplyr::select(participant, sets, group, time, combined.load) %>%
-  pivot_wider(names_from = time,
-              values_from = combined.load) %>%
-  mutate(diff1 = (week5 - pre)/pre * 100, diff2 = (post - pre)/pre * 100)  %>%
-  group_by(sets) %>%
-  summarise(sd1 = sd(diff1),
-            m1 = mean(diff1),
-            sd2 = sd(diff2),
-            m2 = mean(diff2))%>%
-   mutate(week5 = paste0(signif(m1, 3), "(", signif(sd1, 3), ")"),post = paste0(signif(m2, 3), "(", signif(sd2, 3), ")")) %>%
-  select(sets,week5, post) 
-
-
-tabellstyrke<- diff %>%
-mutate(sets = factor(sets, levels = c("multiple", "single"), 
-                        labels = c("3 sett", "1 sett"))) %>%
-  select(sets, week5, post) %>%
-  arrange(sets) %>%
-   flextable()  %>%
-  set_header_labels(sets = " ",
-                    week5 = "Uke 5", 
-                     post = " Post")%>%
-    # Add footnote
-    add_footer_row(values = "Verdiene er gitt som gjennsomsnitt og standardavvik (SD). p < 0.01 ved pre til uke fem og uke fem til post for begge ben, p < 0.01 ved begge tidspunt for at tre sett økte mer enn fem sett", colwidths = 3) %>%
-    # Make the columns widths match the content
-    autofit()
-
-figurendring <- styrke1 %>%
-  select(participant, sets, time, combined.load) %>%
-  pivot_wider(names_from = time,
-              values_from = combined.load) %>%
-  mutate(uke_5 = (week5 - pre)/pre * 100, uke_12 = (post - pre)/pre * 100)  %>%
-  group_by(sets) %>%
- select(participant, sets, uke_5, uke_12, pre) %>%
-  mutate(uke_1 = pre-pre) %>%
-  pivot_longer(names_to = "tid", values_to = "prosentvis_endring", cols = c(uke_1, uke_5, uke_12)) %>%
-  mutate(tid = factor(tid, levels = c("uke_1", "uke_5", "uke_12"), 
-                        labels = c("Uke 1", "Uke 5", "Uke 12"))) %>%
-   mutate(sets = factor(sets, levels = c("multiple", "single"), labels = c("3 sett", "1 sett"))) %>%
-  
-  ggplot(aes(tid, prosentvis_endring, group = paste(participant, sets), color = sets)) + geom_line() + theme_minimal() +
-labs(x = "Tidspunkt",
-       y = "Prosentvis økning i styrke",
-        color = "Treningsmetode")
- 
-```
-
-```{r styrkefigur, echo=FALSE, include=TRUE, results='hide', fig.cap = "Figur 2 viser prosentvis økning i muskelstyrke, fra pre-tests til 5 uker og 5 uker til post-test for alle forsøkspersoner skildt ved single- sett (1 sett) og multiple- sett (3 sett)."}
-
-figurendring
-```
-
-```{r tabellstyrke, echo=FALSE, message=FALSE, warning=FALSE, tab.cap = "Tabellen viser prosentvis økning fra pre til uke 5 og uke 5 til uke 12(post)"}
-
-
-tabellstyrke
 ```
 
 ## Diskusjon
