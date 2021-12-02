@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 # 1 vs 3 sett
 
 ## Introduksjon
@@ -6,7 +11,7 @@ Det finnes utallige måter å trene styrketrening på, men hvilken måte som er 
 
 Basert på statistikk fra @statistisksentralbyrå2019 er styrketrening blitt svært populert, men bare ett fåtall trener mer enn en gang i uken. Studier viser derimot at den ideele effekten av styrketrening kommer først når man trener to til tre ganger i uken [@schoenfeld2016]. På bagrunn av dette vil det være gunstig å finne ut av spørsmålet om ett sett er nok, da en treningsøkt tar mye kortere tid. Noe av det som gjør at det er vanskelig å dra en tydelig konklusjon av studiene på området er at det vil være individuelle variasjoner mellom to treningsgrupper. I vår studie ser vi derfor på perosner som trener ett sett på ene benet og tre sett på det andre benet. På denne måten vil en sikre at framgangen ikke blir forskjellig på bakgrunn av gruppeforskjeller, men på bakgrunn av selve treningen.
 
-I studien ønsker vi å se effekten av både fem uker og 12 uker. Hypotesen er at begge gruppene vil ha en god framgang i både styrke og muskelstørrelse, men at gruppen som trener tre sett vil få en bedre styrkefremgang ved både fem og 12 uker.
+I studien ønsker vi å se effekten av både fem uker og 12 uker. Hypotesen er at begge treningsmetodene vil ha en god framgang i både styrke og muskelstørrelse, men at benet som trener tre sett vil få en bedre styrkefremgang ved både fem og 12 uker.
 
 ## Metode
 
@@ -20,7 +25,7 @@ Det ble rekruttert 41 kvinner og menn til en treningsperiode på 12 uker. Kriter
 
 ### Trening
 
-Trenging som ble gjennomført var et helkroppstreningsprogram hvor treningen av ble gjort forskjellig på høyre og venstre fot. De ene bene trente ett sett, mens det andre trente tre sett. Hvilket ben som trente hva, ble randomisert. Antall repetisjoner 0-2 uker var 10 repetisjoner maksimum (RM), uke 2-5 var det 8RM, uke 5-12 var det 7RM. Det ble gjort treninger i uken, med unntak av ukene hvor det ble gjort test. Alle økter ble gjort på ved kvalifiserte trenere (91% av øktene, resterende økter ble gjort uten trener for at det skulle bli gjennomførbart). Øvelsene på bena ble gjort i denne rekkefølgen: unilateral benpress, knefleksjon og knefleksjon med enten ett sett eller tre sett. Det ene settet ble gjort mellom andre og tredje sett i tre sett serien. Etter bedøvelsene ble to sett av øvelser på overkroppen gjort I to sett: bilateral benkpress, nedtrekk og enten skulderpress eller sittende roing (gjort annenhver økt).  Pauser mellom sett var 90-180 sekund og pause mellom økten var på minimum 24 timer.
+Trenging som ble gjennomført var et helkroppstreningsprogram hvor treningen av ble gjort forskjellig på høyre og venstre fot. De ene bene trente ett sett, mens det andre trente tre sett. Hvilket ben som trente hva, ble randomisert. Antall repetisjoner 0-2 uker var 10 repetisjoner maksimum (RM), uke 2-5 var det 8RM, uke 5-12 var det 7RM. Det ble gjort treninger i uken, med unntak av ukene hvor det ble gjort test. Alle økter ble gjort på ved kvalifiserte trenere (91% av øktene, resterende økter ble gjort uten trener for at det skulle bli gjennomførbart). Øvelsene på bena ble gjort i denne rekkefølgen: unilateral benpress, knefleksjon og knefleksjon med enten ett sett eller tre sett. Det ene settet ble gjort mellom andre og tredje sett i tre sett serien. Etter bedøvelsene ble to sett av øvelser på overkroppen gjort I to sett: bilateral benkpress, nedtrekk og enten skulderpress eller sittende roing (gjort annenhver økt). Pauser mellom sett var 90-180 sekund og pause mellom økten var på minimum 24 timer.
 
 ### Testing
 
@@ -32,13 +37,13 @@ De to andre testene var 1RM-tester i unilateral kneekstensjon og benpress. Som o
 
 Resultatet ble regnet om til en kombinert score som er et gjennomsnitt av alle styrketestene.
 
-#### Testing av Muskelmasse
+#### Estimering av Muskelmasse
 
-Ved pre og post-test ble det brukt «dual-energy X-ray absorptiometry» (DXA). Deltagerne fikk beskjed om å faste de to timene før test og å unngå fysisk aktivitet 48 timer før.  
+Ved pre og post-test ble det brukt «dual-energy X-ray absorptiometry» (DXA). Deltagerne fikk beskjed om å faste de to timene før test og å unngå fysisk aktivitet 48 timer før.
 
 ### Statestikk
 
-For å se forskjell mellom 1 sett og 3 sett ble ANCOVA brukt, hvor det ble tatt hensyn til at dataene er korrelerte. Dette er da man gjør to forskjellige protokoller på samme person. Det ble også sett på forskjeller innad i kjønn. For muskelmasse ble det sett på forskjell på fra pre til post. Endring i muskelmasse ble analysert ved pre til 5 uker, 5 uker til post, og pre til post. En P-verdi under 0,05 blir sett på som signifikant endring. Alle tall er gitt som gjennomsnitt med standardavvik. Tabeller, figurer og analyser ble gjort i RStudio (versjon 1.4.1717; R Founadtion for Statistics Computing, Vienna AT).
+For å se forskjell mellom 1 sett og 3 ble den kombinerte scoren regnet om til prosentvis økning. For å finne signifikante forskjeller ble ANCOVA brukt, hvor det ble tatt hensyn til at dataene er korrelerte. Dette er da man gjør to forskjellige protokoller på samme person. Det ble også sett på forskjeller innad i kjønn. For muskelmasse ble det sett på forskjell på fra pre til post. Endring i muskelmasse ble analysert ved pre til 5 uker, 5 uker til post, og pre til post. En P-verdi under 0,05 blir sett på som signifikant endring. Alle tall er gitt som gjennomsnitt med standardavvik. Tabeller, figurer og analyser ble gjort i RStudio (versjon 1.4.1717; R Founadtion for Statistics Computing, Vienna AT).
 
 ## Resultat
 
@@ -48,16 +53,12 @@ Benet som trente tre sett økte signifikant mer enn benet som trente ett sett, m
 
 ```{r tabell, include=FALSE, results='hide',}
 
-
-options(knitr.duplicate.label = "allow")
 library(exscidata)
 library(tidyverse)
 library(knitr)
-library(kableExtra)
 library(flextable)
 library(ggplot2)
-
-
+library(dplyr)
 
 data("dxadata")
 
@@ -69,7 +70,7 @@ muskel <- dxadata %>%
                cols = lean.left_leg:lean.right_leg) %>%
   mutate(leg = if_else(leg == "lean.left_leg", "L", "R"), 
          sets = if_else(multiple == leg, "multiple", "single")) %>%
-  select(participant, time, sex, sets,lean.mass) %>%
+  select(participant, time, sex, sets, lean.mass) %>%
   group_by(participant) %>%
   mutate(n = n(), group = factor(sets, levels = c("single", "multiple")), time = factor(time, levels = c("pre", "post"))) %>%
   print()
@@ -85,16 +86,20 @@ muskelfigur <- dxadata %>%
          sets = if_else(multiple == leg, "multiple", "single")) %>%
   select(participant, time, sex, sets,lean.mass) %>%
   group_by(participant) %>%
-  mutate(n = n(), group = factor(sets, levels = c("single", "multiple")), time = factor(time, levels = c("pre", "post"))) %>%
+  mutate(n = n(), group = factor(sets, levels = c("multiple", "single")), time = factor(time, levels = c("pre", "post"))) %>%
   print()
 
+
 muskelfigur$time <- factor(muskelfigur$time, levels = c("pre", "post"),labels = c("Pre-test", "Post-test"))
+
+muskelfigur$sets <- factor(muskelfigur$sets, levels = c("multiple", "single"), labels = c("3 sett", "1 sett"))
+
 
 figurmuskel <- muskelfigur %>%
  ggplot(aes(time, lean.mass, group = paste(participant, group), color = group)) + geom_line() + theme_minimal() + 
    labs(x = "Tidspunkt",
        y = " Muskelmasse (gram)",
-        color = "Gruppe")
+        color = "Treningsmetode")
 
 
 muskel1 <- muskel %>%
@@ -118,36 +123,120 @@ muskelprosent <- muskel %>%
   mutate(ms = paste0(signif(m, 3), "(", signif(sd, 3), ")")) %>%
   select(sets, ms) %>%
   print()
-
-tabellmuskel<- muskelprosent %>%
-mutate(sets = factor(sets, levels = c("multiple", "single"), 
-                        labels = c("3 sett", "1 sett"))) %>%
-  select(sets, ms) %>%
-  arrange(sets) %>%
-   flextable()  %>%
-  set_header_labels(sets = " ",
-                    ms = "Prosentvis endring")%>%
-    # Add footnote
-    add_footer_row(values = "Verdiene er gitt som gjennsomsnitt og standardavvik (SD)", colwidths = 2) %>%
-    # Make the columns widths match the content
-    autofit()
 ```
 
 ```{r figur, echo=FALSE, include=TRUE, results='hide', fig.cap = "Figur 1 viser økningen i muskelvekst fra pre-test til post-tesst for alle forsøkspersoner skildt ved single- sett (1 sett) og multiple- sett (3 sett)."}
 knitr::opts_chunk$set(echo = TRUE)
 
-
 figurmuskel
 ```
 
+```{r p-verdi, include=FALSE, results='hide'}
+library(lmerTest)
+data("strengthvolume")
+
+# styrke pre til post
+styrke1 %>%
+mutate(time = factor(time, levels = c("pre", "week5", "post")))%>%
+        ggplot(aes(time, combined.load, fill = group)) + 
+        geom_boxplot() 
+
+prepost_styrke <- styrke1 %>%
+   filter(time != "week5") %>%
+    mutate(time = factor(time, levels = c("pre", "post"))) %>% 
+  pivot_wider(names_from = time, 
+              values_from = combined.load) %>%
+  mutate(change = post - pre) %>%
+  filter(!is.na(change)) %>%
+print()
+
+m.linear <- lm(post ~ pre + group + sex,  data = prepost_styrke)
+
+m.2 <- lm(change ~ pre + group + sex,  data = prepost_styrke)
+
+m1_prepost <- lmerTest::lmer(change ~ pre + sex + sets + (1|participant), data = prepost_styrke)
+  
+summary(m.linear)
+summary(m.2)
+summary(m1_prepost) #rett?
+
+#styrke pre til uke 5
+pre5_styrke <- styrke1 %>%
+   filter(time != "post") %>%
+    mutate(time = factor(time, levels = c("pre", "week5"))) %>% 
+  pivot_wider(names_from = time, 
+              values_from = combined.load) %>%
+  mutate(change = week5 - pre) %>%
+  filter(!is.na(change)) %>%
+print()
+
+m.linear_pre5 <- lm(week5 ~ pre + group + sex,  data = pre5_styrke)
+
+m.2_pre5 <- lm(change ~ pre + group + sex,  data = pre5_styrke)
+
+m1_pre5 <- lmerTest::lmer(change ~ pre + sex + sets + (1|participant), data = pre5_styrke)
+  
+summary(m.linear_pre5)
+summary(m.2_pre5)
+summary(m1_pre5) #rett?
+
+
+#styrke uke 5 til post
+
+fempost_styrke <- styrke1 %>%
+   filter(time != "pre") %>%
+    mutate(time = factor(time, levels = c("week5", "post"))) %>% 
+  pivot_wider(names_from = time, 
+              values_from = combined.load) %>%
+  mutate(change = post - week5) %>%
+  filter(!is.na(change)) %>%
+print()
+
+m.linear_5post <- lm(post ~ week5 + group + sex,  data = fempost_styrke)
+
+m.2_5post <- lm(change ~ week5 + group + sex,  data = fempost_styrke)
+
+m1_5post <- lmerTest::lmer(change ~ week5 + sex + sets + (1|participant), data = fempost_styrke)
+  
+summary(m.linear_5post)
+summary(m.2_5post)
+summary(m1_5post) #rett?
+
+#muskelamsse
+muskelp <- dxadata %>%
+  select(participant:include, lean.left_leg, lean.right_leg) %>%
+  filter(include == "incl") %>%
+  pivot_longer(names_to = "leg", 
+               values_to = "lean.mass", 
+               cols = lean.left_leg:lean.right_leg) %>%
+  mutate(leg = if_else(leg == "lean.left_leg", "L", "R"), 
+         sets = if_else(multiple == leg, "multiple", "single")) %>%
+  select(participant, time, sex, sets,lean.mass) %>%
+  group_by(participant) %>%
+  mutate(n = n(), group = factor(sets, levels = c("single", "multiple")), time = factor(time, levels = c("pre", "post"))) %>%
+  pivot_wider(names_from = time, 
+              values_from = lean.mass)%>%
+  mutate(diff = post - pre) %>%
+  print()
+
+m.linear_muskel <- lm(post ~ pre + group + sex,  data = muskelp)
+
+m.2_muskel <- lm(diff ~ pre + group + sex,  data = muskelp)
+
+m1_muskel <- lmerTest::lmer(diff ~ pre + sex + sets + (1|participant), data = muskelp)
+  
+summary(m.linear_muskel)
+summary(m.2_muskel)
+summary(m1_muskel) #rett?
+
+```
+
+
 ### Muskelstyrke
 
-Begge gruppene økte i styrke fra pre til uke 5 og uke 5 til post (figur2) (p \< 0.05). Den største økningen kom for begge treningsmetodene mellom pre og uke fem (begge p \< 0.01) (tabell 1). Fra uke 5 og post var det en økning på 10% for benet som trente 3 sett og 6.8% for benet som trente 1 sett (begge p \< 0.01). Benet som trente tre sett økte mer en benet som trente ett sett ved både 5 uker og ved post-test (tabell 1).
+Begge treningsmetodene gav økning i styrke fra pre til uke 5 og uke 5 til post (figur2) (p \< 0.05). Den største økningen kom for begge treningsmetodene mellom pre og uke fem (begge p \< 0.01) (tabell 1). Fra uke 5 og post var det en økning på 10% for benet som trente 3 sett og 6.8% for benet som trente 1 sett. Benet som trente tre sett økte mer en benet som trente ett sett ved både 5 uker og ved post-test (begge p \< 0.01) (tabell 1).
 
 ```{r setup, include=FALSE, results='hide'}
-
-
-options(knitr.duplicate.label = "allow")
 
 data("strengthvolume")
 
@@ -169,24 +258,6 @@ filter(!is.na(combined.load), time == factor(time, levels = c("pre", "week5", "p
   filter(n == "6") %>% #bare de med målinger ved alle tester er tatt med.
    print()
 
-styrkefigur <- styrke %>%
-filter(!is.na(combined.load), time == factor(time, levels = c("pre", "week5", "post"))) %>%
-  mutate(time = factor(time, levels = c("pre", "week5", "post")),
-         group = factor(sets, levels = c("single", "multiple"))) %>% 
- group_by(participant) %>%
-  mutate(n = n()) %>%
-  filter(n == "6") %>% #bare de med målinger ved alle tester er tatt med.
-   print()
-
-styrkefigur$time <- factor(styrkefigur$time, levels = c("pre", "week5", "post"),labels = c("Pre-test", "5 uker-test", "Post-test"))
-
-
-                                                                                   
-figurstyrke<- styrkefigur %>%
-  ggplot(aes(time, combined.load, group = paste(participant, group), color = group)) + geom_line() + theme_minimal() + 
-  labs(x = "tidspunkt",
-       y = "Styrkefremgang (gjenomsnitt av alle øvelser)",
-        color = "Gruppe")
 
 
 diff <- styrke1 %>%
@@ -214,22 +285,38 @@ mutate(sets = factor(sets, levels = c("multiple", "single"),
                     week5 = "Uke 5", 
                      post = " Post")%>%
     # Add footnote
-    add_footer_row(values = "Verdiene er gitt som gjennsomsnitt og standardavvik (SD). p < 0.01 ved pre til uke fem og uke fem til post for begge grupper, p < 0.01 ved begge tidspunt for at tre sett økte mer enn fem sett", colwidths = 3) %>%
+    add_footer_row(values = "Verdiene er gitt som gjennsomsnitt og standardavvik (SD). p < 0.01 ved pre til uke fem og uke fem til post for begge ben, p < 0.01 ved begge tidspunt for at tre sett økte mer enn fem sett", colwidths = 3) %>%
     # Make the columns widths match the content
     autofit()
+
+figurendring <- styrke1 %>%
+  select(participant, sets, time, combined.load) %>%
+  pivot_wider(names_from = time,
+              values_from = combined.load) %>%
+  mutate(uke_5 = (week5 - pre)/pre * 100, uke_12 = (post - pre)/pre * 100)  %>%
+  group_by(sets) %>%
+ select(participant, sets, uke_5, uke_12, pre) %>%
+  mutate(uke_1 = pre-pre) %>%
+  pivot_longer(names_to = "tid", values_to = "prosentvis_endring", cols = c(uke_1, uke_5, uke_12)) %>%
+  mutate(tid = factor(tid, levels = c("uke_1", "uke_5", "uke_12"), 
+                        labels = c("Uke 1", "Uke 5", "Uke 12"))) %>%
+   mutate(sets = factor(sets, levels = c("multiple", "single"), labels = c("3 sett", "1 sett"))) %>%
+  
+  ggplot(aes(tid, prosentvis_endring, group = paste(participant, sets), color = sets)) + geom_line() + theme_minimal() +
+labs(x = "Tidspunkt",
+       y = "Prosentvis økning i styrke",
+        color = "Treningsmetode")
+ 
 ```
 
-```{r styrkefigur, echo=FALSE, include=TRUE, results='hide', fig.cap = "Figur 2 viser økningen i muskelstyrke, fra pre-tests til 5 uker og 5 uker til post-test for alle forsøkspersoner skildt ved single- sett (1 sett) og multiple- sett (3 sett)."}
+```{r styrkefigur, echo=FALSE, include=TRUE, results='hide', fig.cap = "Figur 2 viser prosentvis økning i muskelstyrke, fra pre-tests til 5 uker og 5 uker til post-test for alle forsøkspersoner skildt ved single- sett (1 sett) og multiple- sett (3 sett)."}
 
-
-options(knitr.duplicate.label = "allow")
-figurstyrke
+figurendring
 ```
 
-```{r tabellstyrke, echo=FALSE, message=FALSE, warning=FALSE}
+```{r tabellstyrke, echo=FALSE, message=FALSE, warning=FALSE, tab.cap = "Tabellen viser prosentvis økning fra pre til uke 5 og uke 5 til uke 12(post)"}
 
 
-options(knitr.duplicate.label = "allow")
 tabellstyrke
 ```
 
