@@ -1,6 +1,6 @@
 ---
 title: "Mappeeksamen"
-author: "Håvard C. Lorentzen"
+author: "Håvard C. Lorentzen (kandidatnr. 107)"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: pdf_document
@@ -118,29 +118,22 @@ For å måle typefeil har vi brukt within subject deviation metoden. Denne metod
 
 <!--chapter:end:index.Rmd-->
 
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
-
-# Labrapport - cDNA synthesis using Superscript IV and general qPCR
+# Labrapport - cDNA syntesering ved hjelp av Superscript IV og generell qPCR
 
 ## Formål
 
 RNA-overflodsanalyse er gjort ved hjelp av syntese av komplementært DNA fra enkelttrådet RNA. Vi ønsker å amplifisere opp bestemte proteiner ved hjelp av bestemte primere og qPCR. Vi ønsker å få frem en cQ-verdi for å kunne evaluere gen-opphopningen, og sammenlikne mål-genene med referanse gener.
 
-Estimere reaksjonseffektivitet Dobler mengden målgen per syklus
 
 ## Metode
 
-3 forsøkspersoner fra pre-test og test uke 2 (venstre ben) Laget fortynningsserie av cDNA 1:1, 5 ganger. Dette resulterer i fortynning ved hjelp DEPC-behandlet vann 1:10, 1:50, 1:250, 1:1250, 1:6250, 1:31250, 1:156250. Vortex ble brukt mellom hver fortynningsfase.
+Vi hentet cDNA fra 3 forsøkspersoner. Dette er cDNA hentet fra testene som ble gjennomført i uke 0 og uke 2. Alle prøver er fra venstre ben. Det ble laget en 5 fortynningsserier fra disse prøvene. Dette ble fortynnet ved hjelp av DEPC-behandlet vann, i følgende serie 1:10, 1:50, 1:250, 1:1250, 1:6250, 1:31250, 1:156250. Vortex ble brukt mellom hver fortynningsfase.
 
-Laget sju forskjellige master mixer ved hjelp av 3 referansegener (REEP5, CHMP2A, B2M) og 4 målgener (MyHC I, 2A, 2X, rRNA 475). Mastermix bestod av: 5 µl sybr green, 1 µl valgt gen, 2 µl DEPC-behandlet vann , 2 µl fortynnet cDNA. Fylte hver brønn med 2 µl prøve, og 8 µl med mastermix. Dekke brett med plastfilm, og sentrifugere 1min på 1200rpm, før PCR protokoll.
+Det ble derreter laget sju forskjellige master mixer ved hjelp av 3 referansegener (REEP5, CHMP2A, B2M) og 4 målgener (MyHC I, 2A, 2X, rRNA 475). Mastermix bestod av 5 µl sybr green, 1 µl valgt gen, 2 µl DEPC-behandlet vann , 2 µl fortynnet cDNA. Deretter ble det fylt 71 brønner i en qPCR-reaksjonsplate ed henholdsvis 2 µl prøve, og 8 µl med mastermix. Reaksjonsplaten med brønner ble dekt med plastfilm, og sentrifugerte 1 minutt på 1200 omrdreininger (rpm), før PCR protokoll ble gjennomført. 
 
-Forberedt en PCR protokoll i Quant studio 5 50 grader i 2 min, og 95 grader i 2 min + 40 sykluser med 1 sek på 95 grader, og 30sek på 60 grader
+En PCR protokoll ble på forhånd forberedet i QuantStudio5. PCR protokollen bestod av 50 grader i 2 minutter, og 95 grader i 2 minutter, før den kjørte 40 sykluser bestående av 1 sekund på 95 grader celsius, og 30 sekunder på 60 grader celsius.
 
-```{r}
+```{r, echo = FALSE}
 if("qpcR" %in% rownames(installed.packages()) == FALSE) install.packages("qpcR")
 if("readxl" %in% rownames(installed.packages()) == FALSE) install.packages("readxl")
 if("parallel" %in% rownames(installed.packages()) == FALSE) install.packages("parallel")
@@ -159,14 +152,8 @@ library(qpcrpal)
 library(tidyverse)
 ```
 
-## Exploring the data
 
--   Reading and analyzing qPCR-data is done in a stepwise manner using `qpcrpal`.
--   The `read_quant5` function organizes the data from the instrument (QuantStudio 5)
--   `model_qpcr` creates models of the fluorecense from each reaction
--   `analyze_models` use the information in each model to calculate summaries for each reaction.
-
-```{r}
+```{r, echo = FALSE}
 group1 <- read_quant5("./data/IDR4000-Group1-precision.xls", skip = 47) %>%
   mutate(ID = paste0(Well, "_", ID))
 models <- model_qpcr(group1)
@@ -179,9 +166,9 @@ data.frame(predict(models[[1]]), cycle = 1:40) %>%
   geom_line() +
   geom_point(data = group1 %>% filter(ID == "A1_Jacob"),
              aes(Cycle, Rn), shape = 21, fill = "red") +
-  labs(title = "Observed and modelled fluorescence per cycle",
-       subtitle = "Model: black line; Observed: red points",
-       x = "PCR cycle",
+  labs(title = "Estimert sammenheng mellom PCR-sykluser og fluorescence",
+       subtitle = "Model: sort linjer",
+       x = "PCR syklus",
        y = "Fluorescence") +
   geom_vline(xintercept = results_group1 %>%
                filter(ID == "A1_Jacob_NA_NA_MyHC2A") %>%
@@ -190,14 +177,13 @@ data.frame(predict(models[[1]]), cycle = 1:40) %>%
   annotate("text", x = 17, y = 1.9, label = "Quantification cycle (Cq)",
            hjust = 0) +
   theme_bw()
-
 ```
 
 ## Resultater
 
-Modellen viser sammenhengen mellom antall sykluser og fluorescence. Flere PCR-sykluser gir flere kopier, og dermed også en økt konsentrasjon i prøven. På denne måten kan vi bruke fluorescence til å si noe om hvor mange sykluser som må til for å oppnå en bestemt terskelverdi(Cq-verdi). Med primerne vi benyttet i forsøket var det ønskelig med et sted mellom 10 og 40 sykluser for å sikre at vi oppnådde terskelverdien. Det ble derfor kjørt 40 sykluser.
+Modellen viser sammenhengen mellom antall sykluser og fluorescence. Flere PCR-sykluser gir flere kopier, og dermed også en økt konsentrasjon i prøven. På denne måten kan vi bruke fluorescence til å si noe om hvor mange sykluser som må til for å oppnå en bestemt terskelverdi(Cq-verdi). Med primerne vi benyttet i forsøket var det ønskelig med et sted mellom 10 og 40 sykluser for å sikre at vi oppnådde terskelverdien. Det ble derfor kjørt 40 sykluser.Ved flere sykluser øker trolig sannsynligheten for falske positive.
 
-```{r}
+```{r, echo=FALSE}
 #hvordan mengden av kopiert RNA utvikler seg med antall PCR-sykluser/Cq verdier??
 cyc.diff <- 3.327
 dat <- data.frame(concentration = c(1, 1/10, 1/100, 1/1000, 1/10000, 1/100000), 
@@ -212,14 +198,11 @@ dat %>%
   ggplot(aes(cq, log10(concentration)))  + 
   geom_point() + geom_smooth(method = "lm") + 
   theme_bw() + 
-  annotate("text", x = 15, y = -3, hjust = 0, label = "Efficiency factor ~ 2\n when slope ~ 3.3")
-
+  annotate("text", x = 15, y = -3, hjust = 0, label = "Effektivitetsfaktor ~ 2\n gitt slope ~ 3.3")
 ```
 
 ```{r, echo = FALSE, warning = FALSE, fig.cap = "Efficiency calculations made from serial dilution of cDNA"}
-
 #konsekvente tall fra referansegen som vist i modellen?
-
 group1 <- read_quant5("./data/group1-efficiency.xls", skip = 47) %>%
   mutate(ID = paste0(Well, "_", ID))
 models1 <- model_qpcr(group1)
@@ -281,13 +264,12 @@ saveRDS(efficiency_est_data, "./data/efficiency-estimate-data.RDS")
   geom_point(shape = 21, size =  2.5) +
   geom_smooth(method = "lm", se = FALSE, aes(color = target)) +
    labs(x = "Quantification cycle (Cq)", 
-        color = "Target", 
-        fill = "Target") +
+        color = "Referansegen", 
+        fill = "Referansegen") +
    theme_bw()
-
 ```
 
-```{r }
+```{r, echo=FALSE}
  # Create models and extract the second coefficient from each model (the slope)
 b2m_slope <- coef(lm(cq ~ log10(concentration), data = filter(efficiency_est_data, target == "B2M")))[2]
 reep5_slope <- coef(lm(cq ~ log10(concentration), data = filter(efficiency_est_data, target == "REEP5")))[2]
@@ -310,24 +292,18 @@ fc_g1 <- results_group1 %>%
   group_by(sample)%>%
   pivot_wider(names_from = target, values_from = cq) %>%
   arrange(time) %>%
-   flextable() %>%
-  print()
-
-
-
+   flextable()
 ```
 
 ## Diskusjon
 
-Cq-verdien sier noe om hvor mange PCR-sykluser som trengs for å detektere ulike targets[@juji] .En høyere Cq-verdi indikerer altså at mengden RNA må dobles flere ganger for å detektere en terskelverdi av target. En lavere Cq-verdi indikerer at terskelverdien oppnås ved færre PCR-sykluser, altså at konsentrasjonen av target er høyere. En lavere Cq-verdi ved uke 2, sammenlignet med uke 0(baseline) som i forsøket, indikerer høyere konsentrasjon ved uke 2 enn ved uke 0. (Dermed en effekt av intervensjonen, avhengig av funksjonen til target - gen).
+Cq-verdien sier noe om hvor mange PCR-sykluser som trengs for å detektere ulike målgen[@kuang2018]. En høyere Cq-verdi indikerer altså at mengden RNA må dobles flere ganger for å detektere en terskelverdi av target. En lavere Cq-verdi indikerer at terskelverdien oppnås ved færre PCR-sykluser, altså at konsentrasjonen av target er høyere. En lavere Cq-verdi ved uke 2, sammenlignet med uke 0(baseline) som i forsøket, indikerer høyere konsentrasjon ved uke 2 enn ved uke 0. Dermed en effekt av intervensjonen, avhengig av funksjonen til målgenet vi underøkser. 
 
 <!--chapter:end:01-Labrapport.Rmd-->
 
 # Vitenskapsteori
 
 ## 1. Falsifikasjonisme
-
-*Hva er Poppers falsifiserbarhetskriterium og hvilket spørsmål skal dette kriterium gi svar på? Hvorfor mener andre vitenskapsfilosofer (f.eks. Okasha) at vi ikke trenger å svare på dette spørsmålet? Hvem synes dere har rett?*
 
 Når man skal diskutere falsifikasjon, er det flere spørsmål som er aktuelle, hva er vitenskap? er alt som blir publisert vitenskap, og hvor går i så fall skillet mellom vitenskap og «ikke-vitenskap»? Sistnevnte er kjent som demarkasjonsproblemet.
 
@@ -337,7 +313,6 @@ Problemet med Poppers teori om vitenskap kommer tydelig fram når han ikke kan b
 
 ## 2. HD-metoden og abduksjon/Bayesisme
 
-*Hva er strukturen på et bekreftende vitenskapelig argument ifølge den hypotetisk deduktive metode? Forklar ut fra Hempels artikkel, men bruk egne eksempel. Sammenlign også Hempels HD-metode med hvordan vitenskapelig bekreftelse fungerer ifølge enten abduksjon eller Bayesianisme*.
 
 I oppgave 1 så jeg på hva en vitenskapelig teori er, nå skal jeg se på hvordan teorier kan testes. Carl Gustav Hempel mente at det ikke fantes noen god metode teorier kunne testes og var uenig med Popper [@hempel1966]. Hempel mente at man trengte induktiv argumentasjon i vitenskapene [@hempel1966]. Derfor løftet Hempel fram en metode kaldt hypotetisk deduktiv metode (HD-metoden), som et bedre alternativ [@hempel1966]. Denne metoden sier ikke noe om hvordan teorier kommer fram, men den har klare retningslinjer på hvordan man skal teste en teori og gi den styrke [@hempel1966].
 
@@ -349,7 +324,6 @@ På mange måter ligner HD-metoden og abduksjon på hverandre og begge vil gå u
 
 ## 3. Replikasjonskrisen
 
-*Hva mener Alexander Bird er forklaringen til at mange resultat i noen vitenskaper ikke repliseres? Oppsummere Birds argument for dette. Sammenlign også Birds forklaring med noen av de andre forklaringene som Bird diskuterer i seksjon 4. Har Bird rett i at hans forklaring er bedre?*
 
 De siste 20 årene har det blitt identifisert en replikasjonskrise i vitenskapen [@begley2012; @ioannidis2005; @opensciencecollaboration2015]. Dette handler om at mange studier som blir gjort på nytt ikke klarer å få det samme resultatet som første gangen det ble gjort. Det gir oss et stort problem, for hvordan kan man da stole på vitenskapen? Undersøkelser viser at tillitten til vitenskapen har falt i England og USA [@funk2016]. Dette er også noe flertallet av forskere anerkjenner som en krise basert på en spørreundersøkelse gjort på 1500 forskere [@baker2016]. Alexander Bird mener å ha en forklaring til denne replikasjonskrisen [@bird2020].
 
@@ -406,7 +380,6 @@ Tabell 1. Oppsummering av artiklene
 ```{r tesksttabell, echo=FALSE, message=FALSE, warning=FALSE}
 library(readxl)
 library(flextable)
-library(kableExtra)
 tabelltekst <- read_excel("data/teksttabell.xlsx")
 
 tabelltekst%>%
@@ -415,11 +388,6 @@ flextable()
 
 <!--chapter:end:03-Studiedesign.Rmd-->
 
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
 # 1 vs 3 sett
 
 ## Introduksjon
@@ -472,10 +440,9 @@ Benet som trente tre sett økte signifikant mer enn benet som trente ett sett, m
 
 library(exscidata)
 library(tidyverse)
-library(knitr)
 library(flextable)
 library(ggplot2)
-library(dplyr)
+
 
 data("dxadata")
 
@@ -529,8 +496,7 @@ prepost_styrke <- styrke1 %>%
   pivot_wider(names_from = time, 
               values_from = combined.load) %>%
   mutate(change = post - pre) %>%
-  filter(!is.na(change)) %>%
-print()
+  filter(!is.na(change))
 
 m.linear <- lm(post ~ pre + group + sex,  data = prepost_styrke)
 
@@ -549,8 +515,7 @@ pre5_styrke <- styrke1 %>%
   pivot_wider(names_from = time, 
               values_from = combined.load) %>%
   mutate(change = week5 - pre) %>%
-  filter(!is.na(change)) %>%
-print()
+  filter(!is.na(change))
 
 m.linear_pre5 <- lm(week5 ~ pre + group + sex,  data = pre5_styrke)
 
@@ -571,8 +536,7 @@ fempost_styrke <- styrke1 %>%
   pivot_wider(names_from = time, 
               values_from = combined.load) %>%
   mutate(change = post - week5) %>%
-  filter(!is.na(change)) %>%
-print()
+  filter(!is.na(change))
 
 m.linear_5post <- lm(post ~ week5 + group + sex,  data = fempost_styrke)
 
@@ -598,8 +562,7 @@ muskelp <- dxadata %>%
   mutate(n = n(), group = factor(sets, levels = c("single", "multiple")), time = factor(time, levels = c("pre", "post"))) %>%
   pivot_wider(names_from = time, 
               values_from = lean.mass)%>%
-  mutate(diff = post - pre) %>%
-  print()
+  mutate(diff = post - pre)
 
 m.linear_muskel <- lm(post ~ pre + group + sex,  data = muskelp)
 
@@ -628,8 +591,7 @@ styrke <- strengthvolume %>%
   mutate(scaled.load = load / max(load, na.rm = TRUE)) %>%
   group_by(participant, time, sex, sets) %>%
   summarise(combined.load = mean(scaled.load, na.rm = TRUE)) %>%
-  ungroup() %>%
-  print()
+  ungroup()
 
 styrke1 <- styrke %>%
 filter(!is.na(combined.load), time == factor(time, levels = c("pre", "week5", "post"))) %>%
@@ -637,13 +599,12 @@ filter(!is.na(combined.load), time == factor(time, levels = c("pre", "week5", "p
          group = factor(sets, levels = c("single", "multiple"))) %>% 
  group_by(participant) %>%
   mutate(n = n()) %>%
-  filter(n == "6") %>% #bare de med målinger ved alle tester er tatt med.
-   print()
+  filter(n == "6") #bare de med målinger ved alle tester er tatt med.
 
 
 
 diff <- styrke1 %>%
-  select(participant, sets, group, time, combined.load) %>%
+  dplyr::select(participant, sets, group, time, combined.load) %>%
   pivot_wider(names_from = time,
               values_from = combined.load) %>%
   mutate(diff1 = (week5 - pre)/pre * 100, diff2 = (post - pre)/pre * 100)  %>%
@@ -653,8 +614,7 @@ diff <- styrke1 %>%
             sd2 = sd(diff2),
             m2 = mean(diff2))%>%
    mutate(week5 = paste0(signif(m1, 3), "(", signif(sd1, 3), ")"),post = paste0(signif(m2, 3), "(", signif(sd2, 3), ")")) %>%
-  select(sets,week5, post) %>%
-  print()
+  select(sets,week5, post) 
 
 
 tabellstyrke<- diff %>%

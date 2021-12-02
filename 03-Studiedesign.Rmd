@@ -41,7 +41,6 @@ Tabell 1. Oppsummering av artiklene
 ```{r tesksttabell, echo=FALSE, message=FALSE, warning=FALSE}
 library(readxl)
 library(flextable)
-library(kableExtra)
 tabelltekst <- read_excel("data/teksttabell.xlsx")
 
 tabelltekst%>%

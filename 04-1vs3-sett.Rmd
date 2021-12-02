@@ -1,8 +1,3 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
 # 1 vs 3 sett
 
 ## Introduksjon
@@ -55,10 +50,9 @@ Benet som trente tre sett økte signifikant mer enn benet som trente ett sett, m
 
 library(exscidata)
 library(tidyverse)
-library(knitr)
 library(flextable)
 library(ggplot2)
-library(dplyr)
+
 
 data("dxadata")
 
@@ -112,8 +106,7 @@ prepost_styrke <- styrke1 %>%
   pivot_wider(names_from = time, 
               values_from = combined.load) %>%
   mutate(change = post - pre) %>%
-  filter(!is.na(change)) %>%
-print()
+  filter(!is.na(change))
 
 m.linear <- lm(post ~ pre + group + sex,  data = prepost_styrke)
 
@@ -132,8 +125,7 @@ pre5_styrke <- styrke1 %>%
   pivot_wider(names_from = time, 
               values_from = combined.load) %>%
   mutate(change = week5 - pre) %>%
-  filter(!is.na(change)) %>%
-print()
+  filter(!is.na(change))
 
 m.linear_pre5 <- lm(week5 ~ pre + group + sex,  data = pre5_styrke)
 
@@ -154,8 +146,7 @@ fempost_styrke <- styrke1 %>%
   pivot_wider(names_from = time, 
               values_from = combined.load) %>%
   mutate(change = post - week5) %>%
-  filter(!is.na(change)) %>%
-print()
+  filter(!is.na(change))
 
 m.linear_5post <- lm(post ~ week5 + group + sex,  data = fempost_styrke)
 
@@ -181,8 +172,7 @@ muskelp <- dxadata %>%
   mutate(n = n(), group = factor(sets, levels = c("single", "multiple")), time = factor(time, levels = c("pre", "post"))) %>%
   pivot_wider(names_from = time, 
               values_from = lean.mass)%>%
-  mutate(diff = post - pre) %>%
-  print()
+  mutate(diff = post - pre)
 
 m.linear_muskel <- lm(post ~ pre + group + sex,  data = muskelp)
 
@@ -211,8 +201,7 @@ styrke <- strengthvolume %>%
   mutate(scaled.load = load / max(load, na.rm = TRUE)) %>%
   group_by(participant, time, sex, sets) %>%
   summarise(combined.load = mean(scaled.load, na.rm = TRUE)) %>%
-  ungroup() %>%
-  print()
+  ungroup()
 
 styrke1 <- styrke %>%
 filter(!is.na(combined.load), time == factor(time, levels = c("pre", "week5", "post"))) %>%
@@ -220,13 +209,12 @@ filter(!is.na(combined.load), time == factor(time, levels = c("pre", "week5", "p
          group = factor(sets, levels = c("single", "multiple"))) %>% 
  group_by(participant) %>%
   mutate(n = n()) %>%
-  filter(n == "6") %>% #bare de med målinger ved alle tester er tatt med.
-   print()
+  filter(n == "6") #bare de med målinger ved alle tester er tatt med.
 
 
 
 diff <- styrke1 %>%
-  select(participant, sets, group, time, combined.load) %>%
+  dplyr::select(participant, sets, group, time, combined.load) %>%
   pivot_wider(names_from = time,
               values_from = combined.load) %>%
   mutate(diff1 = (week5 - pre)/pre * 100, diff2 = (post - pre)/pre * 100)  %>%
@@ -236,8 +224,7 @@ diff <- styrke1 %>%
             sd2 = sd(diff2),
             m2 = mean(diff2))%>%
    mutate(week5 = paste0(signif(m1, 3), "(", signif(sd1, 3), ")"),post = paste0(signif(m2, 3), "(", signif(sd2, 3), ")")) %>%
-  select(sets,week5, post) %>%
-  print()
+  select(sets,week5, post) 
 
 
 tabellstyrke<- diff %>%

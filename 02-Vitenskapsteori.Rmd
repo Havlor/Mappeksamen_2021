@@ -2,8 +2,6 @@
 
 ## 1. Falsifikasjonisme
 
-*Hva er Poppers falsifiserbarhetskriterium og hvilket spørsmål skal dette kriterium gi svar på? Hvorfor mener andre vitenskapsfilosofer (f.eks. Okasha) at vi ikke trenger å svare på dette spørsmålet? Hvem synes dere har rett?*
-
 Når man skal diskutere falsifikasjon, er det flere spørsmål som er aktuelle, hva er vitenskap? er alt som blir publisert vitenskap, og hvor går i så fall skillet mellom vitenskap og «ikke-vitenskap»? Sistnevnte er kjent som demarkasjonsproblemet.
 
 Spørsmålene som jeg stiller over, er spørsmål som har vært diskutert av vitenskapsfilosofer lenge og spesielt de siste hundre årene [@okasha2016] . Karl Raimond Popper har hatt og har stor innflytelse i disse spørsmålene etter at han kom med sin teori om falsifikasjonskriteriet [@okasha2016] . Denne teorien sier at en vitenskapelig teori må kunne være mulig å falsifisere (motbevise) [@popper2002]. Dermed kommer Popper med en løsning på Demarkasjonsproblemet, vitenskap er teorier som teoretisk sett skal være mulig å motbevise [@popper2002]. En teori som ikke kan motbevises er da ikke-vitenskap, eller som Popper ville sagt, pseudovitenskap [@popper2002]. Popper løfter fram Astrologi som et eksempel på pseudovitenskap, da det ikke er mulig å falsifisere [@popper2002]. Astrologer baserer seg på empiriske observasjoner og danner horoskoper med vage teorier sånn at de kan bortforklare et hvert angrep mot læren [@popper2002]. Dette blir på mange måter det motsatte av det Popper ønsker [@popper2002]. En forsker skal heller sette seg teorier for å så ha som mål å falsifisere de, på denne måten vil man sikre god vitenskap [@popper2002]. Når man prøver å falsifisere en teori vil det være gjennom deduksjon, teorien har et premiss som empirisk blir testet og man får svaret sant eller usant. Utfallet blir da enten at teorien blir falsifisert og da lagt fram som motbevist eller at teorien blir stående. Ifølge Popper kan ikke teorier bevises, og da er argumentasjon basert på induksjon heller aldri et alternativ [@okasha2016]. Samtidig mener Popper at teorier som har blitt testet på riktige måter og som ikke har blitt falsifisert, kan bli «corroborated», altså nesten bevist [@popper2002]. Poppers tanker om disse teoriene som flere ganer ikke er blitt falsifisert ligner da veldig på en induktiv bekreftelse av en teori, altså når en teori som mest sannsynlig er sann, men ifølge Popper er det ikke det samme [@okasha2016; @popper2002].
@@ -12,7 +10,6 @@ Problemet med Poppers teori om vitenskap kommer tydelig fram når han ikke kan b
 
 ## 2. HD-metoden og abduksjon/Bayesisme
 
-*Hva er strukturen på et bekreftende vitenskapelig argument ifølge den hypotetisk deduktive metode? Forklar ut fra Hempels artikkel, men bruk egne eksempel. Sammenlign også Hempels HD-metode med hvordan vitenskapelig bekreftelse fungerer ifølge enten abduksjon eller Bayesianisme*.
 
 I oppgave 1 så jeg på hva en vitenskapelig teori er, nå skal jeg se på hvordan teorier kan testes. Carl Gustav Hempel mente at det ikke fantes noen god metode teorier kunne testes og var uenig med Popper [@hempel1966]. Hempel mente at man trengte induktiv argumentasjon i vitenskapene [@hempel1966]. Derfor løftet Hempel fram en metode kaldt hypotetisk deduktiv metode (HD-metoden), som et bedre alternativ [@hempel1966]. Denne metoden sier ikke noe om hvordan teorier kommer fram, men den har klare retningslinjer på hvordan man skal teste en teori og gi den styrke [@hempel1966].
 
@@ -24,7 +21,6 @@ På mange måter ligner HD-metoden og abduksjon på hverandre og begge vil gå u
 
 ## 3. Replikasjonskrisen
 
-*Hva mener Alexander Bird er forklaringen til at mange resultat i noen vitenskaper ikke repliseres? Oppsummere Birds argument for dette. Sammenlign også Birds forklaring med noen av de andre forklaringene som Bird diskuterer i seksjon 4. Har Bird rett i at hans forklaring er bedre?*
 
 De siste 20 årene har det blitt identifisert en replikasjonskrise i vitenskapen [@begley2012; @ioannidis2005; @opensciencecollaboration2015]. Dette handler om at mange studier som blir gjort på nytt ikke klarer å få det samme resultatet som første gangen det ble gjort. Det gir oss et stort problem, for hvordan kan man da stole på vitenskapen? Undersøkelser viser at tillitten til vitenskapen har falt i England og USA [@funk2016]. Dette er også noe flertallet av forskere anerkjenner som en krise basert på en spørreundersøkelse gjort på 1500 forskere [@baker2016]. Alexander Bird mener å ha en forklaring til denne replikasjonskrisen [@bird2020].
 

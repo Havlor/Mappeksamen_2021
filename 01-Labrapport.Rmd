@@ -13,7 +13,7 @@ Det ble derreter laget sju forskjellige master mixer ved hjelp av 3 referansegen
 
 En PCR protokoll ble på forhånd forberedet i QuantStudio5. PCR protokollen bestod av 50 grader i 2 minutter, og 95 grader i 2 minutter, før den kjørte 40 sykluser bestående av 1 sekund på 95 grader celsius, og 30 sekunder på 60 grader celsius.
 
-```{r}
+```{r, echo = FALSE}
 if("qpcR" %in% rownames(installed.packages()) == FALSE) install.packages("qpcR")
 if("readxl" %in% rownames(installed.packages()) == FALSE) install.packages("readxl")
 if("parallel" %in% rownames(installed.packages()) == FALSE) install.packages("parallel")
@@ -172,8 +172,7 @@ fc_g1 <- results_group1 %>%
   group_by(sample)%>%
   pivot_wider(names_from = target, values_from = cq) %>%
   arrange(time) %>%
-   flextable() %>%
-  print()
+   flextable()
 ```
 
 ## Diskusjon
