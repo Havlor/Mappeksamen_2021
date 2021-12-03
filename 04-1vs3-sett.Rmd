@@ -2,9 +2,9 @@
 
 ## Introduksjon
 
-Det finnes utallige måter å trene styrketrening på, men hvilken måte som er den mest effektive er enda uklart. Tradisjonelt gjøres styrketrening i X antall ganger (repetisjoner) i X antall serier (sett). Men hvor mye har det å si at man gjør ett eller flere sett? Flere studier har sett på effekten av å gjøre ett sett og tre sett [@galvão2005; @hass2000; @krieger2009; @radaelli2014; @schoenfeld2019]. Resultatet i studiene er sprikende. Noen studier finner ikke forskjell mellom grupper som trener ett og tre sett [@hass2000; @radaelli2014], mens andre studier ser at begge gruppene øker, men tre sett gir en ytterlige effekt på styrke [@krieger2009; @galvão2005]. Det er også sett at man kan oppnå like styrkeeffekter, men at økningen av muskelmasse trenger større volum enn ett sett for å gi effekt [@schoenfeld2019].
+Det finnes utallige metoder å trene styrketrening på, men hvilken metode som er den mest effektive er enda uklart. Tradisjonelt gjøres styrketrening i X antall ganger (repetisjoner) i X antall serier (sett). Men hvor mye har det å si at man gjør ett eller flere sett? Flere studier har sett på effekten av å gjøre ett sett og tre sett [@galvão2005; @hass2000; @krieger2009; @radaelli2014; @schoenfeld2019]. Resultatet i studiene er sprikende. Noen studier finner ikke forskjell mellom grupper som trener ett og tre sett [@hass2000; @radaelli2014], mens andre studier ser at begge gruppene øker, men tre sett gir en ytterlige effekt på styrke [@krieger2009; @galvão2005]. Det er også sett at man kan oppnå like styrkeeffekter, men at økningen av muskelmasse trenger større volum enn ett sett for å gi effekt [@schoenfeld2019].
 
-Basert på statistikk fra @statistisksentralbyrå2019 er styrketrening blitt svært populert, men bare ett fåtall trener mer enn en gang i uken. Studier viser derimot at den ideele effekten av styrketrening kommer først når man trener to til tre ganger i uken [@schoenfeld2016]. På bagrunn av dette vil det være gunstig å finne ut av spørsmålet om ett sett er nok, da en treningsøkt tar mye kortere tid. Noe av det som gjør at det er vanskelig å dra en tydelig konklusjon av studiene på området er at det vil være individuelle variasjoner mellom to treningsgrupper. I vår studie ser vi derfor på perosner som trener ett sett på ene benet og tre sett på det andre benet. På denne måten vil en sikre at framgangen ikke blir forskjellig på bakgrunn av gruppeforskjeller, men på bakgrunn av selve treningen.
+Basert på statistikk fra @statistisksentralbyrå2019 er styrketrening blitt svært populert, men bare ett fåtall trener mer enn en gang i uken. Studier viser derimot at den ideele effekten av styrketrening kommer først når man trener to til tre ganger i uken [@schoenfeld2016]. På bagrunn av dette vil det være gunstig å finne ut av spørsmålet om ett sett er nok, da en treningsøkt tar mye kortere tid og lettere å prioritere. Noe av det som gjør at det er vanskelig å dra en tydelig konklusjon av studiene på området er at det vil være individuelle variasjoner mellom to treningsgrupper. I vår studie ser vi derfor på perosner som trener ett sett på ene benet og tre sett på det andre benet. På denne måten vil en sikre at framgangen ikke blir forskjellig på bakgrunn av gruppeforskjeller, men på bakgrunn av selve treningen.
 
 I studien ønsker vi å se effekten av både fem uker og 12 uker. Hypotesen er at begge treningsmetodene vil ha en god framgang i både styrke og muskelstørrelse, men at benet som trener tre sett vil få en bedre styrkefremgang ved både fem og 12 uker.
 
@@ -20,25 +20,25 @@ Det ble rekruttert 41 kvinner og menn til en treningsperiode på 12 uker. Kriter
 
 ### Trening
 
-Trenging som ble gjennomført var et helkroppstreningsprogram hvor treningen av ble gjort forskjellig på høyre og venstre fot. De ene bene trente ett sett, mens det andre trente tre sett. Hvilket ben som trente hva, ble randomisert. Antall repetisjoner 0-2 uker var 10 repetisjoner maksimum (RM), uke 2-5 var det 8RM, uke 5-12 var det 7RM. Det ble gjort treninger i uken, med unntak av ukene hvor det ble gjort test. Alle økter ble gjort på ved kvalifiserte trenere (91% av øktene, resterende økter ble gjort uten trener for at det skulle bli gjennomførbart). Øvelsene på bena ble gjort i denne rekkefølgen: unilateral benpress, knefleksjon og knefleksjon med enten ett sett eller tre sett. Det ene settet ble gjort mellom andre og tredje sett i tre sett serien. Etter bedøvelsene ble to sett av øvelser på overkroppen gjort I to sett: bilateral benkpress, nedtrekk og enten skulderpress eller sittende roing (gjort annenhver økt). Pauser mellom sett var 90-180 sekund og pause mellom økten var på minimum 24 timer.
+Trenging som ble gjennomført var et helkroppstreningsprogram hvor treningen av ble gjort forskjellig på høyre og venstre fot. De ene bene trente ett sett, mens det andre trente tre sett. Hvilket ben som trente hva, ble randomisert. Antall repetisjoner i uke 0-2 var 10 repetisjoner maksimum (RM), uke 2-5 var det 8RM, uke 5-12 var det 7RM. Det ble gjort tre treninger i uken, med unntak av ukene hvor det ble gjort test. Alle økter ble gjort på ved kvalifiserte trenere (91% av øktene, resterende økter ble gjort uten trener for at det skulle bli gjennomførbart). Øvelsene på bena ble gjort i denne rekkefølgen: unilateral benpress, knefleksjon og kneekstensjon med enten ett sett eller tre sett. Det ene settet ble gjort mellom andre og tredje sett i tre sett serien. Etter benøvelsene ble øvelser på overkroppen gjort I to sett: bilateral benkpress, nedtrekk og enten skulderpress eller sittende roing (gjort annenhver økt). Pauser mellom sett var 90-180 sekund og pause mellom økten var på minimum 24 timer.
 
 ### Testing
 
 #### Styrketester
 
-Styrketestne ble gjort ved pre, etter fem uker og ved post (12 uker). Tre av testene ble gjort som unilateral kneekstensjon i dynamometer (Cybex 6000, Cybex International, Medway USA). I forkant av testingen ble en standardisert oppvarming gjennomført på ergometersykkel i 5 minutter. Dynamometeret ble justert av testleder sånn at individuelle innstillinger ble gjort. Før hver test ble det gjort standardiserte oppvarmingsrepetisjoner i dynamometeret. Isokinetisk (isok) og isometrisk (isom) styrke ble målt ved maksimalt dreiemoment målt i newtonmeter, og ble notert for hver test (isok120, isok240 og isok60 grader per sekund bevegelseshastighet og isom0 (kneet i 60 graders vinkel)). Det ble gitt to forsøk ved isok60 og isom60 og tre forsøk ved isok240 og isok120 og høyeste ble registrert.
+Styrketestne ble gjort ved pre, etter fem uker og ved post (12 uker). Tre av testene ble gjort som unilateral kneekstensjon i dynamometer (Cybex 6000, Cybex International, Medway USA). I forkant av testingen ble en standardisert oppvarming gjennomført på ergometersykkel i fem minutter. Dynamometeret ble justert av testleder sånn at individuelle innstillinger ble gjort. Før hver test ble det gjort standardiserte oppvarmingsrepetisjoner i dynamometeret. Isokinetisk (isok) og isometrisk (isom) styrke ble målt ved maksimalt dreiemoment målt i newtonmeter, og ble notert for hver test (isok120, isok240 og isok60 grader per sekund bevegelseshastighet og isom0 (kneet i 60 graders vinkel)). Det ble gitt to forsøk ved isok60 og isom60 og tre forsøk ved isok240 og isok120 og høyeste ble registrert.
 
-De to andre testene var 1RM-tester i unilateral kneekstensjon og benpress. Som oppvarming ble det gjort 10, 6 og 3 repetisjoner ved henholdsvis 50, 75 og 85% av forventet 1RM. Deretter ble 1RM funnet ved at vekten ble økt gradvis til de de ikke klarte å fullføre full bevegelse i øvelsen. Den høyeste gjennomførte repetisjonen ble satt som 1RM.
+De to andre testene var 1RM-tester i unilateral kneekstensjon og benpress. Som oppvarming ble det gjort ti, seks og tre repetisjoner ved henholdsvis 50, 75 og 85% av forventet 1RM. Deretter ble 1RM funnet ved at vekten ble økt gradvis til de de ikke klarte å fullføre full bevegelse i øvelsen. Den høyeste gjennomførte repetisjonen ble satt som 1RM.
 
 Resultatet ble regnet om til en kombinert score som er et gjennomsnitt av alle styrketestene.
 
 #### Estimering av Muskelmasse
 
-Ved pre og post-test ble det brukt «dual-energy X-ray absorptiometry» (DXA). Deltagerne fikk beskjed om å faste de to timene før test og å unngå fysisk aktivitet 48 timer før.
+Ved pre og post-test ble det brukt «dual-energy X-ray absorptiometry» (DXA)(Lunar Prodigy, GE Healthcare, Oslo, Norway) for å estimere muskelmasse i gram. Deltagerne fikk beskjed om å faste de to timene før test og å unngå fysisk aktivitet 48 timer før.
 
 ### Statestikk
 
-For å se forskjell mellom 1 sett og 3 ble den kombinerte scoren regnet om til prosentvis økning. For å finne signifikante forskjeller ble ANCOVA brukt, hvor det ble tatt hensyn til at dataene er korrelerte. Dette er da man gjør to forskjellige protokoller på samme person. Det ble også sett på forskjeller innad i kjønn. For muskelmasse ble det sett på forskjell på fra pre til post. Endring i muskelmasse ble analysert ved pre til 5 uker, 5 uker til post, og pre til post. En P-verdi under 0,05 blir sett på som signifikant endring. Alle tall er gitt som gjennomsnitt med standardavvik. Tabeller, figurer og analyser ble gjort i RStudio (versjon 1.4.1717; R Founadtion for Statistics Computing, Vienna AT).
+For å se forskjell mellom ett og tre sett ble den kombinerte scoren i styrke regnet om til prosentvis økning. For å finne signifikante forskjeller ble ANCOVA brukt, hvor det ble kontrollert for pre-verdier og tatt hensyn til at dataene er korrelerte. Dette er da man gjør to forskjellige protokoller på samme person. For muskelmasse ble det sett på forskjell mellom pre og post. Endring i muskelstyrke ble analysert ved pre til fem uker, fem uker til post, og pre til post. En P-verdi under 0,05 blir sett på som signifikant endring. ANCOVA-modelen ble gjort kombinert med R-pakken lmerTest [@lmerTest]. Alle tall er gitt som gjennomsnitt med standardavvik. Tabeller, figurer og analyser ble gjort i RStudio (versjon 1.4.1717; R Founadtion for Statistics Computing, Vienna AT).
 
 ## Resultat
 
@@ -84,9 +84,15 @@ figurmuskel <- muskelfigur %>%
 
 ```
 
+```{r figur, echo=FALSE, include=TRUE, results='hide', fig.cap = "Figur 1 viser økningen i muskelvekst fra pre-test til post-tesst for alle forsøkspersoner skildt ved single- sett (1 sett) og multiple- sett (3 sett)."}
+knitr::opts_chunk$set(echo = TRUE)
+
+figurmuskel
+```
+
 ### Muskelstyrke
 
-Begge treningsmetodene gav økning i styrke fra pre til uke 5 og uke 5 til post (figur2) (p \< 0.05). Den største økningen kom for begge treningsmetodene mellom pre og uke fem (begge p \< 0.01) (tabell 1). Fra uke 5 og post var det en økning på 10% for benet som trente 3 sett og 6.8% for benet som trente 1 sett. Benet som trente tre sett økte mer en benet som trente ett sett ved både 5 uker og ved post-test (begge p \< 0.01) (tabell 1).
+Begge treningsmetodene gav økning i styrke fra pre til uke fem og uke fem til post (figur 2) (p \< 0.05). Den største økningen kom for begge treningsmetodene mellom pre og uke fem (begge p \< 0.01) (tabell 1). Fra uke fem og post var det en økning på 10% for benet som trente tre sett og 6.8% for benet som trente ett sett. Benet som trente tre sett økte mer en benet som trente ett sett ved både fem uker og ved post-test (begge p \< 0.01) (tabell 1).
 
 ```{r setup, include=FALSE, results='hide'}
 
@@ -167,11 +173,6 @@ figurendring
 
 
 tabellstyrke
-```
-```{r figur, echo=FALSE, include=TRUE, results='hide', fig.cap = "Figur 1 viser økningen i muskelvekst fra pre-test til post-tesst for alle forsøkspersoner skildt ved single- sett (1 sett) og multiple- sett (3 sett)."}
-knitr::opts_chunk$set(echo = TRUE)
-
-figurmuskel
 ```
 
 ```{r p-verdi, include=FALSE, results='hide'}
@@ -272,15 +273,15 @@ summary(m1_muskel) #rett?
 
 ## Diskusjon
 
-Hovedfunnene i denne studien er at tre sett gir en større økning i både styrke og muskelmasse enn å trene ett sett etter 12 uker med styrketrening. Den største økningen i styrke kom etter de fem første ukene. Funnene våre stemmer overens med flere av studiene som har ser på grupper (1 sett mot 3 sett) opp mot hverandre [@krieger2009; @galvão2005; @schoenfeld2016].
+Hovedfunnene i denne studien er at tre sett gir en større økning i både styrke og muskelmasse enn å trene ett sett etter 12 uker med styrketrening. Den største økningen i styrke kom etter de fem første ukene. Funnene våre stemmer overens med flere av studiene som har ser på grupper (ett sett mot tre sett) opp mot hverandre [@krieger2009; @galvão2005; @schoenfeld2016].
 
-Etter fem uker med trening var ikke forskjellen like stor som ved 12 uker. Dette kan stemme med @radaelli2014, selv om han ikke så forskjell mellom ett og tre sett. I den studien så de på effekten av seks uker hos utrente hvor forfatterne konkluderte med at ett sett gir like god effekt som tre sett hos utrente i startfasen av styrketrening [@radaelli2014]. Selv om studien vår viser at tre sett er fordelaktig også i en startfase, kan man likevel se en overlegen effekt av tre sett fra uke fem til 12. Dette tyder på at volum blir viktigere og viktigere jo lengre treningsperioden varer. I vår studie hadde vi også forsøkspersoner som til en viss grad var vant med trening, noe som vil gi dem et annet utgangspunkt enn helt utrente som @radaelli2014 så på. I motsetning til dette så @hass2000 i sin studie at ett sett var like bra som tre sett også hos trente personer, på både kort og lang sikt. Det som likevel skiller denne studien fra vår i tillegg til at vi ikke hadde to grupper, er at de så på styrketester i både overkropp og underkropp [@hass2000]. Når man ser på resultatet i studien er det signifikant forskjell i favør tre sett i leggfleksjon og generelt ikke overbevisende resultat for ett sett på underkroppsøvelser [@hass2000]. Det kan dermed virke som at tre sett er å foretrekke på underkroppen mens ett sett kan være nok på overkroppen. Denne konklusjonen stemmer godt overens med andre studier [@rønnestad2007; @paulsen2003]. Likevel kunne det vært interessant om man også ser denne effekten om man har samme studiedesign som i denne studien, hvor man hadde trent forskjellig på venstre og høye arm.
+Etter fem uker med trening var ikke forskjellen like stor som ved 12 uker. Dette kan stemme med @radaelli2014, selv om han ikke så forskjell mellom ett og tre sett. I den studien så de på effekten av seks uker hos utrente hvor forfatterne konkluderte med at ett sett gir like god effekt som tre sett hos utrente i startfasen av styrketrening [@radaelli2014]. Selv om studien vår viser at tre sett er fordelaktig også i en startfase, kan man likevel se en overlegen effekt av tre sett fra uke fem til 12. Dette tyder på at volum blir viktigere og viktigere jo lengre treningsperioden varer. I motsetning til dette så @hass2000 i sin studie at ett sett var like bra som tre sett også hos trente personer, på både kort og lang sikt. Det som likevel skiller denne studien fra vår i tillegg til at vi ikke hadde to grupper, er at de så på styrketester i både overkropp og underkropp [@hass2000]. Når man ser på resultatet i studien er det signifikant forskjell i favør tre sett i leggfleksjon og generelt ikke overbevisende resultat for ett sett på underkroppsøvelser [@hass2000]. Det kan dermed virke som at tre sett er å foretrekke på underkroppen mens ett sett kan være nok på overkroppen. Denne konklusjonen stemmer godt overens med andre studier [@rønnestad2007; @paulsen2003]. Likevel kunne det vært interessant om man også kan se denne effekten om man har samme studiedesign som i denne studien, hvor man hadde trent forskjellig på venstre og høye arm.
 
-I forhold til økning i muskelmasse var det en liten, men gyldig økning i vår studie. Lignende funn så @schoenfeld2019, som konkluderer med at det er en dose-respons-effekt på økning i muskelmasse. Det samme klarete ikke @galvão2005 å finne når han så på ett vs. tre sett hos eldre mennesker. Det kan potensielt forklares med at eldre trenger mer protein for å oppnå økning i muskelmasse samtidig som at de ikke er like flinke til få i seg proteiner som unge [@kraemer1999; @moore2015]. Vår studie skiller seg generelt fra andre da muskelmasseøkningen teoretisk sett er lik når begge intervensjonene skjer på samme person samtidig.
+I forhold til økning i muskelmasse var det en liten, men gyldig økning i vår studie. Lignende funn så @schoenfeld2019, som konkluderer med at det er en dose-respons-effekt på økning i muskelmasse. Det samme klarete ikke @galvão2005 å finne når han så på ett vs. tre sett hos eldre mennesker. Det kan potensielt forklares med at eldre trenger mer protein for å oppnå økning i muskelmasse samtidig som at de ikke er like flinke til få i seg proteiner som unge [@kraemer1999; @moore2015]. Vår studie skiller seg generelt fra andre da potensialet et menneske har for muskelmasseøkningen teoretisk sett er lik på begge ben.
 
 ### Treningsanbefaling
 
-På bakgrunn av denne studien og andre studeier nevnt over, kan man som utrent få god effekt av å trene ett sett på hele kroppen i starten av en treningsperiode. Etter ca. en måned bør man øke antall sett på underkroppsøvelsene, men kan forsette med ett sett på overkroppen. Det er også viktig at alle repetisjoner utføres som RM for å få mest mulig effektiv trening.
+På bakgrunn av denne studien og andre studeier nevnt over, kan man som utrent få god effekt av å trene ett sett på hele kroppen i starten av en treningsperiode. Etter ca. en måned bør man øke antall sett på underkroppsøvelsene, men kan forsette med ett sett på overkroppen. Det er også viktig at alle repetisjoner utføres som RM for å få mest mulig effektiv av treningen.
 
 ### Konklusjon
 

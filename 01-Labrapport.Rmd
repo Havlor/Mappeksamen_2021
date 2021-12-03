@@ -147,6 +147,6 @@ fc_g1 <- results_group1 %>%
 
 ## Diskusjon
 
-Cq-verdien sier noe om hvor mange PCR-sykluser som trengs for å detektere ulike gen [@kuang2018]. En høyere Cq-verdi indikerer altså at mengden RNA må dobles flere ganger for å detektere en terskelverdi av et gen. En lavere Cq-verdi indikerer at terskelverdien oppnås ved færre PCR-sykluser, altså at konsentrasjonen av målgen er høyere [\@kuang2018]. En lavere Cq-verdi ved uke 2, sammenlignet med uke 0, som i forsøket, indikerer høyere konsentrasjon ved uke 2 enn ved uke 0. Dermed en effekt av intervensjonen, avhengig av funksjonen til målgenet vi underøkser.
+Cq-verdien sier noe om hvor mange PCR-sykluser som trengs for å detektere ulike gen [@kuang2018]. En høyere Cq-verdi indikerer altså at mengden RNA må dobles flere ganger for å detektere en terskelverdi av et gen. En lavere Cq-verdi indikerer at terskelverdien oppnås ved færre PCR-sykluser, altså at konsentrasjonen av målgen er høyere [@kuang2018]. En lavere Cq-verdi ved uke 2, sammenlignet med uke 0, som i forsøket, indikerer høyere konsentrasjon ved uke 2 enn ved uke 0. Dermed en effekt av intervensjonen, avhengig av funksjonen til målgenet vi underøkser.
 
 I forsøket vårt har vi valg tre referansegen, dette gjør det lettere å se at reultatet stemmer. Referansegene er er gen som ikke skal være påvirkbare av den gitte intervensjoenen og skal være være en sikkerhet på at Cq-verdiene på målgenene stemmer.
