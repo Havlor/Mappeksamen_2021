@@ -1,14 +1,14 @@
-# Labrapport - cDNA syntesering ved hjelp av Superscript IV og generell qPCR
+# Labrapport - cDNA syntetisering ved hjelp av Superscript IV og generell qPCR
 
 ## Formål
 
-RNA-overflodsanalyse er gjort ved hjelp av syntese av komplementært DNA fra enkelttrådet RNA. Vi ønsker å amplifisere opp bestemte proteiner ved hjelp av bestemte primere og qPCR. Vi ønsker å få frem en Cq-verdi for å kunne evaluere gen-opphopningen, og sammenlikne mål-genene med referanse gener.
+RNA-overflodsanalyse er gjort ved hjelp av syntese av komplementært DNA fra enkelttrådet RNA. Vi ønsker å amplifisere opp bestemte proteiner ved hjelp av bestemte primere og qPCR. Vi ønsker å få frem en Cq-verdi for å kunne evaluere gen-opphopningen, og sammenligne mål-genene med referanse gener.
 
 ## Metode
 
-Vi hentet cDNA fra 3 forsøkspersoner. Dette er cDNA hentet fra testene som ble gjennomført i uke 0 og uke 2. Alle prøver er fra venstre ben. Det ble laget en fem folds fortynningsserie fra disse prøvene. Dette ble fortynnet ved hjelp av DEPC-behandlet vann, i følgende serie 1:10, 1:50, 1:250, 1:1250, 1:6250, 1:31250, 1:156250. Vortex ble brukt mellom hver fortynningsfase.
+Vi hentet cDNA fra tre forsøkspersoner. Dette er cDNA hentet fra testene som ble gjennomført i uke 0 og uke 2. Alle prøver er fra venstre ben. Det ble laget en fem folds fortynningsserie fra disse prøvene. Dette ble fortynnet ved hjelp av DEPC-behandlet vann, i følgende serie 1:10, 1:50, 1:250, 1:1250, 1:6250, 1:31250, 1:156250. Vortex ble brukt mellom hver fortynningsfase.
 
-Det ble derreter laget sju forskjellige mastermixer ved hjelp av 3 referansegener (REEP5, CHMP2A, B2M) og 4 målgener (MyHC I, 2A, 2X, rRNA 475). Mastermix bestod av 5 µl sybr green, 1 µl valgt gen/referansegen, 2 µl DEPC-behandlet vann , 2 µl fortynnet cDNA. Deretter ble det fylt 71 brønner i en qPCR-reaksjonsplate med henholdsvis 2 µl prøve, og 8 µl med mastermix. Reaksjonsplaten med brønner ble dekt med plastfilm, og ble sentrifugert i 1 minutt på 1200 omrdreininger, før PCR protokoll ble gjennomført.
+Det ble derreter laget sju forskjellige mastermixer ved hjelp av tre referansegener (REEP5, CHMP2A, B2M) og fire målgener (MyHC I, 2A, 2X, rRNA 475). Mastermix bestod av 5 µl sybr green, 1 µl valgt gen/referansegen, 2 µl DEPC-behandlet vann , 2 µl fortynnet cDNA. Deretter ble det fylt 71 brønner i en qPCR-reaksjonsplate med henholdsvis 2 µl prøve, og 8 µl med mastermix. Reaksjonsplaten med brønner ble dekt med plastfilm, og ble sentrifugert i ett minutt på 1200 omrdreininger, før PCR protokoll ble gjennomført.
 
 En PCR protokoll ble på forhånd forberedet i QuantStudio5. PCR protokollen bestod av 50 grader i 2 minutter, og 95 grader i 2 minutter, før den kjørte 40 sykluser bestående av 1 sekund på 95 grader celsius, og 30 sekunder på 60 grader celsius.
 
@@ -152,6 +152,6 @@ fc_g1
 
 ## Diskusjon
 
-Cq-verdien sier noe om hvor mange PCR-sykluser som trengs for å detektere ulike gen [@kuang2018]. En høyere Cq-verdi indikerer altså at mengden RNA må dobles flere ganger for å detektere en terskelverdi av et gen. En lavere Cq-verdi indikerer at terskelverdien oppnås ved færre PCR-sykluser, altså at konsentrasjonen av målgen er høyere [@kuang2018]. En lavere Cq-verdi ved uke 2, sammenlignet med uke 0, som i forsøket, indikerer høyere konsentrasjon ved uke 2 enn ved uke 0. Dermed en effekt av intervensjonen, avhengig av funksjonen til målgenet vi underøkser.
+Cq-verdien sier noe om hvor mange PCR-sykluser som trengs for å detektere ulike gen [@kuang2018]. En høyere Cq-verdi indikerer altså at mengden RNA må dobles flere ganger for å detektere en terskelverdi av et gen. En lavere Cq-verdi indikerer at terskelverdien oppnås ved færre PCR-sykluser, altså at konsentrasjonen av målgen er høyere [@kuang2018]. En lavere Cq-verdi ved uke 2, sammenlignet med uke 0, som i forsøket, indikerer høyere konsentrasjon ved uke 2 enn ved uke 0. Dermed en effekt av intervensjonen, avhengig av funksjonen til målgenet vi undersøker.
 
-I forsøket vårt har vi valg tre referansegen, dette gjør det lettere å se at reultatet stemmer. Referansegene er er gen som ikke skal være påvirkbare av den gitte intervensjoenen og skal være være en sikkerhet på at Cq-verdiene på målgenene stemmer.
+I forsøket vårt har vi valg tre referansegen, dette gjør det lettere å se at resultatet stemmer. Referansegene er er gen som ikke skal være påvirkbare av den gitte intervensjoenen og skal være en sikkerhet på at Cq-verdiene på målgenene stemmer.
