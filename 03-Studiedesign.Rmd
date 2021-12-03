@@ -36,7 +36,7 @@ Alle studiene konkludere med at styrketrening fungerte [@geirsdottir2012; @schot
 
 Det er enda ikke veldig tydelig hvilke treningsprogram som gir god effekt på bedret funksjonsevne [@turpela2017]. @schott2019 foreslår at studeier med frivekter kan være løsningen. I tillegg burde man gjøre studier hvor man kontrollerer proteininntaket hos eldre da dette kan være så lavt at det påvirker styrkefremgangen [@turpela2017].
 
-```{r tesksttabell, echo=FALSE, message=FALSE, warning=FALSE, tab.cap = "tabellen viser en oppsummering av studiene"}
+```{r tesksttabell, echo=FALSE, message=FALSE, warning=FALSE, tab.cap = "Tabellen viser en oppsummering av studiene"}
 library(readxl)
 library(flextable)
 tabelltekst <- read_excel("data/teksttabell.xlsx")

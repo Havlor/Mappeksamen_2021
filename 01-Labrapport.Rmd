@@ -129,7 +129,7 @@ efficiency_estimates <- data.frame(target = c("B2M", "REEP5"),
                           10^-(1/reep5_slope)))
 ```
 
-```{r cqtabell, echo=FALSE, message=FALSE, warning=FALSE, tab.cap= "Tabellen viser cq-verider per gen"}
+```{r cqtabell, include=FALSE, results='hide'}
 ## Estimerte cq verdier? 
 library(flextable)
 fc_g1 <- results_group1 %>%
@@ -143,6 +143,11 @@ fc_g1 <- results_group1 %>%
   pivot_wider(names_from = target, values_from = cq) %>%
   arrange(time) %>%
    flextable()
+```
+
+```{r cq, echo=FALSE, message=FALSE, warning=FALSE, tab.cap= "Tabellen viser cq-verider per gen"}
+fc_g1
+
 ```
 
 ## Diskusjon

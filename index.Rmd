@@ -1,6 +1,6 @@
 ---
 title: "Mappeeksamen"
-author: "Håvard C. Lorentzen (kandidatnr. 107)"
+author: "Håvard Crantz Lorentzen, kandidatnummer 107"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: pdf_document
@@ -10,6 +10,8 @@ link-citations: yes
 editor_options: 
   chunk_output_type: console
 ---
+
+All data og analyse som brukt i mappeeksamen finnes her: <https://github.com/Havlor/Mappeksamen_2021>
 
 # Realabilitet
 
